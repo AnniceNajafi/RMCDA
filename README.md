@@ -1,4 +1,4 @@
-# MCDA
+# RMCDA
 
 <h3>Installation Guide</h3>
 
