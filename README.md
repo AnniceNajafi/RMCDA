@@ -24,7 +24,7 @@ This is an R package for applying MCDA methods on product data.
 Web-based application to apply methods can be accessed through <a href="https://www.shinyapps.io/admin/#/application/13085512">this link</a>.
 
 <h3>Contact Information</h3>
-For any technical questions, please contact <a href=mailto:annicenajafi@tamu.edu>Annice Najafi</a>. 
+For any technical questions, please contact <a href=mailto:annicenajafi27@gmail.com>Annice Najafi</a>. 
 
 <br>
 <br>
