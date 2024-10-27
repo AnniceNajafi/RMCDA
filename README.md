@@ -10,7 +10,7 @@ devtools::install_github("AnniceNajafi/RMCDA")
 <h3>Description of Methods</h3>
 This is an R package for applying MCDA methods on product data.
  
- <h3>Methods included in this R package:</h3>
+ <h3>Methods</h3>
  <ul>
   <li>Analytical Hierarchical Process (AHP)</li>
   <li>Analytical Network Process (ANP)</li>
