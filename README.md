@@ -29,4 +29,4 @@ For any technical questions, please contact <a href=mailto:annicenajafi27@gmail.
 <br>
 <br>
 <br>
-Open-source software developed by ❤️ in California, 🇺🇸
+Open-source software developed with ❤️ in California, 🇺🇸
