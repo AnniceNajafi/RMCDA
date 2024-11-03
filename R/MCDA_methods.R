@@ -1,4 +1,4 @@
-#' Read csv file containing pairwise comparison matrices
+#' Read csv file containing pairwise comparison matrices for applying AHP or ANP
 #'
 #' @param data the matrix containing information related to pairwise comparisons of
 #' criteria
@@ -7,7 +7,10 @@
 #' and a list containing multiple matrices related to pairwise comparisons of different
 #' competitor products
 #' @export
-read.matrices <- function(data){
+#' @examples
+#' data <- read.csv("AHP_input_file.csv", header=FALSE)
+#' mat.lst <- read.csv.AHP.matrices(data)
+read.csv.AHP.matrices <- function(data){
 
   data.dim <- length(data)-1
 
@@ -42,6 +45,102 @@ read.matrices <- function(data){
 }
 
 
+#' Read csv file containing pairwise comparison matrices for applying AHP or ANP
+#'
+#' @param data the matrix containing information related to pairwise comparisons of
+#' criteria
+#'
+#' @return a list containing a matrix A related to pairwise comparison of criteria
+#' and a list containing multiple matrices related to pairwise comparisons of different
+#' competitor products
+#' @export
+#' @examples
+#' data <- read.csv("SMCDM_input.csv", header=FALSE)
+#' mat.lst <- read.csv.SMCDM.matrices(data)
+read.csv.SMCDM.matrices <- function(data){
+
+  empty.idx <- which(apply(data, 1, function(row) all(row == "" | is.na(row)))==1)
+
+  empty.col.idx.comp.mat <- which(apply(data[1:(empty.idx[1]-1),], 2, function(col) all(col == "" | is.na(col)))==1)
+
+  comparison.mat <- data[2:(empty.idx[1]-1), 2:(empty.col.idx.comp.mat-1)]
+
+  colnames(comparison.mat)<-data[1, 2:(empty.col.idx.comp.mat-1)]
+  rownames(comparison.mat)<-data[2:(empty.idx[1]-1), 1]
+
+  state.criteria.probs <- data[(empty.idx[1]+1):(empty.idx[2]-1), ]
+  state.criteria.probs[1,2:ncol(state.criteria.probs)] -> colnames.state.criteria.probs
+  state.criteria.probs[2:nrow(state.criteria.probs), 1] -> rownames.state.criteria.probs
+
+  state.criteria.probs <- state.criteria.probs[2:nrow(state.criteria.probs), 2:ncol(state.criteria.probs)]
+  colnames(state.criteria.probs)<-colnames.state.criteria.probs
+  rownames(state.criteria.probs)<-rownames.state.criteria.probs
+
+  as.numeric(data[(empty.idx[2]+2):nrow(data),1])->likelihood.vector
+
+  state.criteria.probs.df <- as.data.frame(sapply(state.criteria.probs, as.numeric))
+
+  rownames(state.criteria.probs)->rownames(state.criteria.probs.df)
+
+  state.criteria.probs.df -> state.criteria.probs
+
+  comparison.mat.df <- as.data.frame(sapply(comparison.mat, as.numeric))
+
+  rownames(comparison.mat)->rownames(comparison.mat.df)
+
+  comparison.mat.df -> comparison.mat
+
+  return(list(comparison.mat, state.criteria.probs, likelihood.vector))
+}
+
+#' Read csv file containing input to the stratified BWM method
+#'
+#' @param data input of the csv file
+#'
+#' @return the inputs to the SBWM method
+#' @export
+#' @examples
+#' data <- read.csv("stratified_BWM_case_study_I_example.csv", header=FALSE)
+#' mat.lst <- read.csv.SBWM.matrices(data)
+read.csv.SBWM.matrices <- function(data){
+
+  length(data) -> data.dim
+
+  empty.idx <- which(apply(data, 1, function(row) all(row == "" | is.na(row)))==1)
+
+  empty.col.idx <- which(apply(data[1:(empty.idx[1]-1),], 2, function(col) all(col == "" | is.na(col)))==1)
+
+  comparison.mat <- data[2:(empty.idx[1]-1), 1:(empty.col.idx[1]-1)]
+
+  data[1,1:(empty.col.idx[1]-1)]->colnames(comparison.mat)
+  comparison.mat[,1] -> rownames(comparison.mat)
+  comparison.mat[,1]<-NULL
+
+  others.to.worst <- data[(empty.idx[1]+2):(empty.idx[2]-1), ]
+  others.to.best <- data[(empty.idx[2]+2):(empty.idx[3]-1), ]
+
+  others.to.best[,-1]->others.to.best
+  others.to.worst[,-1]->others.to.worst
+
+  colnames(others.to.worst) <- data[empty.idx[1]+1, 2:length(data)]
+  colnames(others.to.best) <- data[empty.idx[1]+1, 2:length(data)]
+
+  rownames(others.to.worst) <- data[(empty.idx[1]+2):(empty.idx[2]-1), 1]
+  rownames(others.to.best) <- data[(empty.idx[1]+2):(empty.idx[2]-1), 1]
+
+  state.worst.lst <- data[(empty.idx[3]+1):(empty.idx[4]-1), 2:length(data)]
+
+  state.best.lst <- data[(empty.idx[4]+1):(empty.idx[5]-1), 2:length(data)]
+
+  likelihood.vector <- data[(empty.idx[5]+1),2:(which(data[(empty.idx[5]+1),]=="")[1]-1)]
+
+  as.character(state.best.lst)->state.best.lst
+  as.character(state.worst.lst)->state.worst.lst
+  as.numeric(likelihood.vector)->likelihood.vector
+
+  return(list(comparison.mat, others.to.worst, others.to.best, state.worst.lst, state.best.lst, likelihood.vector))
+
+}
 
 #' Finding the weights for each criteria given a pairwise comparison matrix A in the AHP method
 #'
@@ -91,6 +190,12 @@ find.weight <- function(A){
 #' III. The weighted scores matrix
 #' IV. Competitor final scores
 #' @export
+#' @examples
+#' data <- read.csv("AHP_input_file.csv", header=FALSE)
+#' mat.lst <- read.matrices(data)
+#' mat.lst[[1]]->A
+#' mat.lst[[2]]->comparing.competitors
+#' results<- apply.AHP(A, comparing.competitors)
 apply.AHP <- function(A, comparing.competitors){
 
   criteria.weight <- find.weight(A)
@@ -130,6 +235,7 @@ apply.AHP <- function(A, comparing.competitors){
 #'
 #' @return the limiting super matrix
 #' @export
+#' @examples apply.ANP(A, comparing.competitors, 2)
 apply.ANP <- function(A, comparing.competitors, power){
 
   apply.AHP(A, comparing.competitors)->res.lst #apply AHP
@@ -160,6 +266,12 @@ apply.ANP <- function(A, comparing.competitors, power){
 #'
 #' @return the fuzzy weights for each criteria
 #' @export
+#' @examples
+#' # example code
+#' data <- read.csv("~/Downloads/AHP_input_file.csv", header=FALSE)
+#' mat.lst <- read.matrices(data)
+#' mat.lst[[1]]->A
+#' result <- apply.FAHP(A)
 apply.FAHP <- function(A){
 
   mat.1 <- A; mat.2 <- A; mat.3 <- A
@@ -226,6 +338,15 @@ apply.FAHP <- function(A){
 #' names corresponding to criteria
 #' @return the weight percentages related to matrix A obtained through the CRITIC method
 #' @export
+#' @examples
+#' A <- matrix(c(250, 200, 300, 275, 225,
+#' 16, 16, 32, 32, 16,
+#' 12, 8, 16, 8, 16,
+#' 5, 3, 4, 4, 2), nrow=5, ncol=4)
+#' colnames(A)<-c("Price", "Storage space", "Camera", "Looks")
+#' rownames(A)<-paste0("Mobile ", seq(1, 5, 1))
+#' A[,"Price"] <- -A[,"Price"]
+#' apply.CRITIC(A)
 apply.CRITIC <- function(A){
 
 
@@ -250,6 +371,15 @@ apply.CRITIC <- function(A){
 #' names corresponding to criteria
 #' @return the entropy value corresponding to each criteria
 #' @export
+#' @examples
+#' A <- matrix(c(250, 200, 300, 275, 225,
+#' 16, 16, 32, 32, 16,
+#' 12, 8, 16, 8, 16,
+#' 5, 3, 4, 4, 2), nrow=5, ncol=4)
+#' colnames(A)<-c("Price", "Storage space", "Camera", "Looks")
+#' rownames(A)<-paste0("Mobile ", seq(1, 5, 1))
+#' A[,"Price"] <- -A[,"Price"]
+#' find.entropy (A)
 find.entropy <- function(A){
 
   normalized.A <- t(t(A)/colSums(A))
@@ -268,7 +398,7 @@ find.entropy <- function(A){
 #'
 #' @param A the matrix A with row names corresponding to alternatives and column
 #' names corresponding to criteria
-#' @param w the weight matrix corresponding to the weight of each criteria
+#' @param w the weight vector corresponding to the weight of each criteria
 #'
 #' @return performance scores obtained through TOPSIS
 #' @export
@@ -291,14 +421,386 @@ apply.TOPSIS <- function(A, w){
 }
 
 
+#' Apply stratified multi-criteria decision making method
+#'
+#' @param comparison.mat the matrix containing alternatives as row names and criteria
+#' as column names and corresponding scores as cell values.
+#' @param state.criteria.probs the matrix containing the states as column names and
+#' criteria as row names and the corresponding scores as matrix values.
+#' @param likelihood.vector the vector containing the likelihood of being in each state.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+apply.SMCDM <- function(comparison.mat, state.criteria.probs, likelihood.vector){
+
+
+  extended.states <- t(apply(state.criteria.probs[,2:ncol(state.criteria.probs)], 1, function(x) {
+    apply(combn(ncol(state.criteria.probs[,2:ncol(state.criteria.probs)]), 2), 2, function(y) mean(x[y])) }))
+
+  all.event.happened.state <- rowMeans(state.criteria.probs[,2:ncol(state.criteria.probs)])
+
+  extended.states <- cbind(extended.states, all.event.happened.state)
+
+  colnames(extended.states) <- paste0("state.", seq(ncol(state.criteria.probs), ncol(state.criteria.probs)+ncol(extended.states)-1, 1))
+
+  state.df <- cbind(state.criteria.probs, extended.states)
+
+  likelihood.vector.stratum.2 <- likelihood.vector[-1]/likelihood.vector[1]
+
+  likelihood.vector.stratum.3 <- apply(combn(likelihood.vector.stratum.2, 2), 2, prod)
+
+  likelihood.vector.stratum.4 <- prod(likelihood.vector.stratum.2)
+
+  coefficients <- c(
+    likelihood.vector.stratum.4,  #Coefficient of p^3
+    sum(likelihood.vector.stratum.3),  #Coefficient of p^2
+    sum(likelihood.vector.stratum.2)+1,  #Coefficient of p^1
+    -1                            #Constant term at the end
+  )
+
+  #Find the roots of the equation
+  roots <- polyroot(rev(coefficients))
+
+  non.Im.root <- Re(roots[Im(roots) == 0])
+
+  if(length(non.Im.root)==0){
+
+    tolerance <- 1e-10
+    non.Im.root <- Re(roots[abs(Im(roots)) < tolerance])
+  }
+
+  p.vector <- c(non.Im.root, non.Im.root*likelihood.vector.stratum.2, non.Im.root^2*likelihood.vector.stratum.3, non.Im.root^3*likelihood.vector.stratum.4)
+
+  criteria.percentages <- as.matrix(state.df) %*% (p.vector)
+
+  option.val <- comparison.mat %*% (state.df %*% (p.vector))
+
+  return(option.val)
+}
+
+#' Title
+#'
+#' @param A
+#' @param worst.criteria
+#' @param best.criteria
+#' @param best.criteria.preference
+#' @param worst.criteria.preference
+#'
+#' @return
+#' @export
+#'
+#' @examples
+apply.BWM <- function(criteria.lst, worst.criteria, best.criteria, best.criteria.preference, worst.criteria.preference){
+
+  best.idx <- which(best.criteria == criteria.lst)
+  worst.idx <- which(worst.criteria == criteria.lst)
+
+  n_vars <- length(criteria.lst)+1
+  objective <- c(rep(0, length(criteria.lst)), 1)
+
+  #Initialize lists for constraints
+  constraints <- list()
+  directions <- character()
+  rhs <- numeric()
+
+
+  for (j in 1:length(best.criteria.preference)) {
+    coef <- rep(0, n_vars)
+    coef[best.idx] <- 1
+
+    if(j==best.idx){
+      coef[j]=0
+    }else{
+      coef[j] <- -1 * best.criteria.preference[j]
+    }
+    coef[n_vars] <- -1
+
+
+    constraints[[length(constraints) + 1]] <- coef
+    directions <- c(directions, "<=")
+    rhs <- c(rhs, 0)
+
+  }
+
+
+  for (j in 1:length(worst.criteria.preference)) {
+    coef <- rep(0, n_vars)
+    coef[j] <- 1
+
+    if(j==worst.idx){
+      coef[j]=0
+    }else{
+      coef[worst.idx] <- -1 * worst.criteria.preference[j]
+    }
+    coef[n_vars] <- -1
+
+    constraints[[length(constraints) + 1]] <- coef
+    directions <- c(directions, "<=")
+    rhs <- c(rhs, 0)
+
+  }
+
+
+  constraints[[length(constraints) + 1]] <- c(rep(1, length(criteria.lst)), 0)
+  directions <- c(directions, "=")
+  rhs <- c(rhs, 1)
+
+  constraint_matrix <- do.call(rbind, constraints)
+
+  identity.crit <- diag(length(criteria.lst))
+
+  identity.crit <- cbind(identity.crit, rep(0, nrow(identity.crit)))
+  constraint_matrix <- rbind(constraint_matrix, identity.crit)
+
+  directions <- c(directions, rep(">=", nrow(identity.crit)))
+  rhs <- c(rhs, rep("0", nrow(identity.crit)))
+
+  #Solve the linear programming problem
+  result <- lp("min", objective, constraint_matrix, directions, rhs)
+
+  return(result$solution)
+}
 
 
 
+#' Title
+#'
+#' @param comparison.mat
+#' @param others.to.worst
+#' @param others.to.best
+#' @param state.worst.lst
+#' @param state.best.lst
+#' @param likelihood.vector
+#'
+#' @return
+#' @export
+#'
+#' @examples
+apply.SMCDM <- function(comparison.mat, state.criteria.probs, likelihood.vector){
 
 
+  extended.states <- t(apply(state.criteria.probs[,2:ncol(state.criteria.probs)], 1, function(x) {
+    apply(combn(ncol(state.criteria.probs[,2:ncol(state.criteria.probs)]), 2), 2, function(y) mean(x[y])) }))
+
+  all.event.happened.state <- rowMeans(state.criteria.probs[,2:ncol(state.criteria.probs)])
+
+  extended.states <- cbind(extended.states, all.event.happened.state)
+
+  colnames(extended.states) <- paste0("state.", seq(ncol(state.criteria.probs), ncol(state.criteria.probs)+ncol(extended.states)-1, 1))
+
+  state.df <- cbind(state.criteria.probs, extended.states)
+
+  likelihood.vector.stratum.2 <- likelihood.vector[-1]/likelihood.vector[1]
+
+  likelihood.vector.stratum.3 <- apply(combn(likelihood.vector.stratum.2, 2), 2, prod)
+
+  likelihood.vector.stratum.4 <- prod(likelihood.vector.stratum.2)
+
+  coefficients <- c(
+    likelihood.vector.stratum.4,  #Coefficient of p^3
+    sum(likelihood.vector.stratum.3),  #Coefficient of p^2
+    sum(likelihood.vector.stratum.2)+1,  #Coefficient of p^1
+    -1                            #Constant term at the end
+  )
+
+  #Find the roots of the equation
+  roots <- polyroot(rev(coefficients))
+
+  non.Im.root <- Re(roots[Im(roots) == 0])
+
+  if(length(non.Im.root)==0){
+
+    tolerance <- 1e-10
+    non.Im.root <- Re(roots[abs(Im(roots)) < tolerance])
+  }
+
+  p.vector <- c(non.Im.root, non.Im.root*likelihood.vector.stratum.2, non.Im.root^2*likelihood.vector.stratum.3, non.Im.root^3*likelihood.vector.stratum.4)
+
+  criteria.percentages <- as.matrix(state.df) %*% (p.vector)
+
+  option.val <- comparison.mat %*% (state.df %*% (p.vector))
+
+  return(option.val)
+}
 
 
+#' Title
+#'
+#' @param comparison.mat
+#' @param others.to.worst
+#' @param others.to.best
+#' @param state.worst.lst
+#' @param state.best.lst
+#' @param likelihood.vector
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' data <- read.csv("~/Downloads/stratified_BWM_case_study_I_example.csv", header=FALSE)
+#' mat.lst <- read.csv.SBWM.matrices(data)
+#' comparison.mat <- mat.lst[[1]]
+#' others.to.worst <- mat.lst[[2]]
+#' others.to.best <- mat.lst[[3]]
+#' state.worst.lst <- mat.lst[[4]]
+#' state.best.lst <- mat.lst[[5]]
+#' likelihood.vector <- mat.lst[[6]]
+#' SBWM(comparison.mat, others.to.worst, others.to.best, state.worst.lst, state.best.lst, likelihood.vector)
+SBWM <- function(comparison.mat, others.to.worst, others.to.best, state.worst.lst, state.best.lst, likelihood.vector){
 
+  apply.SMCDM.internal.SBWM <- function(comparison.mat, state.criteria.probs, likelihood.vector){
+
+    likelihood.vector.stratum.2 <- likelihood.vector[-1]/likelihood.vector[1]
+
+    likelihood.vector.stratum.3 <- apply(combn(likelihood.vector.stratum.2, 2), 2, prod)
+
+    likelihood.vector.stratum.4 <- prod(likelihood.vector.stratum.2)
+
+    coefficients <- c(
+      likelihood.vector.stratum.4,  #Coefficient of p^3
+      sum(likelihood.vector.stratum.3),  #Coefficient of p^2
+      sum(likelihood.vector.stratum.2)+1,  #Coefficient of p^1
+      -1                            #Constant term at the end
+    )
+
+    #Find the roots of the equation
+    roots <- polyroot(rev(coefficients))
+
+    non.Im.root <- Re(roots[Im(roots) == 0])
+
+    if(length(non.Im.root)==0){
+
+      tolerance <- 1e-10
+      non.Im.root <- Re(roots[abs(Im(roots)) < tolerance])
+    }
+
+    p.vector <- c(non.Im.root, non.Im.root*likelihood.vector.stratum.2, non.Im.root^2*likelihood.vector.stratum.3, non.Im.root^3*likelihood.vector.stratum.4)
+
+    criteria.percentages <-  as.matrix(state.criteria.probs) %*% (p.vector)
+
+    option.val <- as.matrix(comparison.mat) %*% (as.matrix(state.criteria.probs) %*% (p.vector))
+
+    return(option.val)
+  }
+
+  if(sum(dim(others.to.worst)==dim(others.to.best))!=2){
+    stop("Unable to proceed. Matrix dimensions mismatch.")
+  }
+
+  state.weights.lst <- list()
+
+  for(state.no in 1:ncol(others.to.worst)){
+
+    state.weights <- apply.BWM(rownames(others.to.best), state.worst.lst[state.no], state.best.lst[state.no], as.numeric(others.to.best[,state.no]), as.numeric(others.to.worst[,state.no]))
+
+    state.weights.lst[[state.no]] <- state.weights
+  }
+
+  state.weights.mat <- do.call(cbind, state.weights.lst)
+
+  state.weights.mat <-as.data.frame(state.weights.mat)[-nrow(state.weights.mat),]
+
+  rownames(state.weights.mat)<- rownames(comparison.mat)
+
+  colnames(state.weights.mat)<- paste0("state.", seq(0, ncol(state.weights.mat)-1, 1))
+
+  rownames(t(comparison.mat))->alt.names
+
+  comparison.mat <- apply(t(comparison.mat), 2, function(x) as.numeric(x))
+
+  rownames(comparison.mat)<-alt.names
+
+  res <- apply.SMCDM.internal.SBWM(comparison.mat, as.matrix(state.weights.mat), as.numeric(likelihood.vector))
+
+  return(res)
+}
+
+
+#' Title
+#'
+#' @param A
+#' @param comparing.competitors
+#'
+#' @return
+#' @export
+#'
+#' @examples
+plot.AHP.decision.tree <- function(A, comparing.competitors){
+
+  nodes <- c("Choose alternative",rownames(comparing.competitors[[1]]), rownames(A))
+
+  edges <- c()
+
+
+  for(idx in seq(1, length(rownames(A)), 1)){
+    edges <- c(edges, "Choose alternative")
+    edges <- c(edges, rownames(A)[idx])
+  }
+
+  for(idx in seq(1,length(rownames(comparing.competitors[[1]])), 1)){
+    for(idx.prod in seq(1, length(rownames(A)), 1)){
+      edges <- c(edges, rownames(A)[idx.prod])
+      edges <- c(edges, rownames(comparing.competitors[[1]])[idx])
+    }
+  }
+
+  edge_list <- matrix(edges, ncol = 2, byrow = TRUE)
+  weights <- c(results[[1]][[2]],
+               as.vector(results[[3]]))
+
+  g <- graph_from_edgelist(edge_list)
+
+  E(g)$weight <- weights
+
+  # Normalize the weights for better visualization (optional)
+  max_width <- 5  # Maximum edge width
+  edge_widths <- max_width * (weights / max(weights))
+
+
+  p <- plot(g,
+       layout = layout_as_tree(g, root = 1),  # Tree-like layout with root at the top
+       vertex.size = 50,  # Adjust node size
+       vertex.label.cex = input$vertex_font,  # Font size for labels
+       vertex.label.color = "black",  # Label color
+       vertex.color="#9B7EBD",
+       edge.arrow.size = input$edge_font,  # Arrow size
+       edge.width = edge_widths*input$edge_font,  # Edge widths based on weights
+       asp = input$asp,
+       main = "AHP Decision Tree with Weighted Edges")
+  return(p)
+}
+
+#' Plot spider plot
+#'
+#' @param data the result of MCDA scores
+#' @param colors the color scheme of choice
+#'
+#' @return the spider plot
+#' @export
+#'
+#' @examples
+plot.spider <- function(data, colors=palette("default")){
+
+  as.data.frame(data)->data
+  rownames(data)->criteria
+  data <- rbind(rep(1, ncol(data)), rep(0, ncol(data)), data)
+
+  radarchart(data,
+             axistype = 2,
+             pcol=colors,
+             cglcol="grey", cglty=1, axislabcol="grey", caxislabels=seq(0,20,5), cglwd=0.3,
+             plwd = 2,
+             plty = 1,
+             title = "Spider Chart")
+
+  legend(x = "topright",
+         legend = criteria,
+         col = colors,
+         pch = 15,
+         bty = "n")
+}
 
 
 
