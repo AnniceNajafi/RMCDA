@@ -402,6 +402,16 @@ find.entropy <- function(A){
 #'
 #' @return performance scores obtained through TOPSIS
 #' @export
+#' @examples
+#' #' A <- matrix(c(250, 200, 300, 275, 225,
+#' 16, 16, 32, 32, 16,
+#' 12, 8, 16, 8, 16,
+#' 5, 3, 4, 4, 2), nrow=5, ncol=4)
+#' colnames(A)<-c("Price", "Storage space", "Camera", "Looks")
+#' rownames(A)<-paste0("Mobile ", seq(1, 5, 1))
+#' A[,"Price"] <- -A[,"Price"]
+#' apply.TOPSIS(A, c(1/4, 1/4, 1/4, 1/4))
+#'
 apply.TOPSIS <- function(A, w){
 
   if(length(w)!=ncol(A)){
@@ -429,10 +439,16 @@ apply.TOPSIS <- function(A, w){
 #' criteria as row names and the corresponding scores as matrix values.
 #' @param likelihood.vector the vector containing the likelihood of being in each state.
 #'
-#' @return
+#' @return the SMCDM results
 #' @export
 #'
 #' @examples
+#' data <- read.csv("SMCDM_input.csv", header=FALSE)
+#' mat.lst <- read.csv.SMCDM.matrices(data)
+#' comparison.mat <- mat.lst[[1]]
+#' state.criteria.probs <- mat.lst[[2]]
+#' likelihood.vector <- mat.lst[[3]]
+#' apply.SMCDM(comparison.mat, state.criteria.probs, likelihood.vector)
 apply.SMCDM <- function(comparison.mat, state.criteria.probs, likelihood.vector){
 
 
@@ -480,15 +496,16 @@ apply.SMCDM <- function(comparison.mat, state.criteria.probs, likelihood.vector)
   return(option.val)
 }
 
-#' Title
+
+#' Function for applying the Best-Worst Method
 #'
-#' @param A
-#' @param worst.criteria
-#' @param best.criteria
-#' @param best.criteria.preference
-#' @param worst.criteria.preference
+#' @param criteria.lst list of criteria
+#' @param worst.criteria the worst criteria
+#' @param best.criteria the best criteria
+#' @param best.criteria.preference the comparison of the best criteria to others
+#' @param worst.criteria.preference the comparison of the worst criteria to others
 #'
-#' @return
+#' @return the result of BWM
 #' @export
 #'
 #' @examples
@@ -565,81 +582,23 @@ apply.BWM <- function(criteria.lst, worst.criteria, best.criteria, best.criteria
 
 
 
-#' Title
+#' Function for applying the Stratified Best-Worst Method (SBWM)
 #'
-#' @param comparison.mat
-#' @param others.to.worst
-#' @param others.to.best
-#' @param state.worst.lst
-#' @param state.best.lst
-#' @param likelihood.vector
+#' @param comparison.mat the comparison matrix containing the alternatives as column names
+#' and the criteria as row names.
+#' @param others.to.worst the comparison of the criteria to the worst criteria for each state,
+#' column names should be states and the row names are criteria
+#' @param others.to.best the comparison of the criteria to the best criteria for each state,
+#' column names should be states and the row names are criteria
+#' @param state.worst.lst the vector containing the name of the worst criteria in each state
+#' @param state.best.lst the vector containing the name of the best criteria in each state
+#' @param likelihood.vector the vector containing the likelihood of being in each state.
 #'
-#' @return
+#' @return the result of SBWM
 #' @export
 #'
 #' @examples
-apply.SMCDM <- function(comparison.mat, state.criteria.probs, likelihood.vector){
-
-
-  extended.states <- t(apply(state.criteria.probs[,2:ncol(state.criteria.probs)], 1, function(x) {
-    apply(combn(ncol(state.criteria.probs[,2:ncol(state.criteria.probs)]), 2), 2, function(y) mean(x[y])) }))
-
-  all.event.happened.state <- rowMeans(state.criteria.probs[,2:ncol(state.criteria.probs)])
-
-  extended.states <- cbind(extended.states, all.event.happened.state)
-
-  colnames(extended.states) <- paste0("state.", seq(ncol(state.criteria.probs), ncol(state.criteria.probs)+ncol(extended.states)-1, 1))
-
-  state.df <- cbind(state.criteria.probs, extended.states)
-
-  likelihood.vector.stratum.2 <- likelihood.vector[-1]/likelihood.vector[1]
-
-  likelihood.vector.stratum.3 <- apply(combn(likelihood.vector.stratum.2, 2), 2, prod)
-
-  likelihood.vector.stratum.4 <- prod(likelihood.vector.stratum.2)
-
-  coefficients <- c(
-    likelihood.vector.stratum.4,  #Coefficient of p^3
-    sum(likelihood.vector.stratum.3),  #Coefficient of p^2
-    sum(likelihood.vector.stratum.2)+1,  #Coefficient of p^1
-    -1                            #Constant term at the end
-  )
-
-  #Find the roots of the equation
-  roots <- polyroot(rev(coefficients))
-
-  non.Im.root <- Re(roots[Im(roots) == 0])
-
-  if(length(non.Im.root)==0){
-
-    tolerance <- 1e-10
-    non.Im.root <- Re(roots[abs(Im(roots)) < tolerance])
-  }
-
-  p.vector <- c(non.Im.root, non.Im.root*likelihood.vector.stratum.2, non.Im.root^2*likelihood.vector.stratum.3, non.Im.root^3*likelihood.vector.stratum.4)
-
-  criteria.percentages <- as.matrix(state.df) %*% (p.vector)
-
-  option.val <- comparison.mat %*% (state.df %*% (p.vector))
-
-  return(option.val)
-}
-
-
-#' Title
-#'
-#' @param comparison.mat
-#' @param others.to.worst
-#' @param others.to.best
-#' @param state.worst.lst
-#' @param state.best.lst
-#' @param likelihood.vector
-#'
-#' @return
-#' @export
-#'
-#' @examples
-#' data <- read.csv("~/Downloads/stratified_BWM_case_study_I_example.csv", header=FALSE)
+#' data <- read.csv("stratified_BWM_case_study_I_example.csv", header=FALSE)
 #' mat.lst <- read.csv.SBWM.matrices(data)
 #' comparison.mat <- mat.lst[[1]]
 #' others.to.worst <- mat.lst[[2]]
@@ -718,15 +677,13 @@ SBWM <- function(comparison.mat, others.to.worst, others.to.best, state.worst.ls
 }
 
 
-#' Title
+#' Plot decision tree
 #'
-#' @param A
-#' @param comparing.competitors
-#'
-#' @return
+#' @param A the comparison matrix
+#' @param comparing.competitors the list of matrices related to pairwise comparisons
+#' of competitors for each criteria
+#' @return the decision tree plot
 #' @export
-#'
-#' @examples
 plot.AHP.decision.tree <- function(A, comparing.competitors){
 
   nodes <- c("Choose alternative",rownames(comparing.competitors[[1]]), rownames(A))
