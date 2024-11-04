@@ -1,0 +1,16 @@
+﻿,Size,Accessibility,Price,
+A,5,8,2,
+B,3,2,6,
+C,5,1,6,
+D,3,4,5,
+,,,,
+,state.0,state.1,state.2,state.3
+Size,0.2,0.4,0.4,0.35
+Accessibility,0.2,0.4,0.25,0.2
+Price,0.6,0.2,0.35,0.45
+,,,,
+Likelihood,,,,
+0.35,,,,
+0.4,,,,
+0.15,,,,
+0.6,,,,

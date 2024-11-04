@@ -8,7 +8,7 @@
 #' competitor products
 #' @export
 #' @examples
-#' data <- read.csv("AHP_input_file.csv", header=FALSE)
+#' data <- read.csv(system.file("extdata", "AHP_input_file.csv", package = "RMCDA"), header=FALSE)
 #' mat.lst <- read.csv.AHP.matrices(data)
 read.csv.AHP.matrices <- function(data){
 
@@ -55,7 +55,7 @@ read.csv.AHP.matrices <- function(data){
 #' competitor products
 #' @export
 #' @examples
-#' data <- read.csv("SMCDM_input.csv", header=FALSE)
+#' data <- read.csv(system.file("extdata", "SMCDM_input.csv", package = "RMCDA"), header = FALSE)
 #' mat.lst <- read.csv.SMCDM.matrices(data)
 read.csv.SMCDM.matrices <- function(data){
 
@@ -100,7 +100,7 @@ read.csv.SMCDM.matrices <- function(data){
 #' @return the inputs to the SBWM method
 #' @export
 #' @examples
-#' data <- read.csv("stratified_BWM_case_study_I_example.csv", header=FALSE)
+#' data <- read.csv(system.file("extdata", "stratified_BWM_case_study_I_example.csv", package = "RMCDA"), header = FALSE)
 #' mat.lst <- read.csv.SBWM.matrices(data)
 read.csv.SBWM.matrices <- function(data){
 
@@ -191,8 +191,8 @@ find.weight <- function(A){
 #' IV. Competitor final scores
 #' @export
 #' @examples
-#' data <- read.csv("AHP_input_file.csv", header=FALSE)
-#' mat.lst <- read.matrices(data)
+#' data <- read.csv(system.file("extdata", "AHP_input_file.csv", package = "RMCDA"), header=FALSE)
+#' mat.lst <- read.csv.AHP.matrices(data)
 #' mat.lst[[1]]->A
 #' mat.lst[[2]]->comparing.competitors
 #' results<- apply.AHP(A, comparing.competitors)
@@ -268,8 +268,8 @@ apply.ANP <- function(A, comparing.competitors, power){
 #' @export
 #' @examples
 #' # example code
-#' data <- read.csv("~/Downloads/AHP_input_file.csv", header=FALSE)
-#' mat.lst <- read.matrices(data)
+#' data <- read.csv(system.file("extdata", "AHP_input_file.csv", package = "RMCDA"), header=FALSE)
+#' mat.lst <- read.csv.AHP.matrices(data)
 #' mat.lst[[1]]->A
 #' result <- apply.FAHP(A)
 apply.FAHP <- function(A){
@@ -339,10 +339,7 @@ apply.FAHP <- function(A){
 #' @return the weight percentages related to matrix A obtained through the CRITIC method
 #' @export
 #' @examples
-#' A <- matrix(c(250, 200, 300, 275, 225,
-#' 16, 16, 32, 32, 16,
-#' 12, 8, 16, 8, 16,
-#' 5, 3, 4, 4, 2), nrow=5, ncol=4)
+#' A <- matrix(c(250, 200, 300, 275, 225, 16, 16, 32, 32, 16, 12, 8, 16, 8, 16, 5, 3, 4, 4, 2), nrow=5, ncol=4)
 #' colnames(A)<-c("Price", "Storage space", "Camera", "Looks")
 #' rownames(A)<-paste0("Mobile ", seq(1, 5, 1))
 #' A[,"Price"] <- -A[,"Price"]
@@ -372,10 +369,7 @@ apply.CRITIC <- function(A){
 #' @return the entropy value corresponding to each criteria
 #' @export
 #' @examples
-#' A <- matrix(c(250, 200, 300, 275, 225,
-#' 16, 16, 32, 32, 16,
-#' 12, 8, 16, 8, 16,
-#' 5, 3, 4, 4, 2), nrow=5, ncol=4)
+#' A <- matrix(c(250, 200, 300, 275, 225, 16, 16, 32, 32, 16, 12, 8, 16, 8, 16, 5, 3, 4, 4, 2), nrow=5, ncol=4)
 #' colnames(A)<-c("Price", "Storage space", "Camera", "Looks")
 #' rownames(A)<-paste0("Mobile ", seq(1, 5, 1))
 #' A[,"Price"] <- -A[,"Price"]
@@ -403,10 +397,7 @@ find.entropy <- function(A){
 #' @return performance scores obtained through TOPSIS
 #' @export
 #' @examples
-#' #' A <- matrix(c(250, 200, 300, 275, 225,
-#' 16, 16, 32, 32, 16,
-#' 12, 8, 16, 8, 16,
-#' 5, 3, 4, 4, 2), nrow=5, ncol=4)
+#' A <- matrix(c(250, 200, 300, 275, 225, 16, 16, 32, 32, 16, 12, 8, 16, 8, 16, 5, 3, 4, 4, 2), nrow=5, ncol=4)
 #' colnames(A)<-c("Price", "Storage space", "Camera", "Looks")
 #' rownames(A)<-paste0("Mobile ", seq(1, 5, 1))
 #' A[,"Price"] <- -A[,"Price"]
@@ -443,7 +434,7 @@ apply.TOPSIS <- function(A, w){
 #' @export
 #'
 #' @examples
-#' data <- read.csv("SMCDM_input.csv", header=FALSE)
+#' data <- read.csv(system.file("extdata", "SMCDM_input.csv", package = "RMCDA"), header=FALSE)
 #' mat.lst <- read.csv.SMCDM.matrices(data)
 #' comparison.mat <- mat.lst[[1]]
 #' state.criteria.probs <- mat.lst[[2]]
@@ -575,7 +566,7 @@ apply.BWM <- function(criteria.lst, worst.criteria, best.criteria, best.criteria
   rhs <- c(rhs, rep("0", nrow(identity.crit)))
 
   #Solve the linear programming problem
-  result <- lp("min", objective, constraint_matrix, directions, rhs)
+  result <- lpSolve::lp("min", objective, constraint_matrix, directions, rhs)
 
   return(result$solution)
 }
@@ -598,7 +589,7 @@ apply.BWM <- function(criteria.lst, worst.criteria, best.criteria, best.criteria
 #' @export
 #'
 #' @examples
-#' data <- read.csv("stratified_BWM_case_study_I_example.csv", header=FALSE)
+#' data <- read.csv(system.file("extdata", "stratified_BWM_case_study_I_example.csv", package = "RMCDA"), header = FALSE)
 #' mat.lst <- read.csv.SBWM.matrices(data)
 #' comparison.mat <- mat.lst[[1]]
 #' others.to.worst <- mat.lst[[2]]

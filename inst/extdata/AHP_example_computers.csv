@@ -1,0 +1,19 @@
+﻿,Cost,User-friendliness,Software availability
+Cost,1.00,5.00,1.00
+User-friendliness,0.20,1.00,0.17
+Software availability,1.00,6.00,1.00
+,,,
+Cost,Computer 1,Computer 2,Computer 3
+Computer 1,1.00,3.00,6.00
+Computer 2,0.33,1.00,4.00
+Computer 3,0.17,0.25,1.00
+,,,
+User-friendliness,Computer 1,Computer 2,Computer 3
+Computer 1,1.00,0.17,0.33
+Computer 2,6.00,1.00,5.00
+Computer 3,3.00,0.20,1.00
+,,,
+Software availability,Computer 1,Computer 2,Computer 3
+Computer 1,1.00,0.33,0.14
+Computer 2,3.00,1.00,0.20
+Computer 3,7.00,5.00,1.00

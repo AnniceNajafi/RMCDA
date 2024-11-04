@@ -15,3 +15,10 @@ the fuzzy weights for each criteria
 \description{
 Apply fuzzy AHP on criteria comparison matrix
 }
+\examples{
+# example code
+data <- read.csv(system.file("extdata", "AHP_input_file.csv", package = "RMCDA"), header=FALSE)
+mat.lst <- read.csv.AHP.matrices(data)
+mat.lst[[1]]->A
+result <- apply.FAHP(A)
+}

@@ -10,11 +10,19 @@ apply.TOPSIS(A, w)
 \item{A}{the matrix A with row names corresponding to alternatives and column
 names corresponding to criteria}
 
-\item{w}{the weight matrix corresponding to the weight of each criteria}
+\item{w}{the weight vector corresponding to the weight of each criteria}
 }
 \value{
 performance scores obtained through TOPSIS
 }
 \description{
 Apply TOPSIS on matrix A with weight of criteria stored in vector w
+}
+\examples{
+A <- matrix(c(250, 200, 300, 275, 225, 16, 16, 32, 32, 16, 12, 8, 16, 8, 16, 5, 3, 4, 4, 2), nrow=5, ncol=4)
+colnames(A)<-c("Price", "Storage space", "Camera", "Looks")
+rownames(A)<-paste0("Mobile ", seq(1, 5, 1))
+A[,"Price"] <- -A[,"Price"]
+apply.TOPSIS(A, c(1/4, 1/4, 1/4, 1/4))
+
 }

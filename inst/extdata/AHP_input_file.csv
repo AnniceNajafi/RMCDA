@@ -1,0 +1,29 @@
+﻿,Material quality,Fatigue resistance,Protective coating,Ease of cleaning
+Material quality,1.00,0.50,2.00,4.00
+Fatigue resistance,2.00,1.00,3.00,5.00
+Protective coating,0.50,0.33,1.00,2.00
+Ease of cleaning,0.25,0.20,0.50,1.00
+,,,,
+Material quality,Our company - vent clamp,Diaclara vent clamp,Lisen vent magnetic,APPS2 cup holder
+Our company - vent clamp,1.00,1.00,3.00,3.00
+Diaclara vent clamp,1.00,1.00,3.00,3.00
+Lisen vent magnetic,0.33,0.33,1.00,1.00
+APPS2 cup holder,0.33,0.33,1.00,1.00
+,,,,
+Fatigue resistance,Our company - vent clamp,Diaclara vent clamp,Lisen vent magnetic,APPS2 cup holder
+Our company - vent clamp,1.00,0.50,1.00,2.00
+Diaclara vent clamp,2.00,1.00,2.00,4.00
+Lisen vent magnetic,1.00,0.50,1.00,2.00
+APPS2 cup holder,0.50,0.25,0.50,1.00
+,,,,
+Protective coating,Our company - vent clamp,Diaclara vent clamp,Lisen vent magnetic,APPS2 cup holder
+Our company - vent clamp,1.00,2.00,2.00,3.00
+Diaclara vent clamp,0.50,1.00,1.00,2.00
+Lisen vent magnetic,0.50,1.00,1.00,2.00
+APPS2 cup holder,0.33,0.50,0.50,1.00
+,,,,
+Ease of cleaning,Our company - vent clamp,Diaclara vent clamp,Lisen vent magnetic,APPS2 cup holder
+Our company - vent clamp,1.00,2.00,2.00,4.00
+Diaclara vent clamp,0.50,1.00,1.00,2.00
+Lisen vent magnetic,0.50,1.00,1.00,2.00
+APPS2 cup holder,0.25,0.50,0.50,1.00

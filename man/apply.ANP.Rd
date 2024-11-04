@@ -21,3 +21,6 @@ the limiting super matrix
 \description{
 Apply Analytical Network Process (ANP) on data
 }
+\examples{
+apply.ANP(A, comparing.competitors, 2)
+}
