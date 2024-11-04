@@ -149,6 +149,7 @@ read.csv.SBWM.matrices <- function(data){
 #'
 #' @return a list containing the value of CI/RI and a vector containing the weights
 #' of each criteria
+#' @import dplyr
 #' @export
 find.weight <- function(A){
 
@@ -235,7 +236,12 @@ apply.AHP <- function(A, comparing.competitors){
 #'
 #' @return the limiting super matrix
 #' @export
-#' @examples apply.ANP(A, comparing.competitors, 2)
+#' @examples
+#' data <- read.csv(system.file("extdata", "AHP_input_file.csv", package = "RMCDA"), header=FALSE)
+#' mat.lst <- read.csv.AHP.matrices(data)
+#' mat.lst[[1]]->A
+#' mat.lst[[2]]->comparing.competitors
+#' apply.ANP(A, comparing.competitors, 2)
 apply.ANP <- function(A, comparing.competitors, power){
 
   apply.AHP(A, comparing.competitors)->res.lst #apply AHP
@@ -482,7 +488,7 @@ apply.SMCDM <- function(comparison.mat, state.criteria.probs, likelihood.vector)
 
   criteria.percentages <- as.matrix(state.df) %*% (p.vector)
 
-  option.val <- comparison.mat %*% (state.df %*% (p.vector))
+  option.val <- as.matrix(comparison.mat) %*% (as.matrix(state.df) %*% (p.vector))
 
   return(option.val)
 }
