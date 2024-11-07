@@ -603,8 +603,8 @@ apply.BWM <- function(criteria.lst, worst.criteria, best.criteria, best.criteria
 #' state.worst.lst <- mat.lst[[4]]
 #' state.best.lst <- mat.lst[[5]]
 #' likelihood.vector <- mat.lst[[6]]
-#' SBWM(comparison.mat, others.to.worst, others.to.best, state.worst.lst, state.best.lst, likelihood.vector)
-SBWM <- function(comparison.mat, others.to.worst, others.to.best, state.worst.lst, state.best.lst, likelihood.vector){
+#' apply.SBWM(comparison.mat, others.to.worst, others.to.best, state.worst.lst, state.best.lst, likelihood.vector)
+apply.SBWM <- function(comparison.mat, others.to.worst, others.to.best, state.worst.lst, state.best.lst, likelihood.vector){
 
   apply.SMCDM.internal.SBWM <- function(comparison.mat, state.criteria.probs, likelihood.vector){
 

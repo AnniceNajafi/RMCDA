@@ -2,12 +2,12 @@
 
 S3method(plot,AHP.decision.tree)
 S3method(plot,spider)
-export(SBWM)
 export(apply.AHP)
 export(apply.ANP)
 export(apply.BWM)
 export(apply.CRITIC)
 export(apply.FAHP)
+export(apply.SBWM)
 export(apply.SMCDM)
 export(apply.TOPSIS)
 export(find.entropy)
