@@ -2,7 +2,7 @@
 % Please edit documentation in R/MCDA_methods.R
 \name{read.csv.SMCDM.matrices}
 \alias{read.csv.SMCDM.matrices}
-\title{Read csv file containing pairwise comparison matrices for applying AHP or ANP}
+\title{Read csv file containing pairwise comparison matrices for applying SMCDM}
 \usage{
 read.csv.SMCDM.matrices(data)
 }
@@ -16,7 +16,7 @@ and a list containing multiple matrices related to pairwise comparisons of diffe
 competitor products
 }
 \description{
-Read csv file containing pairwise comparison matrices for applying AHP or ANP
+Read csv file containing pairwise comparison matrices for applying SMCDM
 }
 \examples{
 data <- read.csv(system.file("extdata", "SMCDM_input.csv", package = "RMCDA"), header = FALSE)

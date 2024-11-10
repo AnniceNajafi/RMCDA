@@ -18,6 +18,11 @@ This is an R package for applying MCDA methods on product data.
   <li>Technique for Order of Preference by Similarity to Ideal Solution (TOPSIS)</li>
   <li>CRITIC (CRiteria Importance Through Intercriteria Correlation) method</li>
   <li>Entropy method</li>
+  <li>VIšekriterijumsko KOmpromisno Rangiranje (VIKOR) method</li>
+  <li>Preference Ranking Organization Method for Enrichment Evaluation (PROMOTHEE) I & II</li>
+  <li>Best Worst Method (BWM)</li>
+  <li>Stratified Best Worst Method</li>
+  <li>Stratified Multi-Criteria Decision Making (SMCDM)</li>
  </ul>
 
 <h3>Online Application</h3> 
