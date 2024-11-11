@@ -1,5 +1,7 @@
 # RMCDA
 
+[![DOI](https://zenodo.org/badge/879173276.svg)](https://doi.org/10.5281/zenodo.14064645)
+
 <h3>Installation Guide</h3>
 
 To install R package run the following code:
