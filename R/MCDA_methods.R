@@ -150,7 +150,6 @@ read.csv.SBWM.matrices <- function(data){
 #' @return a list containing the value of CI/RI and a vector containing the weights
 #' of each criteria
 #' @import dplyr
-#' @export
 find.weight <- function(A){
 
   norm.A <- t(t(A) / colSums(A)) #normalize matrix
@@ -438,6 +437,11 @@ apply.TOPSIS <- function(A, w){
 #' @export
 #'
 #' @examples
+#' A <- matrix(c(250, 200, 300, 275, 225, 16, 16, 32, 32, 16, 12, 8, 16, 8, 16, 5, 3, 4, 4, 2), nrow=5, ncol=4)
+#' colnames(A)<-c("Price", "Memory", "Camera", "Looks")
+#' rownames(A)<-paste0("Mobile ", seq(1, 5, 1))
+#' A[,"Price"] <- -A[,"Price"]
+#' apply.VIKOR(A, c(0.35, 0.3, 0.2, 0.15))
 apply.VIKOR <- function(A, weights, nu = 0.5){
 
   colMaxs <- apply(A, 2, function(x) max(x, na.rm = TRUE))
@@ -670,6 +674,12 @@ apply.SMCDM <- function(comparison.mat, state.criteria.probs, likelihood.vector,
 #' @export
 #'
 #' @examples
+#' criteria.lst <- c("C1", "C2", "C3")
+#' worst.criteria <- "C1
+#' best.criteria <- "C3"
+#' best.criteria.preference <- c(8, 2, 1)
+#' worst.criteria.preference <- c(1, 5, 8)
+#' apply.BWM(criteria.lst, worst.criteria, best.criteria, best.criteria.preference, worst.criteria.preference)
 apply.BWM <- function(criteria.lst, worst.criteria, best.criteria, best.criteria.preference, worst.criteria.preference){
 
   best.idx <- which(best.criteria == criteria.lst)
@@ -897,8 +907,6 @@ plot.AHP.decision.tree <- function(A, comparing.competitors){
 #'
 #' @return the spider plot
 #' @export
-#'
-#' @examples
 plot.spider <- function(data, colors=palette("default")){
 
   as.data.frame(data)->data

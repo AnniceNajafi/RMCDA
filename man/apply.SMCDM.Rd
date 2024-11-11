@@ -4,7 +4,12 @@
 \alias{apply.SMCDM}
 \title{Apply stratified multi-criteria decision making method}
 \usage{
-apply.SMCDM(comparison.mat, state.criteria.probs, likelihood.vector)
+apply.SMCDM(
+  comparison.mat,
+  state.criteria.probs,
+  likelihood.vector,
+  independent.events = TRUE
+)
 }
 \arguments{
 \item{comparison.mat}{the matrix containing alternatives as row names and criteria
@@ -14,6 +19,10 @@ as column names and corresponding scores as cell values.}
 criteria as row names and the corresponding scores as matrix values.}
 
 \item{likelihood.vector}{the vector containing the likelihood of being in each state.}
+
+\item{independent.event}{this parameter is set to TRUE by default which indicates only the
+probability of the occurence of each event is required (strati I and II). If set to FALSE
+then the user should provide the probabilities of occurrence of all states.}
 }
 \value{
 the SMCDM results
