@@ -26,7 +26,7 @@ This is an R package for applying MCDA methods on product data.
  </ul>
 
 <h3>Online Application</h3> 
-Web-based application to apply methods can be accessed through <a href="https://www.shinyapps.io/admin/#/application/13085512">this link</a>.
+Web-based application to apply methods can be accessed through <a href="https://najafiannice.shinyapps.io/AHP_app/">this link</a>.
 
 <h3>Contact Information</h3>
 For any technical questions, please contact <a href=mailto:annicenajafi27@gmail.com>Annice Najafi</a>. 
