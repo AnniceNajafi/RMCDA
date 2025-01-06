@@ -378,8 +378,8 @@ apply.CRITIC <- function(A){
 #' colnames(A)<-c("Price", "Storage space", "Camera", "Looks")
 #' rownames(A)<-paste0("Mobile ", seq(1, 5, 1))
 #' A[,"Price"] <- -A[,"Price"]
-#' find.entropy (A)
-find.entropy <- function(A){
+#' apply.entropy (A)
+apply.entropy <- function(A){
 
   normalized.A <- t(t(A)/colSums(A))
 
