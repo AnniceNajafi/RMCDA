@@ -754,7 +754,8 @@ apply.MOORA <- function(mat, weights, beneficial.vector){
 #'"70Cu-30Zn")
 #'weights <- c(0.28, 0.14, 0.05, 0.24, 0.19, 0.05, 0.05)
 #'beneficial.vector<-c(1,2,3)
-#'
+#'psi <- 0.02
+#'apply.CODAS(mat, weights, beneficial.vector, psi)
 apply.CODAS <- function(mat, weights, beneficial.vector, psi){
 
   max.min.vector <- c()
@@ -815,6 +816,7 @@ apply.CODAS <- function(mat, weights, beneficial.vector, psi){
 
 
 }
+
 
 #' Apply stratified multi-criteria decision making method
 #'
