@@ -28,7 +28,7 @@ This is an R package for applying MCDA methods on product data.
   <li>Stable Preference Ordering Towards Ideal Solution (SPOTIS)</li>
   <li>ELimination Et Choix Traduisant la REalité (ELECTRE)</li>
   <li>Best Worst Method (BWM)</li>
-  <li>Stratified Best Worst Method</li>
+  <li>Stratified Best Worst Method (SBWM)</li>
   <li>Stratified Multi-Criteria Decision Making (SMCDM)</li>
   <li>CRITIC (CRiteria Importance Through Intercriteria Correlation) method</li>
   <li>Entropy method</li>
