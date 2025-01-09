@@ -16,13 +16,22 @@ This is an R package for applying MCDA methods on product data.
   <li>Analytical Network Process (ANP)</li>
   <li>Fuzzy Analytical Hierarchical Process (FAHP)</li>
   <li>Technique for Order of Preference by Similarity to Ideal Solution (TOPSIS)</li>
-  <li>CRITIC (CRiteria Importance Through Intercriteria Correlation) method</li>
-  <li>Entropy method</li>
   <li>VIšekriterijumsko KOmpromisno Rangiranje (VIKOR) method</li>
   <li>Preference Ranking Organization Method for Enrichment Evaluation (PROMOTHEE) I & II</li>
+  <li>Simple Ranking Method using Reference Profiles (SRMP) </li>
+  <li>COmplex PRoportional ASsessment (COPRAS)</li>
+  <li>Multi-Objective Optimization on the basis of Ratio Analysis (MOORA)</li>
+  <li>Combinative Distance-based Assessment (CODAS)</li>
+  <li>COmbined COmpromise SOlution (COCOSO)</li>
+  <li>Additive Ratio Assessment (ARAS)</li>
+  <li>Weighted Aggregated Sum Product Assessment (WASPAS)</li>
+  <li>Stable Preference Ordering Towards Ideal Solution (SPOTIS)</li>
+  <li>ELimination Et Choix Traduisant la REalité (ELECTRE)</li>
   <li>Best Worst Method (BWM)</li>
   <li>Stratified Best Worst Method</li>
   <li>Stratified Multi-Criteria Decision Making (SMCDM)</li>
+  <li>CRITIC (CRiteria Importance Through Intercriteria Correlation) method</li>
+  <li>Entropy method</li>
  </ul>
 
 <h3>Online Application</h3> 
