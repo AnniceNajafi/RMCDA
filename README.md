@@ -27,6 +27,9 @@ This is an R package for applying MCDA methods on product data.
   <li>Weighted Aggregated Sum Product Assessment (WASPAS)</li>
   <li>Stable Preference Ordering Towards Ideal Solution (SPOTIS)</li>
   <li>ELimination Et Choix Traduisant la REalité (ELECTRE)</li>
+  <li>Measurement Analysis and Ranking based on COmpromise Solution (MARCOS)</li>
+  <li>Outranking Based Compromise Ranking Analysis (OCRA)</li>
+  <li>multi-attributive border approximation area comparison (MABAC)</li>
   <li>Best Worst Method (BWM)</li>
   <li>Stratified Best Worst Method (SBWM)</li>
   <li>Stratified Multi-Criteria Decision Making (SMCDM)</li>
