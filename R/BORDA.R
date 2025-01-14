@@ -30,7 +30,7 @@
 #' # Get Borda scores and optionally plot the ranking
 #' borda_scores <- apply.BORDA(mat, beneficial.vector, graph = TRUE, verbose = TRUE)
 #' borda_scores
-apply.BORDA <- function(mat, beneficial.vector, graph = TRUE, verbose = TRUE) {
+apply.BORDA <- function(mat, beneficial.vector) {
 
 
   mat <- as.matrix(mat)
