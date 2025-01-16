@@ -1,4 +1,7 @@
 #' Function to apply Reference Ideal Method (RIM)
+#' Note:
+#' function is rewritten from the MCDM package to match the formatting of the R RMCDA package
+#' SOURCE: https://github.com/cran/MCDM/blob/master/R/RIM.R
 #'
 #' @description
 #' The \code{apply.RIM} function implements the Reference Ideal Method (RIM) for
@@ -200,16 +203,16 @@ apply.RIM <- function(mat, weights, AB, CD){
   NW <- N %*% W
 
 
-  posDis <- numeric(nrow(mat))
-  negDis <- numeric(nrow(mat))
+  pos.Dis <- numeric(nrow(mat))
+  neg.Dis <- numeric(nrow(mat))
 
   for (i in seq_len(nrow(mat))) {
-    posDis[i] <- sqrt(sum((NW[i, ] - weights)^2))
-    negDis[i] <- sqrt(sum(NW[i, ]^2))
+    pos.Dis[i] <- sqrt(sum((NW[i, ] - weights)^2))
+    neg.Dis[i] <- sqrt(sum(NW[i, ]^2))
   }
 
   #R index
-  R <- negDis / (negDis + posDis)
+  R <- neg.Dis / (neg.Dis + pos.Dis)
 
   return(data.frame(
     Alternatives = seq_len(nrow(mat)),
