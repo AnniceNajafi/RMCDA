@@ -24,10 +24,9 @@
 #'   4, 7, 9
 #' ), nrow = 4, byrow = TRUE)
 #'
-#' # Suppose columns 1 and 3 are beneficial
 #' beneficial.vector <- c(1, 3)
 #'
-#' # Get Borda scores and optionally plot the ranking
+#'
 #' borda_scores <- apply.BORDA(mat, beneficial.vector)
 #' borda_scores
 apply.BORDA <- function(mat, beneficial.vector) {
