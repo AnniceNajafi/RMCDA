@@ -1,0 +1,219 @@
+#' Function to apply Reference Ideal Method (RIM)
+#'
+#' @description
+#' The \code{apply.RIM} function implements the Reference Ideal Method (RIM) for
+#' multi-criteria decision making (MCDM) problems, allowing for degenerate intervals,
+#' i.e. cases where A == C or D == B.
+#'
+#' @param mat A matrix (\emph{m} x \emph{n}) containing the values of the \emph{m} alternatives
+#' for the \emph{n} criteria.
+#' @param weights A numeric vector of length \emph{n}, containing the weights for the criteria.
+#' The sum of the weights must be equal to 1.
+#' @param AB A matrix (\emph{2} x \emph{n}), where \code{AB[1,]} corresponds to the A extreme,
+#' and \code{AB[2,]} corresponds to the B extreme of the domain (universe of discourse)
+#' for each criterion.
+#' @param CD A matrix (\emph{2} x \emph{n}), where \code{CD[1,]} corresponds to the C extreme,
+#' and \code{CD[2,]} corresponds to the D extreme of the ideal reference for each criterion.
+#'
+#' @details
+#' \strong{Degenerate intervals:}
+#'
+#' 1. If \(\texttt{AB[1,j]} = \texttt{CD[1,j]}\), then the interval \([A,C]\) collapses to a point.
+#'    - Any value \(\texttt{x}\) in this range is treated under a fallback rule:
+#'      \itemize{
+#'        \item if \(\texttt{x} = A = C\), we set the normalized value to 1
+#'        \item otherwise, the normalized value is set to 0
+#'      }
+#'
+#' 2. If \(\texttt{CD[2,j]} = \texttt{AB[2,j]}\), then the interval \([D,B]\) collapses to a point.
+#'    - A similar fallback applies:
+#'      \itemize{
+#'        \item if \(\texttt{x} = D = B\), we set the normalized value to 1
+#'        \item otherwise, the normalized value is set to 0
+#'      }
+#'
+#' These fallback rules ensure the function does not stop but, instead, issues a warning and assigns
+#' a default. Adjust these defaults if your MCDM context requires different handling.
+#'
+#' @return
+#' A data frame containing:
+#' \itemize{
+#'   \item \code{Alternatives}: The index of each alternative.
+#'   \item \code{R}: The R index (score) for each alternative.
+#'   \item \code{Ranking}: The ranking of the alternatives based on the R score.
+#' }
+#'
+#' @references
+#' Cables, E.; Lamata, M.T.; Verdegay, J.L. (2016).
+#' RIM-reference ideal method in multicriteria decision making.
+#' \emph{Information Science}, 337-338, 1-10.
+#'
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' # Example decision matrix
+#' mat <- matrix(
+#'   c(30,40,25,27,45,0,
+#'     9,0,0,15,2,1,
+#'     3,5,2,3,3,1,
+#'     3,2,3,3,3,2,
+#'     2,2,1,4,1,2),
+#'   nrow = 5, ncol = 6, byrow = TRUE
+#' )
+#'
+#' #Example weights vector (must sum to 1)
+#' weights <- c(0.2262,0.2143,0.1786,0.1429,0.119,0.119)
+#'
+#' #Example AB matrix
+#' AB <- matrix(
+#'   c(23,60,0,15,0,10,
+#'     1,3,1,3,1,5),
+#'   nrow = 2, ncol = 6, byrow = TRUE
+#' )
+#'
+#' #Example CD matrix
+#' CD <- matrix(
+#'   c(30,35,10,15,0,0,
+#'     3,3,3,3,4,5),
+#'   nrow = 2, ncol = 6, byrow = TRUE
+#' )
+#'
+#'
+#' apply.RIM(mat, weights, AB, CD)
+#' }
+#'
+apply.RIM <- function(mat, weights, AB, CD){
+
+  # 0. Argument checks
+  if (!is.matrix(mat)) {
+    stop("'mat' must be a matrix with the values of the alternatives.")
+  }
+  if (missing(weights)) {
+    stop("A vector containing n weights (summing up to 1) should be provided.")
+  }
+  if (abs(sum(weights) - 1) > 1e-9) {
+    stop("The sum of 'weights' is not equal to 1.")
+  }
+  if (length(weights) != ncol(mat)) {
+    stop("Length of 'weights' does not match the number of criteria.")
+  }
+  if (!is.matrix(AB) || ncol(AB) != ncol(mat)) {
+    stop("Dimensions of 'AB' do not match the number of criteria.")
+  }
+  if (!is.matrix(CD) || ncol(CD) != ncol(mat)) {
+    stop("Dimensions of 'CD' do not match the number of criteria.")
+  }
+
+
+  N <- matrix(nrow = nrow(mat), ncol = ncol(mat))
+
+  for (j in seq_len(ncol(mat))) {
+    A <- AB[1, j]
+    B <- AB[2, j]
+    C_ <- CD[1, j]
+    D_ <- CD[2, j]
+
+    for (i in seq_len(nrow(mat))) {
+      x <- mat[i, j]
+
+      #We have to check to see if x is within the domain [A, B]
+      if (x < A || x > B) {
+        warning(paste0(
+          "Value x = ", x, " is outside [A, B] = [", A, ", ", B,
+          "] for row i=", i, ", column j=", j, ". Setting N=0."
+        ))
+        N[i, j] <- 0
+        next
+      }
+
+      #Either x is in [C, D]
+      if (x >= C_ && x <= D_) {
+        N[i, j] <- 1
+
+        #OR x is in [A, C]
+      } else if (x >= A && x <= C_) {
+
+        denom <- abs(A - C_)
+        if (denom < 1e-15) {
+          #Degenerate interval: A == C
+          if (abs(x - A) < 1e-15) {
+            N[i, j] <- 1  #x is exactly the same as A=C
+          } else {
+            #x is "in" a zero-length interval. Assign default = 0
+            N[i, j] <- 0
+            warning(
+              sprintf(
+                "Degenerate interval [A,C] (A=%g, C=%g) at col j=%d. ",
+                A, C_, j
+              ),
+              "Setting N=0 for row=", i
+            )
+          }
+        } else {
+
+          N[i, j] <- 1 - (
+            min(abs(x - C_), abs(x - D_)) / denom
+          )
+        }
+
+        #OR x is in [D, B]
+      } else if (x >= D_ && x <= B) {
+
+        denom <- abs(D_ - B)
+        if (denom < 1e-15) {
+          #Degenerate interval: D == B
+          if (abs(x - B) < 1e-15) {
+            N[i, j] <- 1
+          } else {
+            N[i, j] <- 0
+            warning(
+              sprintf(
+                "Degenerate interval [D,B] (D=%g, B=%g) at col j=%d. ",
+                D_, B, j
+              ),
+              "Setting N=0 for row=", i
+            )
+          }
+        } else {
+
+          N[i, j] <- 1 - (
+            min(abs(x - C_), abs(x - D_)) / denom
+          )
+        }
+
+      } else {
+        #If none of the above conditions are met, x cannot be normalized
+        #Consequently, assign 0 or handle differently if needed.
+        N[i, j] <- 0
+        warning(paste0(
+          "Value x = ", x,
+          " does not fall into [A,C], [C,D], or [D,B]. ",
+          "Setting N=0 for row i=", i, ", column j=", j
+        ))
+      }
+    }
+  }
+
+
+  W  <- diag(weights)
+  NW <- N %*% W
+
+
+  posDis <- numeric(nrow(mat))
+  negDis <- numeric(nrow(mat))
+
+  for (i in seq_len(nrow(mat))) {
+    posDis[i] <- sqrt(sum((NW[i, ] - weights)^2))
+    negDis[i] <- sqrt(sum(NW[i, ]^2))
+  }
+
+  #R index
+  R <- negDis / (negDis + posDis)
+
+  return(data.frame(
+    Alternatives = seq_len(nrow(mat)),
+    R            = R,
+    Ranking      = rank(-R, ties.method = "first")
+  ))
+}
