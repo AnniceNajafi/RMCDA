@@ -1,5 +1,7 @@
 # RMCDA
 
+This R package has been developed to serve as a universal library in R for the application of multi-criteria decision making methods. 
+
 <h3>Installation Guide</h3>
 
 To install R package run the following code:
