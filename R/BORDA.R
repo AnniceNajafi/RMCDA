@@ -28,7 +28,7 @@
 #' beneficial.vector <- c(1, 3)
 #'
 #' # Get Borda scores and optionally plot the ranking
-#' borda_scores <- apply.BORDA(mat, beneficial.vector, graph = TRUE, verbose = TRUE)
+#' borda_scores <- apply.BORDA(mat, beneficial.vector)
 #' borda_scores
 apply.BORDA <- function(mat, beneficial.vector) {
 
