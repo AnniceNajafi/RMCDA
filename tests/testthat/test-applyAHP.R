@@ -9,7 +9,7 @@ test_that("apply.AHP works for a consistent matrix and returns the expected stru
 
   mat.lst[[1]]->A
   mat.lst[[2]]->comparing.competitors
-  results<- apply.AHP(A, comparing.competitors)
+  result<- apply.AHP(A, comparing.competitors)
 
   # 'result' should be a list of length 4:
   # 1. criteria.weight (which is itself a list: list(CI/RI, W))
@@ -17,7 +17,7 @@ test_that("apply.AHP works for a consistent matrix and returns the expected stru
   # 3. weighted.scores.mat (matrix or data frame)
   # 4. alternative.score (numeric vector)
 
-  expect_length(results, 4)
+  expect_length(result, 4)
 
   #I) criteria.weight
   expect_type(result[[1]], "list")           # Must be a list
@@ -28,20 +28,19 @@ test_that("apply.AHP works for a consistent matrix and returns the expected stru
   #II) criteria.alternatives.mat
   criteria_alternatives <- result[[2]]
   expect_s3_class(criteria_alternatives, "data.frame")
-  #Dimensions: rows = #criteria = ncol(A) = 3
-  #             cols = #alternatives = ncol(comparing.competitors[[1]]) = 3
-  expect_equal(dim(criteria_alternatives), c(3, 3))
+
+  expect_equal(dim(criteria_alternatives), c(4, 4))
 
   #III) weighted.scores.mat
   weighted_scores_mat <- result[[3]]
   # Should match the same dimension as criteria.alternatives.mat
-  expect_equal(dim(weighted_scores_mat), c(3, 3))
+  expect_equal(dim(weighted_scores_mat), c(4, 4))
 
   #IV) alternative.score
   alt_score <- result[[4]]
-  # Should be a numeric vector with length = # of alternatives = 3
+  # Should be a numeric vector with length = # of alternatives = 4
   expect_type(alt_score, "double")
-  expect_length(alt_score, 3)
+  expect_length(alt_score, 4)
 
 
 })
