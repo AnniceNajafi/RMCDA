@@ -1,7 +1,7 @@
 #' Apply Pre-Order Ranking (partial-order analysis)
 #'
 #' @description
-#' This function is an R translation of the Python \code{po.ranking()} function, **omitting any plots**.
+#' This function is an R translation of the Python \code{po.ranking()} function
 #' It merges alternatives that are 'I' (indifferent), constructs a 0/1 partial-order matrix from 'P+' entries,
 #' sorts the alternatives by row sums, and then removes transitive edges.
 #'
