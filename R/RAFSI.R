@@ -1,5 +1,5 @@
 #' Ranking of Alternatives through Functional mapping of criterion sub-intervals
-#' into a Single Interval (RAFSI) in R
+#' into a Single Interval (RAFSI)
 #'
 #' @param mat A numeric matrix or data frame with rows = alternatives, columns = criteria
 #' @param weights A numeric vector of weights (one per criterion)
