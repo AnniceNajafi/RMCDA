@@ -6,8 +6,8 @@
 #'
 #' @param mat A numeric matrix. Rows are alternatives; columns are criteria.
 #' @param weights A numeric vector of weights corresponding to criteria columns. Must sum to 1.
-#' @param types An integer vector of the same length as `weights`. Use 1 for a profit criterion
-#'  and -1 for a cost criterion.
+#' @param beneficial.vector A numeric vector containing the column indices of beneficial
+#' (profit) criteria. Non-beneficial criteria are assumed to be the remaining columns.
 #'
 #' @return A numeric vector with the OCRA preference values for each alternative.
 #' Higher values indicate a more preferred alternative.
@@ -24,10 +24,10 @@
 #' ), nrow = 6, byrow = TRUE)
 #'
 #' weights <- c(0.239, 0.225, 0.197, 0.186, 0.153)
-#' types <- c(1, -1, 1, 1, 1)
+#' beneficial.vector <- c(1, 3, 4, 5)
 #'
-#' apply.OCRA(mat, weights, types)
-apply.OCRA <- function(mat, weights, types) {
+#' apply.OCRA(mat, weights, beneficial.vector)
+apply.OCRA <- function(mat, weights, beneficial.vector) {
 
   if (!is.matrix(mat)) {
     stop("'mat' must be a matrix.")
@@ -35,23 +35,15 @@ apply.OCRA <- function(mat, weights, types) {
   if (length(weights) != ncol(mat)) {
     stop("Length of 'weights' must match the number of columns in 'mat'.")
   }
-  if (length(types) != ncol(mat)) {
-    stop("Length of 'types' must match the number of columns in 'mat'.")
-  }
   if (abs(sum(weights) - 1) > 1e-9) {
     stop("The sum of 'weights' must be 1.")
   }
-  if (!all(types %in% c(1, -1))) {
-    stop("'types' must contain only 1 (profit) or -1 (cost).")
-  }
 
+  #Helper function for normalization
   ocra_normalization <- function(x, cost = FALSE) {
-
     if (cost) {
-
       return((max(x) - x) / min(x))
     } else {
-
       return((x - min(x)) / min(x))
     }
   }
@@ -59,17 +51,16 @@ apply.OCRA <- function(mat, weights, types) {
   n <- nrow(mat)
   m <- ncol(mat)
 
-
-  I <- rep(0, n)  #cost criteria
-  O <- rep(0, n)  #profit criteria
+  I <- rep(0, n)
+  O <- rep(0, n)
 
   for (j in seq_len(m)) {
-    if (types[j] == -1) {
-
-      I <- I + weights[j] * ocra_normalization(mat[, j], cost = TRUE)
-    } else {
+    if (j %in% beneficial.vector) {
 
       O <- O + weights[j] * ocra_normalization(mat[, j], cost = FALSE)
+    } else {
+
+      I <- I + weights[j] * ocra_normalization(mat[, j], cost = TRUE)
     }
   }
 
