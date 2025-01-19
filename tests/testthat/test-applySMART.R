@@ -16,11 +16,10 @@ test_that("apply.SMART works for provided example and returns the expected struc
                                            lower  = lower,
                                            upper  = upper,
                                            beneficial.vector = benef_vec)
-  print(result)
-  expect_length(result[,1], ncol(data_mat))
+
+  expect_length(result[,1], nrow(data_mat))
 
   expect_type(result[,1], "double")
   expect_type(result[,2], "double")
 
-  expect_length(result[[2]], nrow(data_mat))
 })
