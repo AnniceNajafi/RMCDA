@@ -20,7 +20,7 @@
 #' rownames(mat)<-paste0("A", 1:9)
 #' beneficial.vector <- c(3)
 #' weights <- c(0.1047, 0.2583, 0.6369)
-#'
+#' apply.WASPAS(mat, weights, beneficial.vector, 0.5)
 apply.WASPAS <- function(mat, weights, beneficial.vector, lambda){
 
   mat->weighted.mat
@@ -34,7 +34,7 @@ apply.WASPAS <- function(mat, weights, beneficial.vector, lambda){
   Q1 <- rowSums(new.weighted.mat)
 
 
-  edited.mat <- t(t(weighted.mat)^weights)
+  edited.mat <- as.data.frame(t(t(weighted.mat)^weights))
 
 
   Q2 <- transform(edited.mat, prod=rowProds(as.matrix(edited.mat)))$prod
