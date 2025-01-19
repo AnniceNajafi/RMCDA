@@ -21,7 +21,7 @@
 #' weights <- c(0.1574, 0.1825, 0.2385, 0.2172, 0.2043)
 #' beneficial.vector <- c(1, 3, 4, 5)
 #' apply.SAW(mat, weights, beneficial.vector)
-apply.SAW <- function(mat, beneficial.vector){
+apply.SAW <- function(mat, weights, beneficial.vector){
 
   #Internal function to take the max if beneficial criteria or min if non-beneficial
   #for the denominator
@@ -53,7 +53,7 @@ apply.SAW <- function(mat, beneficial.vector){
   }
 
 
-  hold.vals <- maxOrMinMatrix(mat, beneficial.vector)
+  hold.vals <- maxOrMinMatrix(mat, weights, beneficial.vector)
   edited.mat <- mat
 
   for(i in 1:nrow(edited.mat)){
