@@ -21,7 +21,7 @@
 #' wts <- c(0.6, 0.4)
 #'
 #' # Get MACBETH scores
-#' res <- apply.MACBETH(mat, benef.vec, wts, verbose=TRUE)
+#' res <- apply.MACBETH(mat, benef.vec, wts)
 #' print(res)
 #'
 #' @export
