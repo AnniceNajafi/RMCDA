@@ -11,7 +11,7 @@ test_that("apply.MACBETH works for provided example and returns the expected str
   wts <- c(0.6, 0.4)
 
   # Get MACBETH scores
-  res <- apply.MACBETH(mat, benef.vec, wts, verbose=TRUE)
+  results <- apply.MACBETH(mat, benef.vec, wts)
 
   expect_length(results, 3)
   expect_type(results, "double")
