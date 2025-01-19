@@ -21,7 +21,7 @@
 #'                    "SS 310-3AH", "Ti-6AI-4V", "Inconel 718", "70Cu-30Zn")
 #' weights <- c(0.28, 0.14, 0.05, 0.24, 0.19, 0.05, 0.05)
 #' beneficial.vector <- c(1, 2, 3)
-#' apply_CRADIS(mat, weights, beneficial.vector)
+#' apply.CRADIS(mat, weights, beneficial.vector)
 apply.CRADIS <- function(mat, weights, beneficial.vector) {
 
   if (length(weights) != ncol(mat)) {
