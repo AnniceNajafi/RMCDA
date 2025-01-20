@@ -26,6 +26,14 @@ This is an R package for applying MCDA methods on product data.
       <td>Analytic Hierarchy Process</td>
     </tr>
     <tr>
+      <td>Fuzzy AHP</td>
+      <td>Fuzzy Analytic Hierarchy Process</td>
+    </tr>
+    <tr>
+      <td>ANP</td>
+      <td>Analytic Network Process</td>
+    </tr>
+    <tr>
       <td>ARAS</td>
       <td>Additive Ratio Assessment</td>
     </tr>
