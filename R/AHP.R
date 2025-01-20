@@ -45,13 +45,14 @@ find.weight <- function(A){
 #' II. The criteria alternative unweighted matrix
 #' III. The weighted scores matrix
 #' IV. Competitor final scores
-#' @export
+#'
 #' @examples
 #' data <- read.csv(system.file("extdata", "AHP_input_file.csv", package = "RMCDA"), header=FALSE)
 #' mat.lst <- read.csv.AHP.matrices(data)
 #' mat.lst[[1]]->A
 #' mat.lst[[2]]->comparing.competitors
 #' results<- apply.AHP(A, comparing.competitors)
+#' @export apply.AHP
 apply.AHP <- function(A, comparing.competitors){
 
   criteria.weight <- find.weight(A)
@@ -90,13 +91,14 @@ apply.AHP <- function(A, comparing.competitors){
 #' @param power the power value of the supermatrix
 #'
 #' @return the limiting super matrix
-#' @export
+#'
 #' @examples
 #' data <- read.csv(system.file("extdata", "AHP_input_file.csv", package = "RMCDA"), header=FALSE)
 #' mat.lst <- read.csv.AHP.matrices(data)
 #' mat.lst[[1]]->A
 #' mat.lst[[2]]->comparing.competitors
 #' apply.ANP(A, comparing.competitors, 2)
+#' @export apply.ANP
 apply.ANP <- function(A, comparing.competitors, power){
 
   apply.AHP(A, comparing.competitors)->res.lst #apply AHP
@@ -126,13 +128,14 @@ apply.ANP <- function(A, comparing.competitors, power){
 #' @param A the comparison matrix
 #'
 #' @return the fuzzy weights for each criteria
-#' @export
+#'
 #' @examples
 #' # example code
 #' data <- read.csv(system.file("extdata", "AHP_input_file.csv", package = "RMCDA"), header=FALSE)
 #' mat.lst <- read.csv.AHP.matrices(data)
 #' mat.lst[[1]]->A
 #' result <- apply.FAHP(A)
+#' @export apply.FAHP
 apply.FAHP <- function(A){
 
   mat.1 <- A; mat.2 <- A; mat.3 <- A

@@ -6,7 +6,6 @@
 #'
 #' @return a list containing the names of Qi followed by values of Qi, Si, Ri,
 #' condition 1, and condition 2.
-#' @export
 #'
 #' @examples
 #' A <- matrix(c(250, 200, 300, 275, 225, 16, 16, 32, 32, 16, 12, 8, 16, 8, 16, 5, 3, 4, 4, 2), nrow=5, ncol=4)
@@ -14,6 +13,7 @@
 #' rownames(A)<-paste0("Mobile ", seq(1, 5, 1))
 #' A[,"Price"] <- -A[,"Price"]
 #' apply.VIKOR(A, c(0.35, 0.3, 0.2, 0.15))
+#' @export apply.VIKOR
 apply.VIKOR <- function(A, weights, nu = 0.5){
 
   colMaxs <- apply(A, 2, function(x) max(x, na.rm = TRUE))

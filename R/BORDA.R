@@ -2,8 +2,8 @@
 #'
 #' This function implements a simple Borda count approach for a decision matrix.
 #' It computes a rank for each criterion and then sums these ranks for each alternative.
-#' By specifying which columns are \emph{beneficial} (i.e., higher values preferred),
-#' it automatically treats the remaining columns as \emph{non-beneficial} (i.e., lower values preferred).
+#' By specifying which columns are beneficial (i.e., higher values preferred),
+#' it automatically treats the remaining columns as non-beneficial (i.e., lower values preferred).
 #'
 #' @param mat A numeric matrix or data frame. Rows represent alternatives,
 #'   columns represent criteria.
@@ -13,7 +13,7 @@
 #'
 #' @return A numeric vector of total Borda scores for each alternative, in the
 #'   original row order.
-#' @export
+#'
 #'
 #' @examples
 #' # Create a small decision matrix (4 alternatives x 3 criteria)
@@ -29,6 +29,7 @@
 #'
 #' borda_scores <- apply.BORDA(mat, beneficial.vector)
 #' borda_scores
+#' @export apply.BORDA
 apply.BORDA <- function(mat, beneficial.vector) {
 
 

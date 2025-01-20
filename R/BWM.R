@@ -7,7 +7,7 @@
 #' @param worst.criteria.preference the comparison of the worst criteria to others
 #'
 #' @return the result of BWM
-#' @export
+#'
 #'
 #' @examples
 #' criteria.lst <- c("C1", "C2", "C3")
@@ -16,6 +16,7 @@
 #' best.criteria.preference <- c(8, 2, 1)
 #' worst.criteria.preference <- c(1, 5, 8)
 #' apply.BWM(criteria.lst, worst.criteria, best.criteria, best.criteria.preference, worst.criteria.preference)
+#' @export apply.BWM
 apply.BWM <- function(criteria.lst, worst.criteria, best.criteria, best.criteria.preference, worst.criteria.preference){
 
   best.idx <- which(best.criteria == criteria.lst)

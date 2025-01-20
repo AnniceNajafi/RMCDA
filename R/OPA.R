@@ -12,7 +12,6 @@
 #'
 #' @return A list of matrices where each matrix represents the optimal weights for the alternatives
 #'         and criteria for a specific expert.
-#' @export
 #'
 #' @examples
 #' # Input Data
@@ -35,6 +34,8 @@
 #' # Apply OPA
 #' weights <- apply.OPA(expert.opinion.lst, expert.rank, criterion.rank.lst)
 #' print(weights)
+#' @import lpSolve
+#' @export apply.OPA
 apply.OPA <- function(expert.opinion.lst, expert.rank, criterion.rank.lst){
 
   #Count the number of experts, criteria, and alternatives
@@ -124,7 +125,7 @@ apply.OPA <- function(expert.opinion.lst, expert.rank, criterion.rank.lst){
   colnames(constraints) <- weight_names
 
   ####### Solve the linear programming problem #####
-  lp_result <- lp("max", f_obj, constraints, direction, rhs)
+  lp_result <- lpSolve::lp("max", f_obj, constraints, direction, rhs)
 
 
   if (lp_result$status == 0) {

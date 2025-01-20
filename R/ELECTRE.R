@@ -6,7 +6,7 @@
 #' @param discordance.threshold A numeric value (0 to 1) specifying the discordance threshold.
 #'
 #' @return Ranking scores for each alternative.
-#' @export
+#'
 #' @examples
 #' alternatives <- data.frame(
 #'   cost = c(500, 600, 450),
@@ -25,6 +25,7 @@
 #'   concordance.threshold = 0.6,
 #'   discordance.threshold = 0.7
 #' )
+#' @export apply.ELECTRE1
 apply.ELECTRE1 <- function(alternatives, weights, concordance.threshold, discordance.threshold) {
 
 

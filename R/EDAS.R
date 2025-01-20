@@ -4,7 +4,7 @@
 #' of different alternatives. Non-beneficial columns need to have negative values
 #' @param weights are the weights of each property in the decision making process
 #' @return the AS_i index from EDAS from which the final ranking can be found
-#' @export
+#'
 #'
 #' @examples
 #' mat <- matrix(c(250, 200, 300, 275, 225,
@@ -16,6 +16,7 @@
 #' mat[,"Price/cost"]<--mat[,"Price/cost"]
 #' weights <- c(0.35, 0.25, 0.25, 0.15)
 #' apply.EDAS(mat, weights)
+#' @export apply.EDAS
 apply.EDAS <- function(mat, weights){
 
   PDA <- t(t(mat)-colMeans(mat))

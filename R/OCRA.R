@@ -11,7 +11,7 @@
 #'
 #' @return A numeric vector with the OCRA preference values for each alternative.
 #' Higher values indicate a more preferred alternative.
-#' @export
+#'
 #'
 #' @examples
 #' mat <- matrix(c(
@@ -27,6 +27,7 @@
 #' beneficial.vector <- c(1, 3, 4, 5)
 #'
 #' apply.OCRA(mat, weights, beneficial.vector)
+#' @export apply.OCRA
 apply.OCRA <- function(mat, weights, beneficial.vector) {
 
   if (!is.matrix(mat)) {

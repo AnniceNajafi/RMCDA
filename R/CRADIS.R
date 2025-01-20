@@ -4,7 +4,7 @@
 #' @param weights are the weights of each property in the decision-making process
 #' @param beneficial.vector is a vector that contains the column numbers of beneficial criteria
 #' @return a vector containing the preference values for each alternative
-#' @export
+#'
 #'
 #' @examples
 #'
@@ -22,6 +22,7 @@
 #' weights <- c(0.28, 0.14, 0.05, 0.24, 0.19, 0.05, 0.05)
 #' beneficial.vector <- c(1, 2, 3)
 #' apply.CRADIS(mat, weights, beneficial.vector)
+#' @export apply.CRADIS
 apply.CRADIS <- function(mat, weights, beneficial.vector) {
 
   if (length(weights) != ncol(mat)) {

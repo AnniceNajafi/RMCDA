@@ -7,7 +7,7 @@
 #' criteria. Non-beneficial criteria are assumed to be the remaining columns.
 #'
 #' @return A numeric vector containing the calculated PIV scores for each alternative.
-#' @export
+#'
 #'
 #' @examples
 #' mat <- matrix(c(80, 60, 90,
@@ -19,6 +19,7 @@
 #' weights <- c(0.4, 0.3, 0.3)
 #' beneficial.vector <- c(1, 2, 3)
 #' apply.PIV(mat, weights, beneficial.vector)
+#' @export apply.PIV
 apply.PIV <- function(mat, weights, beneficial.vector) {
 
   X <- mat

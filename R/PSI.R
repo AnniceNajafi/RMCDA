@@ -5,7 +5,6 @@
 #' @param beneficial.vector A numeric vector containing the column indices of beneficial
 #' criteria. Non-beneficial criteria are assumed to be the remaining columns.
 #' @return A numeric vector containing the calculated PSI scores for each alternative.
-#' @export
 #'
 #' @examples
 #' mat <- matrix(c(80, 60, 90,
@@ -16,6 +15,7 @@
 #' colnames(mat) <- c("Criterion 1", "Criterion 2", "Criterion 3")
 #' beneficial.vector <- c(1, 2, 3)
 #' apply.PSI(mat, beneficial.vector)
+#' @export apply.PSI
 apply.PSI <- function(mat, beneficial.vector) {
 
   X <- mat

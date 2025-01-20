@@ -8,7 +8,6 @@
 #' similarity. Default is 3.
 #'
 #' @return A numeric vector containing the calculated weights for each criterion.
-#' @export
 #'
 #' @examples
 #' mat <- matrix(c(80, 60, 90,
@@ -19,6 +18,8 @@
 #' colnames(mat) <- c("Criterion 1", "Criterion 2", "Criterion 3")
 #' beneficial.vector <- c(1, 2, 3)
 #' apply.SECA(mat, beneficial.vector)
+#' @import nloptr
+#' @export apply.SECA
 apply.SECA <- function(mat, beneficial.vector, beta = 3) {
 
   X <- mat
@@ -75,7 +76,7 @@ apply.SECA <- function(mat, beneficial.vector, beta = 3) {
   start_vals <- runif(N, 0.001, 1.0)
   start_vals <- start_vals / sum(start_vals)
 
-  result <- nloptr(
+  result <- nloptr::nloptr(
     x0 = start_vals,
     eval_f = target_function,
     eval_grad_f = gradient_function,

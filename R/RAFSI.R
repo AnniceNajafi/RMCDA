@@ -19,7 +19,7 @@
 #' weights <- c(0.3, 0.5, 0.2)
 #' beneficial.vector <- c(1, 2)
 #' apply.RAFSI(mat, weights, beneficial.vector,   n_i = 1, n_k = 6)
-#' @export
+#' @export apply.RAFSI
 apply.RAFSI <- function(mat,
                         weights,
                         beneficial.vector,

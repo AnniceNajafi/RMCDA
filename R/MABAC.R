@@ -1,6 +1,5 @@
 #' Apply Multi-Attributive Border Approximation Area Comparison (MABAC)
 #'
-#' @description
 #' R implementation of the MABAC method.
 #' The MABAC method computes the distance between each alternative and the
 #' Boundary Approximation Area (BAA), based on a weighted normalized decision matrix.
@@ -12,7 +11,7 @@
 #'
 #' @return A numeric vector with the MABAC preference values for each alternative.
 #' A higher value indicates a more preferred alternative.
-#' @export
+#'
 #'
 #' @examples
 #' # Example usage:
@@ -30,6 +29,7 @@
 #' types <- c(-1, 1, 1, 1, -1, -1, 1, 1, 1, 1)
 #'
 #' apply.MABAC(mat, weights, types)
+#' @export apply.MABAC
 apply.MABAC <- function(mat, weights, types) {
 
 

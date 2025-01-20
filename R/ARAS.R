@@ -7,7 +7,7 @@
 #' properties.
 #' @return a vector containing the utility degree related to each alternative,
 #' higher utility indicates better ranking.
-#' @export
+#'
 #'
 #' @examples
 #'
@@ -28,6 +28,7 @@
 #'weights <- c(0.28, 0.14, 0.05, 0.24, 0.19, 0.05, 0.05)
 #'beneficial.vector<-c(1,2,3)
 #'apply.ARAS(mat, weights, beneficial.vector)
+#' @export apply.ARAS
 apply.ARAS <- function(mat, weights, beneficial.vector){
 
   min.vector <- apply(mat, 2, min)

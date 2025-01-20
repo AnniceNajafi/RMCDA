@@ -24,5 +24,4 @@ colnames(A)<-c("Price", "Storage space", "Camera", "Looks")
 rownames(A)<-paste0("Mobile ", seq(1, 5, 1))
 A[,"Price"] <- -A[,"Price"]
 apply.TOPSIS(A, c(1/4, 1/4, 1/4, 1/4))
-
 }

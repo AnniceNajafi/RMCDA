@@ -1,40 +1,23 @@
 #' Apply TODIM (TOmada de Decisao Interativa e Multicriterio)
 #'
-#' @description
 #' Implements the core TODIM logic in R
-#' #' **What is \eqn{\theta}?**
-#' In the TODIM formula, \eqn{\theta} acts as an “attenuation factor” or penalty
-#' for negative dominance differences. Specifically, when \(p_i < p_j\), the term
-#' \(-\frac{1}{\theta}\) is used in computing the dominance. This parameter allows
+#'
+#' In the TODIM formula, theta acts as an “attenuation factor” or penalty
+#' for negative dominance differences. This parameter allows
 #' you to adjust how severely negative differences weigh in the final scoring.
 #' A common default is 1, but you could experiment with other values if you want
 #' to amplify or reduce the penalty effect.
 #'
-#' If you set \code{teta = 1}, it uses the standard TODIM approach.
+#' If you set teta = 1, it uses the standard TODIM approach.
 #' If you do not want to vary this parameter, you can leave it at its default value of 1.
 #'
-#' **Steps**:
-#' 1. Normalize each criterion column:
-#'    - Beneficial criteria: \(x_{ij} / \sum(x_{ij})\)
-#'    - Non-beneficial: \(\frac{1/x_{ij}}{\sum(1/x_{ij})}\)
-#' 2. Normalize the weights by dividing each weight by the maximum weight.
-#' 3. Compute the dominance matrix \(\mathbf{D}\). For each pair \((i,j)\):
-#'    \[
-#'      D_{ij} = \begin{cases}
-#'         \displaystyle \sum_{k} \left(\frac{w_k (p_i - p_j)}{\sum w_k}\right)^{\frac12}, & p_i > p_j \\
-#'         0, & p_i = p_j \\
-#'         \displaystyle -\frac{1}{\theta} \left(\sum w_k \frac{(p_j - p_i)}{w_k}\right)^{\frac12}, & p_i < p_j
-#'      \end{cases}
-#'    \]
-#' 4. Obtain the total dominance flow \(\mathbf{r}\) by summing each row of \(\mathbf{D}\).
-#'    Rescale \(\mathbf{r}\) to the [0, 1] interval.
 #'
 #'
 #' @param mat A numeric matrix where each row is an alternative and each column is a criterion.
-#' @param weights A numeric vector of weights for each criterion (same length as number of columns of \code{mat}).
+#' @param weights A numeric vector of weights for each criterion (same length as number of columns of mat).
 #' @param beneficial.vector A vector of column indices corresponding to beneficial criteria
 #'   (i.e., the larger the value, the better). Columns not listed here will be treated as non-beneficial.
-#' @param teta A numeric scalar (\eqn{\theta} in TODIM). Default is 1.
+#' @param teta A numeric scalar in TODIM). Default is 1.
 #'
 #' @return A numeric vector of rescaled scores, one per alternative (row).
 #'
@@ -57,7 +40,7 @@
 #'
 #' apply.TODIM(mat, weights, beneficial.vector, teta=1)
 #'
-#' @export
+#' @export apply.TODIM
 apply.TODIM <- function(mat, weights, beneficial.vector, teta = 1) {
 
   X <- as.matrix(mat)

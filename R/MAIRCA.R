@@ -1,6 +1,5 @@
 #' Apply Multi-Attributive Real Ideal Comparative Analysis (MAIRCA)
 #'
-#' @description
 #' R implementation of the MAIRCA method.
 #' The MAIRCA method computes the gap between ideal (theoretical) and empirical
 #' ratings to rank alternatives.
@@ -12,7 +11,7 @@
 #'
 #' @return A numeric vector with the MAIRCA preference values for each alternative.
 #' Higher values indicate more preferred alternatives.
-#' @export
+#'
 #'
 #' @examples
 #' # Example usage
@@ -25,6 +24,7 @@
 #' weights <- c(0.04744, 0.02464, 0.51357, 0.41435)
 #' types <- c(1, 1, 1, 1)
 #' apply.MAIRCA(mat, weights, types)
+#' @export apply.MAIRCA
 apply.MAIRCA <- function(mat, weights, types) {
 
 

@@ -8,7 +8,7 @@
 #' @param psi threshold parameter
 #'
 #' @return a vector containing the calculated quantitative utility
-#' @export
+#'
 #'
 #' @examples
 #'
@@ -30,6 +30,7 @@
 #'beneficial.vector<-c(1,2,3)
 #'psi <- 0.02
 #'apply.CODAS(mat, weights, beneficial.vector, psi)
+#' @export apply.CODAS
 apply.CODAS <- function(mat, weights, beneficial.vector, psi){
 
   max.min.vector <- c()

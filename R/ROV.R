@@ -6,7 +6,6 @@
 #' @param beneficial.vector A numeric vector containing the column indices of beneficial
 #' criteria. Non-beneficial criteria are assumed to be the remaining columns.
 #' @return A numeric vector containing the calculated ROV scores for each alternative.
-#' @export
 #'
 #' @examples
 #' mat <- matrix(c(80, 60, 90,
@@ -18,6 +17,7 @@
 #' weights <- c(0.4, 0.3, 0.3)
 #' beneficial.vector <- c(1, 2, 3)
 #' apply.ROV(mat, weights, beneficial.vector)
+#' @export apply.ROV
 apply.ROV <- function(mat, weights, beneficial.vector) {
 
   X <- mat

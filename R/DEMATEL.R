@@ -4,7 +4,7 @@
 #' criteria
 #'
 #' @return a list containing two vectors one holding D-R and the other D+R
-#' @export
+#'
 #'
 #' @examples
 #' comparisons.mat <- matrix(c(0, 3, 3, 4,
@@ -14,14 +14,16 @@
 #' rownames(comparisons.mat)<-c("Price/cost", "Storage Space", "Camera", "Processor")
 #' colnames(comparisons.mat)<-c("Price/cost", "Storage Space", "Camera", "Processor")
 #' apply.DEMATEL(comparisons.mat)
+#' @import matlib
+#' @export apply.DEMATEL
 apply.DEMATEL <- function(comparisons.mat){
 
   X <- comparisons.mat/max(rowSums(comparisons.mat))
 
 
-  D <- rowSums(X %*% inv(diag(dim(X)[1])-X))
+  D <- rowSums(X %*% matlib::inv(diag(dim(X)[1])-X))
 
-  R <- colSums(X %*% inv(diag(dim(X)[1])-X))
+  R <- colSums(X %*% matlib::inv(diag(dim(X)[1])-X))
 
   D.minus.R <- D - R
 

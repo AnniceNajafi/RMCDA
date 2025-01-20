@@ -1,6 +1,5 @@
 #' Apply WINGS (Weighted Influence Non-linear Gauge System)
 #'
-#' @description
 #' This function implements the core calculations of the WINGS method,
 #' ignoring any plotting or quadrant labeling. It returns three vectors:
 #' - r_plus_c: (R + C) for each row/column
@@ -10,9 +9,8 @@
 #' @param mat A square numeric matrix. The WINGS method is typically
 #'   applied on an n x n cross-impact or adjacency matrix.
 #'
-#' @return A list with three elements: \code{r_plus_c}, \code{r_minus_c},
-#'   and \code{weights}.
-#' @export
+#' @return A list with three elements: r_plus_c, r_minus_c,
+#'   and weights.
 #'
 #' @examples
 #'
@@ -33,6 +31,7 @@
 #' result$r_plus_c    # (R + C)
 #' result$r_minus_c   # (R - C)
 #' result$weights     # Weights
+#' @export apply.WINGS
 apply.WINGS <- function(mat) {
 
   D <- mat

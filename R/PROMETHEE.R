@@ -5,7 +5,7 @@
 #' @param weights the weights of criteria.
 #'
 #' @return the results of PROMOTHEE
-#' @export
+#'
 #'
 #' @examples
 #' A <- matrix(c(250, 200, 300, 275, 16, 16, 32, 32, 12, 8, 16, 8, 5, 3, 4, 2), nrow=4)
@@ -13,7 +13,7 @@
 #' colnames(A)<-c("Price", "Memory", "Camera", "Looks")
 #' weights <- c(0.35, 0.25, 0.25, 0.15)
 #' apply.PROMETHEE(A, weights)
-#'
+#' @export apply.PROMETHEE
 apply.PROMETHEE <- function(A, weights, type="II"){
 
   colMaxs <- apply(A, 2, function(x) max(x, na.rm = TRUE))

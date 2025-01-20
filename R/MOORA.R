@@ -7,7 +7,7 @@
 #' properties.
 #'
 #' @return a vector containing the calculated quantitative utility
-#' @export
+#'
 #'
 #' @examples
 #' mat <- matrix(c(60, 6.35, 6.8, 10, 2.5, 4.5, 3,
@@ -21,6 +21,7 @@
 #' weights <- c(0.1574, 0.1825, 0.2385, 0.2172, 0.2043)
 #' beneficial.vector <- c(1, 3, 4, 5)
 #' apply.MOORA(mat, weights, beneficial.vector)
+#' @export apply.MOORA
 apply.MOORA <- function(mat, weights, beneficial.vector){
 
   weighted.normalized.mat <- t(weights * (t(mat)/(sqrt(colSums(mat^2)))))

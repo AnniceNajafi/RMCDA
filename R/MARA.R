@@ -1,9 +1,8 @@
 #' Apply the MARA (Magnitude of the Area for the Ranking of Alternatives) Method
 #'
-#' @description
 #' MARA ranks alternatives based on multiple criteria, each weighted. Columns
-#' in \code{beneficial.vector} are treated as "max" (beneficial), and columns
-#' not in \code{beneficial.vector} are treated as "min" (cost).
+#' in beneficial.vector are treated as "max" (beneficial), and columns
+#' not in beneficial.vector are treated as "min" (cost).
 #'
 #' The following function is the R implementation of the python function mara from the pyDecision package
 #' Source: https://github.com/Valdecy/pyDecision/blob/master/pyDecision/algorithm/mara.py
@@ -24,7 +23,7 @@
 #' beneficial.vector <- c(1)  # First column is beneficial (max); second is cost (min)
 #' apply.MARA(mat, weights, beneficial.vector)
 #'
-#' @export
+#' @export apply.MARA
 apply.MARA <- function(mat, weights, beneficial.vector) {
 
 

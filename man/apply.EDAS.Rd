@@ -25,8 +25,7 @@ mat <- matrix(c(250, 200, 300, 275, 225,
 5, 3, 4, 4, 2), nrow=5)
 colnames(mat)<-c("Price/cost", "Storage Space", "Camera", "Looks")
 rownames(mat)<-paste0("Mobile", 1:5)
-colMeans(mat)
 mat[,"Price/cost"]<--mat[,"Price/cost"]
 weights <- c(0.35, 0.25, 0.25, 0.15)
-
+apply.EDAS(mat, weights)
 }

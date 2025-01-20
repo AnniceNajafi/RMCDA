@@ -1,6 +1,6 @@
 #' Apply the SMART Method
 #'
-#' @description
+#'
 #' This function implements the SMART (Simple Multi-Attribute Rating Technique) method in R.
 #'
 #' @param dataset A numeric matrix or data frame of size (n x m), rows = alternatives, columns = criteria.
@@ -10,30 +10,11 @@
 #' @param upper A numeric vector of length \code{m} with upper bounds for each criterion.
 #' @param beneficial.vector A numeric vector containing column indices that are beneficial ("max").
 #'
-#' @return A matrix (or data frame) named \code{result} with two columns:
-#'   \itemize{
-#'     \item \code{index}: The row index (alternative).
-#'     \item \code{score}: The final SMART score for that alternative.
-#'   }
-#'   The rows of \code{result} are sorted by \code{score} in descending order.
+#' @return A matrix (or data frame) named result with two columns: The row index (alternative)
+#' and the final SMART score for that alternative.
 #'
-#' @details
-#' The main steps are:
-#' \enumerate{
-#'   \item Transform \code{grades} into weights via \eqn{w_i = (2^{1/2})^{grades_i}} and normalize \eqn{w}.
-#'   \item For each column \eqn{i}:
-#'     \itemize{
-#'       \item Compute a scaled value
-#'         \eqn{X_{:,i} = 4 + \log_2\bigl(\bigl[(X_{:,i} - lower[i])/(upper[i]-lower[i])\bigr]\cdot 64\bigr)}
-#'         if \eqn{i} is beneficial, or
-#'         \eqn{X_{:,i} = 10 - \log_2\bigl(\bigl[(X_{:,i} - lower[i])/(upper[i]-lower[i])\bigr]\cdot 64\bigr)}
-#'         if \eqn{i} is non-beneficial.
-#'     \item If \eqn{(X_{:,i} - lower[i])/(upper[i]-lower[i])} is zero or negative, the log term might be invalid,
-#'           so ensure your data/bounds are set correctly.
-#'     }
-#'   \item Compute final scores \eqn{Y_j = \sum_i X_{j,i} \cdot w_i} for each alternative \eqn{j}.
-#'   \item Return a sorted \code{result} table that includes \code{(index, score)}.
-#' }
+#' The rows of result are sorted by score in descending order.
+#'
 #'
 #' @examples
 #' # Example usage
@@ -58,7 +39,7 @@
 #'
 #' result
 #'
-#' @export
+#' @export apply.SMART
 apply.SMART <- function(dataset,
                         grades,
                         lower,

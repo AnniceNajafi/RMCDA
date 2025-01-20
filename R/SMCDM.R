@@ -10,7 +10,6 @@
 #' then the user should provide the probabilities of occurrence of all states.
 #'
 #' @return the SMCDM results
-#' @export
 #'
 #' @examples
 #' data <- read.csv(system.file("extdata", "SMCDM_input.csv", package = "RMCDA"), header=FALSE)
@@ -19,6 +18,7 @@
 #' state.criteria.probs <- mat.lst[[2]]
 #' likelihood.vector <- mat.lst[[3]]
 #' apply.SMCDM(comparison.mat, state.criteria.probs, likelihood.vector)
+#' @export apply.SMCDM
 apply.SMCDM <- function(comparison.mat, state.criteria.probs, likelihood.vector, independent.events = TRUE){
 
   if(independent.events == TRUE){

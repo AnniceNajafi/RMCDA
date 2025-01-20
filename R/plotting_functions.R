@@ -4,7 +4,7 @@
 #' @param comparing.competitors the list of matrices related to pairwise comparisons
 #' of competitors for each criteria
 #' @return the decision tree plot
-#' @export
+#' @export plot.AHP.decision.tree
 plot.AHP.decision.tree <- function(A, comparing.competitors){
 
   nodes <- c("Choose alternative",rownames(comparing.competitors[[1]]), rownames(A))
@@ -56,7 +56,7 @@ plot.AHP.decision.tree <- function(A, comparing.competitors){
 #' @param colors the color scheme of choice
 #'
 #' @return the spider plot
-#' @export
+#' @export plot.spider
 plot.spider <- function(data, colors=palette("default")){
 
   as.data.frame(data)->data

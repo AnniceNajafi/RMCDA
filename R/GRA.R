@@ -8,7 +8,7 @@
 #' @param epsilon is a parameter for the GRA method, default is 0.5
 #'
 #' @return a vector containing the calculated GRA scores
-#' @export
+#'
 #'
 #' @examples
 #' mat <- matrix(c(80, 60, 90,
@@ -20,6 +20,7 @@
 #' weights <- c(0.4, 0.3, 0.3)
 #' beneficial.vector <- c(1, 2, 3)
 #' apply.GRA(mat, weights, beneficial.vector)
+#' @export apply.GRA
 apply.GRA <- function(mat, weights, beneficial.vector, epsilon = 0.5) {
 
 

@@ -6,7 +6,7 @@
 #' @param beneficial.vector is a vector that contains the column number of beneficial
 #' properties.
 #' @return a vector containing the aggregated appraisal scores.
-#' @export
+#'
 #'
 #' @examples
 #'
@@ -21,6 +21,7 @@
 #' weights <- c(0.1061, 0.3476, 0.3330, 0.1185, 0.0949)
 #' beneficial.vector <- c(2, 3, 4, 5)  # Columns 2, 3, 4, and 5 are beneficial
 #' apply.MARCOS(mat, weights, beneficial.vector)
+#' @export apply.MARCOS
 apply.MARCOS <- function(mat, weights, beneficial.vector) {
 
   #Here, we create the extended matrix with ideal and anti-ideal vals

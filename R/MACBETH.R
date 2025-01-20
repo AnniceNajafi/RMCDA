@@ -3,12 +3,12 @@
 #'
 #' @param mat A numeric matrix where rows represent alternatives and columns represent criteria.
 #' @param beneficial.vector An integer vector containing column indices for the beneficial
-#'   (larger-is-better) criteria. Columns not in \code{beneficial.vector} are treated as
+#'   (larger-is-better) criteria. Columns not in beneficial.vector are treated as
 #'   non-beneficial (smaller-is-better).
-#' @param weights A numeric vector of the same length as the number of columns in \code{mat},
+#' @param weights A numeric vector of the same length as the number of columns in mat,
 #'   containing the relative importance weights for each criterion.
 #'
-#' @return A numeric vector \code{V} of length \eqn{nrow(mat)}, the final attractiveness scores.
+#' @return A numeric vector V of length nrow(mat), the final attractiveness scores.
 #'
 #' @examples
 #' # Example matrix: 3 alternatives x 2 criteria
@@ -24,7 +24,7 @@
 #' res <- apply.MACBETH(mat, benef.vec, wts)
 #' print(res)
 #'
-#' @export
+#' @export apply.MACBETH
 apply.MACBETH <- function(mat,
                           beneficial.vector,
                           weights) {
@@ -44,12 +44,12 @@ apply.MACBETH <- function(mat,
   worst <- numeric(m)
 
 
-  for (j in seq_len(m)) {
+  for(j in seq_len(m)) {
     col_j <- X[, j]
-    if (j %in% beneficial.vector) {
+    if(j %in% beneficial.vector) {
       best[j]  <- max(col_j)
       worst[j] <- min(col_j)
-    } else {
+    }else {
       best[j]  <- min(col_j)
       worst[j] <- max(col_j)
     }
@@ -58,7 +58,7 @@ apply.MACBETH <- function(mat,
   eps <- 1e-16
 
 
-  for (j in seq_len(m)) {
+  for(j in seq_len(m)){
     X[, j] <- (X[, j] - worst[j]) / (best[j] - worst[j] + eps)
   }
 

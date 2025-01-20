@@ -6,7 +6,6 @@
 #' @param bounds A numeric matrix where each row contains the minimum and maximum bounds for each criterion.
 #'
 #' @return A numeric vector of preference scores for alternatives. Lower scores indicate better alternatives.
-#' @export
 #' @examples
 #' # Decision matrix
 #' matrix <- matrix(c(10.5, -3.1, 1.7,
@@ -28,6 +27,7 @@
 #' # Apply SPOTIS
 #' preferences <- apply.SPOTIS(matrix, weights, types, bounds)
 #' print(round(preferences, 4))
+#' @export apply.SPOTIS
 apply.SPOTIS <- function(matrix, weights, types, bounds) {
 
 

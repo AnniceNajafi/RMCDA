@@ -33,5 +33,5 @@ colnames(mat)<-c("Dimensional Deviation (DD)", "Surface Roughness (SR)",
 rownames(mat)<-paste0("A", 1:9)
 beneficial.vector <- c(3)
 weights <- c(0.1047, 0.2583, 0.6369)
-
+apply.WASPAS(mat, weights, beneficial.vector, 0.5)
 }

@@ -1,8 +1,8 @@
 #' Apply the ORESTE (Organisation Rangement Et SynThèsE de données relationnelles) Method
 #'
-#' @description
+#'
 #' Criteria with indexes in
-#' \code{beneficial.vector} are interpreted as beneficial (maximize), whereas
+#' beneficial.vector are interpreted as beneficial (maximize), whereas
 #' others are cost-type (minimize). Rankings are performed for both the data
 #' matrix and the weights, then combined in the ORESTE manner.
 #'
@@ -22,7 +22,7 @@
 #'
 #' apply.ORESTE(mat, weights, beneficial.vector, alpha = 0.4)
 #'
-#' @export
+#' @export apply.ORESTE
 apply.ORESTE <- function(mat,
                          weights,
                          beneficial.vector,

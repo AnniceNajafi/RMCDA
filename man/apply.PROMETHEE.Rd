@@ -24,5 +24,4 @@ rownames(A)<-c("Mobile 1", "Mobile 2", "Mobile 3", "Mobile 4")
 colnames(A)<-c("Price", "Memory", "Camera", "Looks")
 weights <- c(0.35, 0.25, 0.25, 0.15)
 apply.PROMETHEE(A, weights)
-
 }

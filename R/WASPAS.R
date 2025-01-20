@@ -8,7 +8,7 @@
 #' @param lambda a value between 0 and 1, used in the calculation of the W index
 #'
 #' @return the Q index from WASPAS
-#' @export
+#'
 #'
 #' @examples
 #' mat <- matrix(c(0.04, 0.11, 0.05, 0.02, 0.08, 0.05, 0.03, 0.1, 0.03,
@@ -21,6 +21,8 @@
 #' beneficial.vector <- c(3)
 #' weights <- c(0.1047, 0.2583, 0.6369)
 #' apply.WASPAS(mat, weights, beneficial.vector, 0.5)
+#' @import matrixStats
+#' @export apply.WASPAS
 apply.WASPAS <- function(mat, weights, beneficial.vector, lambda){
 
   mat->weighted.mat
@@ -37,7 +39,7 @@ apply.WASPAS <- function(mat, weights, beneficial.vector, lambda){
   edited.mat <- as.data.frame(t(t(weighted.mat)^weights))
 
 
-  Q2 <- transform(edited.mat, prod=rowProds(as.matrix(edited.mat)))$prod
+  Q2 <- transform(edited.mat, prod=matrixStats::rowProds(as.matrix(edited.mat)))$prod
 
   Qi <- lambda*(Q1)+(1-lambda)*(Q2)
 

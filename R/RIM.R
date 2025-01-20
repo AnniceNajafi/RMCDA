@@ -3,58 +3,52 @@
 #' function is rewritten from the MCDM package to match the formatting of the R RMCDA package
 #' SOURCE: https://github.com/cran/MCDM/blob/master/R/RIM.R
 #'
-#' @description
-#' The \code{apply.RIM} function implements the Reference Ideal Method (RIM) for
+#'
+#' The apply.RIM function implements the Reference Ideal Method (RIM) for
 #' multi-criteria decision making (MCDM) problems, allowing for degenerate intervals,
 #' i.e. cases where A == C or D == B.
 #'
-#' @param mat A matrix (\emph{m} x \emph{n}) containing the values of the \emph{m} alternatives
-#' for the \emph{n} criteria.
-#' @param weights A numeric vector of length \emph{n}, containing the weights for the criteria.
+#' @param mat A matrix m x n containing the values of the m alternatives
+#' for the n criteria.
+#' @param weights A numeric vector of length n, containing the weights for the criteria.
 #' The sum of the weights must be equal to 1.
-#' @param AB A matrix (\emph{2} x \emph{n}), where \code{AB[1,]} corresponds to the A extreme,
-#' and \code{AB[2,]} corresponds to the B extreme of the domain (universe of discourse)
+#' @param AB A matrix (2 x n), where AB[1,] corresponds to the A extreme,
+#' and AB[2,] corresponds to the B extreme of the domain (universe of discourse)
 #' for each criterion.
-#' @param CD A matrix (\emph{2} x \emph{n}), where \code{CD[1,]} corresponds to the C extreme,
-#' and \code{CD[2,]} corresponds to the D extreme of the ideal reference for each criterion.
+#' @param CD A matrix (2 x n), where CD[1,] corresponds to the C extreme,
+#' and CD[2,] corresponds to the D extreme of the ideal reference for each criterion.
 #'
-#' @details
-#' \strong{Degenerate intervals:}
 #'
-#' 1. If \(\texttt{AB[1,j]} = \texttt{CD[1,j]}\), then the interval \([A,C]\) collapses to a point.
-#'    - Any value \(\texttt{x}\) in this range is treated under a fallback rule:
-#'      \itemize{
-#'        \item if \(\texttt{x} = A = C\), we set the normalized value to 1
-#'        \item otherwise, the normalized value is set to 0
-#'      }
+#' Degenerate intervals:
 #'
-#' 2. If \(\texttt{CD[2,j]} = \texttt{AB[2,j]}\), then the interval \([D,B]\) collapses to a point.
+#' 1. If AB[1,j] = CD[1,j], then the interval [A, C] collapses to a point.
+#'    - Any value x in this range is treated under a fallback rule:
+#'      - If x = A = C, we set the normalized value to 1.
+#'      - Otherwise, the normalized value is set to 0.
+#'
+#' 2. If CD[2,j] = AB[2,j], then the interval [D, B] collapses to a point.
 #'    - A similar fallback applies:
-#'      \itemize{
-#'        \item if \(\texttt{x} = D = B\), we set the normalized value to 1
-#'        \item otherwise, the normalized value is set to 0
-#'      }
+#'      - If x = D = B, we set the normalized value to 1.
+#'      - Otherwise, the normalized value is set to 0.
 #'
 #' These fallback rules ensure the function does not stop but, instead, issues a warning and assigns
 #' a default. Adjust these defaults if your MCDM context requires different handling.
 #'
 #' @return
 #' A data frame containing:
-#' \itemize{
-#'   \item \code{Alternatives}: The index of each alternative.
-#'   \item \code{R}: The R index (score) for each alternative.
-#'   \item \code{Ranking}: The ranking of the alternatives based on the R score.
-#' }
 #'
-#' @references
+#' - Alternatives: The index of each alternative.
+#' - R: The R index (score) for each alternative.
+#' - Ranking: The ranking of the alternatives based on the R score.
+#'
+#' Reference:
 #' Cables, E.; Lamata, M.T.; Verdegay, J.L. (2016).
 #' RIM-reference ideal method in multicriteria decision making.
-#' \emph{Information Science}, 337-338, 1-10.
+#' Information Science, 337-338, 1-10.
 #'
-#' @export
 #'
 #' @examples
-#' \dontrun{
+#'
 #' # Example decision matrix
 #' mat <- matrix(
 #'   c(30,40,25,27,45,0,
@@ -84,8 +78,8 @@
 #'
 #'
 #' apply.RIM(mat, weights, AB, CD)
-#' }
 #'
+#'@export apply.RIM
 apply.RIM <- function(mat, weights, AB, CD){
 
   # 0. Argument checks

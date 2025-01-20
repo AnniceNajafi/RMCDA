@@ -5,7 +5,7 @@
 #' @param weights of different criteria
 #'
 #' @return alternatives ranked using SRMP
-#' @export
+#'
 #'
 #' @examples
 #' evaluations.mat <- matrix(c(41, 46, 43, -2, -4, -5.5, 4, 2, 3), nrow=3)
@@ -16,6 +16,7 @@
 #' rownames(reference.profiles) <- c("p1", "p2")
 #' weights <- c(1/3, 1/3, 1/3)
 #' apply.SRMP(evaluations.mat, reference.profiles, weights)
+#' @export apply.SRMP
 apply.SRMP <- function(evaluations.mat, reference.profiles, weights) {
 
   comparisons <- c()

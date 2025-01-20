@@ -6,7 +6,7 @@
 #' @param beneficial.vector is a vector that contains the column number of beneficial
 #' properties.
 #' @return a vector containing the aggregated appraisal scores
-#' @export
+#'
 #'
 #' @examples
 #'
@@ -27,6 +27,7 @@
 #'weights <- c(0.28, 0.14, 0.05, 0.24, 0.19, 0.05, 0.05)
 #'beneficial.vector<-c(1,2,3)
 #'apply.COCOSO(mat, weights, beneficial.vector)
+#' @export apply.COCOSO
 apply.COCOSO <- function(mat, weights, beneficial.vector){
 
   min.vector <- apply(mat, 2, min)

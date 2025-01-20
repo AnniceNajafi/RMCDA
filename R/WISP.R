@@ -1,34 +1,17 @@
-#' Apply WISP (Integrated Simple Weighted Sum Product)
+#' Apply WISP (Integrated Simple Weighted Sum Product) method,
 #'
-#' @description
 #' Performs the WISP method calculations, returning a utility score for each alternative.
-#' Columns whose indices appear in \code{beneficial.vector} are treated as beneficial (max);
+#' Columns whose indices appear in beneficial.vector are treated as beneficial (max);
 #' all other columns are treated as non-beneficial (min).
 #'
 #' @param mat A numeric matrix with alternatives in rows and criteria in columns.
 #' @param beneficial.vector An integer vector of column indices that are beneficial ("max") criteria.
-#'   All columns not in \code{beneficial.vector} are assumed to be "min".
-#' @param weights A numeric vector of weights, one for each criterion (same length as the number of columns of \code{mat}).
-#' @param simplified A logical. If \code{FALSE} (default), uses all four partial utilities;
-#'   if \code{TRUE}, uses only \code{n_wsd} and \code{n_wpr} in the final aggregation.
+#'   All columns not in beneficial.vector are assumed to be "min".
+#' @param weights A numeric vector of weights, one for each criterion (same length as the number of columns of mat).
+#' @param simplified A logical. If FALSE, uses all four partial utilities;
+#'   if TRUE it uses only n_wsd and n_wpr in the final aggregation.
 #'
-#' @details
-#' **Steps**:
-#' 1. Normalize \code{weights} so they sum to 1.
-#' 2. \code{best[j]} = max of column \code{j} in \code{mat}.
-#' 3. Normalize matrix by dividing each column \code{j} by \code{best[j]},
-#'    then multiply each entry by \code{weights[j]}.
-#' 4. For each row \code{i}:
-#'    - Add up \code{v_p[i]} and multiply \code{w_p[i]} for each beneficial criterion column.
-#'    - Add up \code{v_m[i]} and multiply \code{w_m[i]} for each non-beneficial column.
-#' 5. Compute partial utilities:
-#'    - \code{u.wsd} = (v_p - v_m)
-#'    - \code{u.wpd} = (w_p - w_m)
-#'    - \code{u.wsr}, \code{u.wpr} depend on whether we have \emph{only} beneficial or \emph{only} non-beneficial criteria,
-#'      or a mix of both.
-#' 6. Normalize each partial utility to \([0,1]\) and combine into a final utility vector.
-#'
-#' @return A numeric vector of length \code{nrow(mat)} with the final WISP utility scores.
+#' @return A numeric vector of length nrow(mat) with the final WISP utility scores.
 #'
 #' @examples
 #' mat <- matrix(c(75.5, 95, 770, 187, 179, 239, 237,
@@ -51,7 +34,7 @@
 #' # Get the WISP scores
 #' apply.WISP(mat, beneficial.vector, weights, simplified=FALSE)
 #'
-#' @export
+#' @export apply.WISP
 apply.WISP <- function(mat,
                        beneficial.vector,
                        weights,

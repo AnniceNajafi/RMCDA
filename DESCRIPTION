@@ -13,7 +13,11 @@ Imports:
     stats,
     igraph,
     fmsb,
-    lpSolve
+    lpSolve,
+    MASS,
+    matlib,
+    nloptr,
+    matrixStats
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
