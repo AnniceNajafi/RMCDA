@@ -18,7 +18,6 @@ This is an R package for applying MCDA methods on product data.
     <tr>
       <th>Method</th>
       <th>Full Name</th>
-      <th>Application</th>
     </tr>
   </thead>
   <tbody>
