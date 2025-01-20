@@ -12,23 +12,23 @@
 #' for the n criteria.
 #' @param weights A numeric vector of length n, containing the weights for the criteria.
 #' The sum of the weights must be equal to 1.
-#' @param AB A matrix (2 x n), where AB[1,] corresponds to the A extreme,
-#' and AB[2,] corresponds to the B extreme of the domain (universe of discourse)
+#' @param AB A matrix (2 x n), where the first row of AB corresponds to the A extreme,
+#' and the second row of AB corresponds to the B extreme of the domain (universe of discourse)
 #' for each criterion.
-#' @param CD A matrix (2 x n), where CD[1,] corresponds to the C extreme,
-#' and CD[2,] corresponds to the D extreme of the ideal reference for each criterion.
+#' @param CD A matrix (2 x n), where the first row of CD corresponds to the C extreme,
+#' and the second row of CD corresponds to the D extreme of the ideal reference for each criterion.
 #'
 #'
 #' Degenerate intervals:
 #'
-#' 1. If AB[1,j] = CD[1,j], then the interval [A, C] collapses to a point.
-#'    - Any value x in this range is treated under a fallback rule:
-#'      - If x = A = C, we set the normalized value to 1.
+#' 1. If the first element of AB matches the first element of CD, then the interval between A and C collapses to a point.
+#'    - Any value x within this range is treated under a fallback rule:
+#'      - If x equals both A and C, the normalized value is set to 1.
 #'      - Otherwise, the normalized value is set to 0.
 #'
-#' 2. If CD[2,j] = AB[2,j], then the interval [D, B] collapses to a point.
+#' 2. If the second element of CD matches the second element of AB, then the interval between D and B collapses to a point.
 #'    - A similar fallback applies:
-#'      - If x = D = B, we set the normalized value to 1.
+#'      - If x equals both D and B, the normalized value is set to 1.
 #'      - Otherwise, the normalized value is set to 0.
 #'
 #' These fallback rules ensure the function does not stop but, instead, issues a warning and assigns

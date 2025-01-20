@@ -16,28 +16,28 @@ for the n criteria.}
 \item{weights}{A numeric vector of length n, containing the weights for the criteria.
 The sum of the weights must be equal to 1.}
 
-\item{AB}{A matrix (2 x n), where AB\link{1,} corresponds to the A extreme,
-and AB\link{2,} corresponds to the B extreme of the domain (universe of discourse)
+\item{AB}{A matrix (2 x n), where the first row of AB corresponds to the A extreme,
+and the second row of AB corresponds to the B extreme of the domain (universe of discourse)
 for each criterion.}
 
-\item{CD}{A matrix (2 x n), where CD\link{1,} corresponds to the C extreme,
-and CD\link{2,} corresponds to the D extreme of the ideal reference for each criterion.
+\item{CD}{A matrix (2 x n), where the first row of CD corresponds to the C extreme,
+and the second row of CD corresponds to the D extreme of the ideal reference for each criterion.
 
 Degenerate intervals:
 \enumerate{
-\item If AB\link{1,j} = CD\link{1,j}, then the interval \link{A, C} collapses to a point.
+\item If the first element of AB matches the first element of CD, then the interval between A and C collapses to a point.
 \itemize{
-\item Any value x in this range is treated under a fallback rule:
+\item Any value x within this range is treated under a fallback rule:
 \itemize{
-\item If x = A = C, we set the normalized value to 1.
+\item If x equals both A and C, the normalized value is set to 1.
 \item Otherwise, the normalized value is set to 0.
 }
 }
-\item If CD\link{2,j} = AB\link{2,j}, then the interval \link{D, B} collapses to a point.
+\item If the second element of CD matches the second element of AB, then the interval between D and B collapses to a point.
 \itemize{
 \item A similar fallback applies:
 \itemize{
-\item If x = D = B, we set the normalized value to 1.
+\item If x equals both D and B, the normalized value is set to 1.
 \item Otherwise, the normalized value is set to 0.
 }
 }

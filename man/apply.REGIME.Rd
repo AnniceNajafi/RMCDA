@@ -37,20 +37,31 @@ character matrix (cp.matrix) that marks each pair of alternatives as either
 It uses a beneficial.vector of column indices for "max" criteria. Columns not in
 beneficial.vector are treated as "min". The function can optionally run
 apply.po.ranking on the resulting matrix for partial-order analysis.
-
-#' 1. Weights Normalization: We first normalize weights so they sum to 1.
-2. Pairwise Comparison Matrix g_ind:
-For each pair of alternatives i, k, and each criterion j:
-- If j is beneficial (max) and X\link{i, j} >= X\link{k, j}, we add weights\link{j} to g_ind\link{i, k}.
-Otherwise, subtract weights\link{j}.
-- If j is non-beneficial (min) and X\link{i, j} < X\link{k, j}, we add weights\link{j}.
-Otherwise, subtract.
-3. cp.matrix:
-- "P+" if g_ind\link{i, k} > 0
-- "I" if g_ind\link{i, k} == 0 or g_ind\link{i, k} == g_ind\link{k, i}
-- "-" for diagonal entries (i == k)
-4. If doPreOrder = TRUE, we call apply.po.ranking on cp.matrix to merge 'I'
-and build a partial order.
+\enumerate{
+\item Weights Normalization: We first normalize the weights so their sum equals 1.
+\item Pairwise Comparison Matrix (g_ind):
+\itemize{
+\item For each pair of alternatives and each criterion:
+\itemize{
+\item If the criterion is beneficial (maximization) and the value for one alternative
+is greater than or equal to the value for another alternative, the weight for that
+criterion is added to the pair's comparison score (g_ind).
+Otherwise, the weight is subtracted from the score.
+\item If the criterion is non-beneficial (minimization) and the value for one alternative
+is less than the value for another alternative, the weight is added to the score.
+Otherwise, the weight is subtracted.
+}
+}
+\item cp.matrix:
+\itemize{
+\item "P+" indicates that one alternative dominates another if the comparison score (g_ind) is greater than 0.
+\item "I" indicates that the alternatives are indifferent if the comparison score is 0
+or if the scores for both directions are equal.
+\item "-" is assigned to diagonal entries, where the alternatives are compared with themselves.
+}
+\item If doPreOrder = TRUE, the function calls apply.po.ranking on cp.matrix to merge indifferent alternatives ("I")
+and construct a partial order.
+}
 }
 \examples{
 # Example data: 3 alternatives x 2 criteria

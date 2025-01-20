@@ -12,15 +12,6 @@ apply.po.ranking(partial.order.str)
 \item "P+": The row alternative strictly dominates the column alternative.
 \item "I": The two alternatives are indifferent.
 \item "R", "-", or other placeholders can appear but are less critical here.
-}
-\enumerate{
-\item Merging 'I' rows/columns: If partial.order.str\link{i, j} == "I", then row/column i is merged into row/column j
-(the same logic used in the original Python). The merged alternative name becomes something like
-"a2; a1" if alt2 merges alt1.
-\item Partial-Order Matrix: A 0/1 matrix (partial.order.mat) is constructed, marking 'P+' as 1.
-\item Ranking by row sums: Each row's sum in partial.order.mat is computed. Alternatives are sorted by ascending
-row sum, then reversed if the total sum is nonzero (mirroring the Python logic).
-\item Transitive-edge removal: We reduce each row by subtracting any row it dominates.
 }}
 }
 \value{

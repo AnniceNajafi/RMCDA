@@ -13,16 +13,6 @@
 #'   - "I": The two alternatives are indifferent.
 #'   - "R", "-", or other placeholders can appear but are less critical here.
 #'
-#' 1. Merging 'I' rows/columns: If partial.order.str[i, j] == "I", then row/column i is merged into row/column j
-#'    (the same logic used in the original Python). The merged alternative name becomes something like
-#'    "a2; a1" if alt2 merges alt1.
-#'
-#' 2. Partial-Order Matrix: A 0/1 matrix (partial.order.mat) is constructed, marking 'P+' as 1.
-#'
-#' 3. Ranking by row sums: Each row's sum in partial.order.mat is computed. Alternatives are sorted by ascending
-#'    row sum, then reversed if the total sum is nonzero (mirroring the Python logic).
-#'
-#' 4. Transitive-edge removal: We reduce each row by subtracting any row it dominates.
 #'
 #' @return A list with elements:
 #'   - partial.order.str: An updated partial.order.str after merges. Dimensions may be smaller than the input.
@@ -132,19 +122,26 @@ apply.po.ranking <- function(partial.order.str) {
 #' beneficial.vector are treated as "min". The function can optionally run
 #' apply.po.ranking on the resulting matrix for partial-order analysis.
 #'
-#' #' 1. Weights Normalization: We first normalize weights so they sum to 1.
-#' 2. Pairwise Comparison Matrix g_ind:
-#'    For each pair of alternatives i, k, and each criterion j:
-#'      - If j is beneficial (max) and X[i, j] >= X[k, j], we add weights[j] to g_ind[i, k].
-#'        Otherwise, subtract weights[j].
-#'      - If j is non-beneficial (min) and X[i, j] < X[k, j], we add weights[j].
-#'        Otherwise, subtract.
+#' 1. Weights Normalization: We first normalize the weights so their sum equals 1.
+#'
+#' 2. Pairwise Comparison Matrix (g_ind):
+#'    - For each pair of alternatives and each criterion:
+#'      - If the criterion is beneficial (maximization) and the value for one alternative
+#'        is greater than or equal to the value for another alternative, the weight for that
+#'        criterion is added to the pair's comparison score (g_ind).
+#'        Otherwise, the weight is subtracted from the score.
+#'      - If the criterion is non-beneficial (minimization) and the value for one alternative
+#'        is less than the value for another alternative, the weight is added to the score.
+#'        Otherwise, the weight is subtracted.
+#'
 #' 3. cp.matrix:
-#'      - "P+" if g_ind[i, k] > 0
-#'      - "I" if g_ind[i, k] == 0 or g_ind[i, k] == g_ind[k, i]
-#'      - "-" for diagonal entries (i == k)
-#' 4. If doPreOrder = TRUE, we call apply.po.ranking on cp.matrix to merge 'I'
-#'    and build a partial order.
+#'    - "P+" indicates that one alternative dominates another if the comparison score (g_ind) is greater than 0.
+#'    - "I" indicates that the alternatives are indifferent if the comparison score is 0
+#'      or if the scores for both directions are equal.
+#'    - "-" is assigned to diagonal entries, where the alternatives are compared with themselves.
+#'
+#' 4. If doPreOrder = TRUE, the function calls apply.po.ranking on cp.matrix to merge indifferent alternatives ("I")
+#'    and construct a partial order.
 #'
 #' @param mat A numeric matrix of size n x m (n alternatives, m criteria).
 #' @param beneficial.vector An integer vector of columns that are beneficial ("max").
