@@ -90,6 +90,10 @@ This is an R package for applying MCDA methods on product data.
       <td>Grey Relational Analysis</td>
     </tr>
     <tr>
+      <td>IDOCRIW</td>
+      <td>Integrated Determination of Objective CRIteria Weights </td>
+    </tr>
+    <tr>
       <td>MABAC</td>
       <td>Multi-Attributive Border Approximation Area Comparison</td>
     </tr>
@@ -112,6 +116,10 @@ This is an R package for applying MCDA methods on product data.
     <tr>
       <td>MOORA</td>
       <td>Multi-Objective Optimization by Ratio Analysis</td>
+    </tr>
+    <tr>
+      <td>MOOSRA</td>
+      <td>Multi-objective Optimization on the Basis of Simple Ratio Analysis</td>
     </tr>
     <tr>
       <td>OCRA</td>
