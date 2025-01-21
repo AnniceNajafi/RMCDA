@@ -1,0 +1,42 @@
+---
+title: "RMCDA Guidelines"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## RMCDA, a universal R package for multi-criteria decision making
+
+RMDA provides a variety of Multi-Criteria Decision Analysis (MCDM) method. Below we review some of these methods and explain how you can utilize this R package for your specific data. 
+
+###Load the R package
+
+```{r}
+library(RMCDA)
+```
+
+###Let's see how the input data looks like
+
+```{r}
+data <- read.csv(system.file("extdata", "AHP_input_file.csv", package = "RMCDA"), header=FALSE)
+mat.lst <- read.csv.AHP.matrices(data)
+mat.lst
+```
+
+It should be a list containing four matrices, the first matrix includes pairwise comparisons between criteria and the next three matrices are pairwise comparisons of alternatives for each criteria. 
+
+###Let's apply AHP
+
+```{r}
+mat.lst[[1]]->A
+mat.lst[[2]]->comparing.competitors
+results<- apply.AHP(A, comparing.competitors)
+print(results)
+```
+
+
+
+
+
