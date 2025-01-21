@@ -10,7 +10,7 @@
 #'                 2.8, 2.68, 7.9, 7.9, 4.43, 8.51, 8.53), nrow = 4, byrow = TRUE)
 #' beneficial.vector <- c(1, 3) # Columns 1 and 3 are beneficial
 #' apply.MULTIMOORA(mat, beneficial.vector)
-#' @export
+#' @export apply.MULTIMOORA
 apply.MULTIMOORA <- function(mat, beneficial.vector) {
 
   normalized_data <- sweep(mat, 2, sqrt(colSums(mat^2)), "/")

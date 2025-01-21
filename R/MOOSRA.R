@@ -18,7 +18,7 @@
 #' weights <- c(0.1, 0.2, 0.3, 0.1, 0.1, 0.1, 0.1)
 #' beneficial.vector<- c(1, 2, 3, 6, 7)
 #' apply.MOOSRA(mat, weights, beneficial.vector)
-#' @export
+#' @export apply.MOOSRA
 apply.MOOSRA <- function(mat, weights, beneficial.vector) {
 
   normalized_data <- sweep(mat, 2, apply(mat, 2, function(x) sqrt(sum(x^2))), "/")
