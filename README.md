@@ -122,6 +122,10 @@ This is an R package for applying MCDA methods on product data.
       <td>Multi-objective Optimization on the Basis of Simple Ratio Analysis</td>
     </tr>
     <tr>
+      <td>MULTIMOORA</td>
+      <td>Multi-Objective Optimization on the basis of a Ratio Analysis plus the full MULTIplicative form</td>
+    </tr>
+    <tr>
       <td>OCRA</td>
       <td>Outranking Compromise Ranking Approach</td>
     </tr>
