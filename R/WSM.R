@@ -46,9 +46,7 @@ apply.WSM <- function(mat, beneficial.vector, weights){
   }
 
 
-  result <- norm.WSM(mat, beneficial.vector)
-
-  preference.scores <- rowSums(t(weights*t(apply_conditional_formula(mat, beneficial.vector))))
+  preference.scores <- rowSums(t(weights*t(norm.WSM(mat, beneficial.vector))))
 
   return(preference.scores)
 }
