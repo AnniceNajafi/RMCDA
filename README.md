@@ -210,6 +210,14 @@ This is an R package for applying MCDA methods on product data.
       <td>Weighted Aggregated Sum Product Assessment</td>
     </tr>
     <tr>
+      <td>WPM</td>
+      <td>Weighted Product Method</td>
+    </tr>
+    <tr>
+      <td>WSM</td>
+      <td>Weighted Sum Method</td>
+    </tr>
+    <tr>
       <td>WINGS</td>
       <td>Weighted Influence Nonlinear Gauge System</td>
     </tr>
