@@ -15,9 +15,9 @@
 #'               nrow = 4, byrow = TRUE)
 #' colnames(mat) <- c("Criterion 1", "Criterion 2", "Criterion 3")
 #' beneficial.vector <- c(1, 2, 3)
-#' apply.Copeland(mat, beneficial.vector)
-#' @export apply.Copeland
-apply.Copeland <- function(mat, beneficial.vector) {
+#' apply.COPELAND(mat, beneficial.vector)
+#' @export apply.COPELAND
+apply.COPELAND <- function(mat, beneficial.vector) {
 
   X <- matrix(0, nrow = nrow(mat), ncol = nrow(mat))
 

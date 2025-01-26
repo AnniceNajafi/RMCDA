@@ -9,7 +9,7 @@ test_that("apply.COPELAND works for provided example and returns the expected st
                  nrow = 4, byrow = TRUE)
   colnames(mat) <- c("Criterion 1", "Criterion 2", "Criterion 3")
   beneficial.vector <- c(1, 2, 3)
-  result <- apply.Copeland(mat, beneficial.vector)
+  result <- apply.COPELAND(mat, beneficial.vector)
 
   expect_length(result, 4)
 
