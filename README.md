@@ -18,12 +18,14 @@ This is an R package for applying MCDA methods on product data.
     <tr>
       <th>Method</th>
       <th>Full Name</th>
+      <th>References</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>AHP</td>
       <td>Analytic Hierarchy Process</td>
+      <td><a href=https://link.springer.com/article/10.1007/s11518-006-0151-5>Saaty, T. L. (2004). Decision making—the analytic hierarchy and network processes (AHP/ANP). Journal of systems science and systems engineering, 13, 1-35.</a></td>
     </tr>
     <tr>
       <td>Fuzzy AHP</td>
@@ -32,6 +34,7 @@ This is an R package for applying MCDA methods on product data.
     <tr>
       <td>ANP</td>
       <td>Analytic Network Process</td>
+      <td><a href = https://link.springer.com/book/10.1007/978-1-4614-7279-7>Saaty, T. L., & Vargas, L. G. (2006). Decision making with the analytic network process (Vol. 282). Berlin, Germany: Springer Science+ Business Media, LLC.</a></td>
     </tr>
     <tr>
       <td>ARAS</td>
