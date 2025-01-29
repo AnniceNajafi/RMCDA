@@ -39,6 +39,7 @@ This is an R package for applying MCDA methods on product data.
     <tr>
       <td>ARAS</td>
       <td>Additive Ratio Assessment</td>
+      <td><a href = https://www.tandfonline.com/doi/abs/10.3846/TEDE.2010.10>Zavadskas, E. K., & Turskis, Z. (2010). A new additive ratio assessment (ARAS) method in multicriteria decision‐making. Technological and economic development of economy, 16(2), 159-172.</a></td>
     </tr>
     <tr>
       <td>BORDA</td>
@@ -47,14 +48,18 @@ This is an R package for applying MCDA methods on product data.
     <tr>
       <td>BWM</td>
       <td>Best Worst Method</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0305048314001480?casa_token=nWrNdLNgxLsAAAAA:y-S2YVMdX8H0vL4oL9vyhUljkyPKzyeIO_De3Xds38PqhwxQZH1-P2l5wR-0I9vN2GEx2umPE7w>Rezaei, J. (2015). Best-worst multi-criteria decision-making method. Omega, 53, 49-57.</a></td>
     </tr>
     <tr>
       <td>COCOSO</td>
       <td>Combined Compromise Solution</td>
+      <td><a href = https://www.emerald.com/insight/content/doi/10.1108/MD-05-2017-0458/full/html?casa_token=2tQ35vkXRNcAAAAA:jjoT6lUqI2EqO1RCa4526f865wS5t6M_KAw6yTWq2ncqOXgHMK4svbcNenM6MhwbTaCD4s_3qjBtBHNJR1YvkXubBTxjrq5CSwjsJOvSwUIfRO8218SH>Yazdani, M., Zarate, P., Kazimieras Zavadskas, E., & Turskis, Z. (2019). A combined compromise solution (CoCoSo) method for multi-criteria decision-making problems. Management decision, 57(9), 2501-2519.
+</a></td>
     </tr>
     <tr>
       <td>CODAS</td>
       <td>Combinative Distance-based Assessment</td>
+      <td><a href=https://etalpykla.vilniustech.lt/handle/123456789/116529>Keshavarz Ghorabaee, M., Zavadskas, E. K., Turskis, Z., & Antuchevičienė, J. (2016). A new combinative distance-based assessment (CODAS) method for multi-criteria decision-making.</a></td>
     </tr>
     <tr>
       <td>COPELAND</td>
