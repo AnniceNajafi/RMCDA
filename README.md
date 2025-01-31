@@ -64,6 +64,7 @@ This is an R package for applying MCDA methods on product data.
     <tr>
       <td>COPELAND</td>
       <td>Copeland Method</td>
+      <td><a href=https://idp.springer.com/authorize/casa?redirect_uri=https://link.springer.com/article/10.1007/bf01212012&casa_token=81GHAXKFs28AAAAA:OoRU5rbnI_HQarZyUmP7heBUQoj0PW6W0vZZF6T77kz2UkVXM43y1buf2_XDa_7SVRXRPz7I4MCI4eu7>Saari, D. G., & Merlin, V. R. (1996). The copeland method: I.: Relationships and the dictionary. Economic theory, 8, 51-76.</a></td>
     </tr>
     <tr>
       <td>COPRAS</td>
@@ -73,18 +74,22 @@ This is an R package for applying MCDA methods on product data.
     <tr>
       <td>CRADIS</td>
       <td>Compromise Ranking and Distance from Ideal Solution</td>
+      <td><a href=https://link.springer.com/article/10.1007/s10668-021-01902-2>Puška, A., Stević, Ž., & Pamučar, D. (2022). Evaluation and selection of healthcare waste incinerators using extended sustainability criteria and multi-criteria analysis methods. Environment, Development and Sustainability, 1-31.</a></td>
     </tr>
     <tr>
       <td>CRITIC</td>
       <td>CRiteria Importance Through Intercriteria Correlation</td>
+      <td><a href=https://www.sciencedirect.com/science/article/abs/pii/030505489400059H?via%3Dihub>Diakoulaki, D., Mavrotas, G., & Papayannakis, L. (1995). Determining objective weights in multiple criteria problems: The critic method. Computers & Operations Research, 22(7), 763-770.</a></td>
     </tr>
     <tr>
       <td>DEMATEL</td>
       <td>Decision-Making Trial and Evaluation Laboratory</td>
+      <td><a href=https://onlinelibrary.wiley.com/doi/abs/10.1155/2018/3696457>Si, S. L., You, X. Y., Liu, H. C., & Zhang, P. (2018). DEMATEL technique: a systematic review of the state‐of‐the‐art literature on methodologies and applications. Mathematical problems in Engineering, 2018(1), 3696457.</a></td>
     </tr>
     <tr>
       <td>EDAS</td>
       <td>Evaluation based on Distance from Average Solution</td>
+      <td><a href=https://content.iospress.com/articles/informatica/inf1070>Keshavarz Ghorabaee, M., Zavadskas, E. K., Olfat, L., & Turskis, Z. (2015). Multi-criteria inventory classification using a new method of evaluation based on distance from average solution (EDAS). Informatica, 26(3), 435-451.</a></td>
     </tr>
     <tr>
       <td>ELECTRE</td>
