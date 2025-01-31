@@ -68,6 +68,7 @@ This is an R package for applying MCDA methods on product data.
     <tr>
       <td>COPRAS</td>
       <td>Complex Proportional Assessment</td>
+      <td><a href=https://journals.rtu.lv/index.php/BJRBE/article/view/1822-427X.2007.4.195%E2%80%93203>Zavadskas, E. K., Kaklauskas, A., Peldschus, F., & Turskis, Z. (2007). Multi-attribute assessment of road design solutions by using the COPRAS method. The Baltic journal of Road and Bridge engineering, 2(4), 195-203.</a></td>
     </tr>
     <tr>
       <td>CRADIS</td>
