@@ -92,24 +92,30 @@ This is an R package for applying MCDA methods on product data.
       <td><a href=https://content.iospress.com/articles/informatica/inf1070>Keshavarz Ghorabaee, M., Zavadskas, E. K., Olfat, L., & Turskis, Z. (2015). Multi-criteria inventory classification using a new method of evaluation based on distance from average solution (EDAS). Informatica, 26(3), 435-451.</a></td>
     </tr>
     <tr>
-      <td>ELECTRE</td>
+      <td>ELECTRE I</td>
       <td>ELimination Et Choix Traduisant la REalité</td>
+      <td><a href=http://www.numdam.org/item/RO_1968__2_1_57_0.pdf>
+Roy, B. (1968). Classement et choix en présence de points de vue multiples. Revue française d'informatique et de recherche opérationnelle, 2(8), 57-75.</a></td>
     </tr>
     <tr>
       <td>ENTROPY</td>
       <td>Entropy Method</td>
+      <td><a href=https://ieeexplore.ieee.org/abstract/document/6773024/?casa_token=_kCZjBOKVMgAAAAA:wq8nKNnia70lL4kneInKjM5WZz5V5uv1SQz4IUo9kGnEQewUsOiaLN-Vfh3X5HoglmLG0sH8>Shannon, C. E. (1948). A mathematical theory of communication. The Bell system technical journal, 27(3), 379-423.</a></td>
     </tr>
     <tr>
       <td>GRA</td>
       <td>Grey Relational Analysis</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0360835207002732?casa_token=pzzTjhaHoTUAAAAA:QgNfcIX3BmmUaSt8oI4cpRuyPIQlAa8NvVhb9oU47PmJlvP-TcvHAdLbKeKk9XLqiGxadAUZgg>Kuo, Y., Yang, T., & Huang, G. W. (2008). The use of grey relational analysis in solving multiple attribute decision-making problems. Computers & industrial engineering, 55(1), 80-93.</a></td>
     </tr>
     <tr>
       <td>IDOCRIW</td>
       <td>Integrated Determination of Objective CRIteria Weights </td>
+      <td><a href=https://www.worldscientific.com/doi/abs/10.1142/S0219622016500036>Zavadskas, E. K., & Podvezko, V. (2016). Integrated determination of objective criteria weights in MCDM. International Journal of Information Technology & Decision Making, 15(02), 267-283.</a></td>
     </tr>
     <tr>
       <td>MABAC</td>
       <td>Multi-Attributive Border Approximation Area Comparison</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0957417414007568?casa_token=0e_2p15LstQAAAAA:Piq5a90Bopn646GsqlGLmwBncig9NPtrC37S2WH7ThyDjvXlX4Zapv_1-NmHWDj2qRhDXZzmhw>Pamučar, D., & Ćirović, G. (2015). The selection of transport and handling resources in logistics centers using Multi-Attributive Border Approximation area Comparison (MABAC). Expert systems with applications, 42(6), 3016-3028.</a></td>
     </tr>
     <tr>
       <td>MACBETH</td>
