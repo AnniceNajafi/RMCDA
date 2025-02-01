@@ -255,6 +255,8 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>VIKOR</td>
       <td>VIšekriterijumsko KOmpromisno Rangiranje</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0377221703000201?casa_token=hwPAThRDUE0AAAAA:lE0gSB5M7OeYuiouhEi9IMNMnojlOPpuYduNzuqiJZ-WJ8K17ZfU-8gbE9kiZXTlWjj0FJweag>Opricovic, S., & Tzeng, G. H. (2004). Compromise solution by MCDM methods: A comparative analysis of VIKOR and TOPSIS. European journal of operational research, 156(2), 445-455.
+</a></td>
     </tr>
     <tr>
       <td>WASPAS</td>
@@ -264,10 +266,12 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>WPM</td>
       <td>Weighted Product Method</td>
+      <td><a href=https://link.springer.com/chapter/10.1007/978-1-4471-2346-0_4>San Cristóbal Mateo, J. R., & Mateo, J. R. S. C. (2012). Weighted sum method and weighted product method. Multi criteria analysis in the renewable energy industry, 19-22.</a></td>
     </tr>
     <tr>
       <td>WSM</td>
       <td>Weighted Sum Method</td>
+      <td><a href=https://link.springer.com/chapter/10.1007/978-1-4471-2346-0_4>San Cristóbal Mateo, J. R., & Mateo, J. R. S. C. (2012). Weighted sum method and weighted product method. Multi criteria analysis in the renewable energy industry, 19-22.</a></td>
     </tr>
     <tr>
       <td>WINGS</td>
@@ -277,6 +281,7 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>WISP</td>
       <td>Weighted Influence Score Preference</td>
+      <td><a href=https://ieeexplore.ieee.org/abstract/document/9432404/?casa_token=Tnz3Dke0oFAAAAAA:ZJp4nuWm8nsyLei8xphQlNnBYIFtC1mev5kWS4e4qtQTYvXa8me9Z6Qdd434uZmCDZXK6Vip>Stanujkic, D., Popovic, G., Karabasevic, D., Meidute-Kavaliauskiene, I., & Ulutaş, A. (2021). An integrated simple weighted sum product method—WISP. IEEE Transactions on Engineering Management, 70(5), 1933-1944.</a></td>
     </tr>
   </tbody>
 </table>
