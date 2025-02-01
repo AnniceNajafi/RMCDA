@@ -181,14 +181,17 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>PSI</td>
       <td>Preference Selection Index</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0261306909006396?casa_token=8muWQkZrCbwAAAAA:0h9Tly226WydBFZGe5pPycs2NwUdCQl4j_vq7yNLOn9CcE6zpV651gSaNg5hZlfVPZcOJu4VeQ>Maniya, K., & Bhatt, M. G. (2010). A selection of material using a novel type decision-making method: Preference selection index method. Materials & Design, 31(4), 1785-1789.</a></td>
     </tr>
     <tr>
       <td>RAFSI</td>
       <td>Ranking Alternatives using Full Subset Inference</td>
+      <td><a href=https://www.mdpi.com/2227-7390/8/6/1015>Žižović, M., Pamučar, D., Albijanić, M., Chatterjee, P., & Pribićević, I. (2020). Eliminating rank reversal problem using a new multi-attribute model—the RAFSI method. Mathematics, 8(6), 1015.</a></td>
     </tr>
     <tr>
       <td>REGIME</td>
       <td>Regime Analysis</td>
+      <td><a href=https://idp.springer.com/authorize/casa?redirect_uri=https://link.springer.com/article/10.1007/BF00221383&casa_token=1r62j3wEeE4AAAAA:Ag_NmcMx9MRhQkeIhoMvUCgBek2sksj1wFcfdWa_DPvJ74_k1wozSCiCz9lVSfyB-n2-iEHA0KxNxr63>Hinloopen, E., & Nijkamp, P. (1990). Qualitative multiple criteria choice analysis: the dominant regime method. Quality and quantity, 24, 37-56.</a></td>
     </tr>
     <tr>
       <td>RIM</td>
@@ -197,22 +200,29 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>ROV</td>
       <td>Range of Value Method</td>
+      <td><a href=http://growingscience.com/beta/dsl/2175-application-of-the-rov-method-for-the-selection-of-cutting-fluids.html>Madić, M., Radovanović, M., & Manić, M. (2016). Application of the ROV method for the selection of cutting fluids. Decision Science Letters, 5(2), 245-254.</a></td>
     </tr>
     <tr>
       <td>SAW</td>
       <td>Simple Additive Weighting</td>
+      <td><a href=https://www.neliti.com/publications/326766/simple-additive-weighting-saw-method-in-determining-beneficiaries-of-foundation>Panjaitan, M. I. (2019). Simple Additive Weighting (SAW) method in determining beneficiaries of foundation benefits. Login, 13(1), 19-25.</a></td>
     </tr>
     <tr>
       <td>SBWM</td>
       <td>Stratified Best Worst Method</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0956053X21000040?casa_token=c9pXtRPYLxEAAAAA:grSctFF2lzvwP03UXOBSw1W11KOhRR5H6nMeKnKWhBIb7kMcTg4lTNDrBh8I-SZ98xRUZT_P2A>Torkayesh, A. E., Malmir, B., & Asadabadi, M. R. (2021). Sustainable waste disposal technology selection: The stratified best-worst multi-criteria decision-making method. Waste Management, 122, 100-112.
+</a></td>
     </tr>
     <tr>
       <td>SECA</td>
       <td>Simple Evaluation of Complex Alternatives</td>
+      <td><a href=https://content.iospress.com/articles/informatica/inf1182>Keshavarz-Ghorabaee, M., Amiri, M., Zavadskas, E. K., Turskis, Z., & Antucheviciene, J. (2018). Simultaneous evaluation of criteria and alternatives (SECA) for multi-criteria decision-making. Informatica, 29(2), 265-280.</a></td>
     </tr>
     <tr>
       <td>SMART</td>
       <td>Simple Multi-Attribute Rating Technique</td>
+      <td><a href=https://link.springer.com/chapter/10.1007/978-1-4612-3982-6_4>Olson, D. L., & Olson, D. L. (1996). Smart. Decision aids for selection problems, 34-48.
+</a></td>
     </tr>
     <tr>
       <td>SMCDM</td>
