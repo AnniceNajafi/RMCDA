@@ -44,6 +44,7 @@ This is an R package for applying MCDA methods on product data.
     <tr>
       <td>BORDA</td>
       <td>Borda Count Method</td>
+      <td><a href = https://cir.nii.ac.jp/crid/1570854175105600384>Borda, J. D. (1781). M'emoire sur les' elections au scrutin. Histoire de l'Acad'emie Royale des Sciences.</a></td>
     </tr>
     <tr>
       <td>BWM</td>
@@ -150,6 +151,7 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>MULTIMOORA</td>
       <td>Multi-Objective Optimization on the basis of a Ratio Analysis plus the full MULTIplicative form</td>
+      <td><a href=https://www.tandfonline.com/doi/abs/10.3846/tede.2010.01>Brauers, W. K. M., & Zavadskas, E. K. (2010). Project management by MULTIMOORA as an instrument for transition economies. Technological and economic development of economy, 16(1), 5-24.</a></td>
     </tr>
     <tr>
       <td>OCRA</td>
