@@ -156,22 +156,27 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>OCRA</td>
       <td>Outranking Compromise Ranking Approach</td>
+      <td><a href=https://aseestant.ceon.rs/index.php/sjm/article/view/6802>Madić, M., Petković, D., & Radovanović, M. (2015). Selection of non-conventional machining processes using the OCRA method. Serbian Journal of Management, 10(1), 61-73.</a></td>
     </tr>
     <tr>
       <td>OPA</td>
       <td>Ordered Performance Analysis</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S156849461930674X?casa_token=D-H-w4jrVoIAAAAA:Dh570QVpWFIs_LW3gAeAVrF6avGWia4fkyJYXGtGUmWmDgL_KHa9Rqq39c8r9VLVwlKrQVhMbA>Ataei, Y., Mahmoudi, A., Feylizadeh, M. R., & Li, D. F. (2020). Ordinal priority approach (OPA) in multiple attribute decision-making. Applied Soft Computing, 86, 105893.</a></td>
     </tr>
     <tr>
       <td>ORESTE</td>
       <td>Organisation, Rangement Et Synthèse De Données Relatives À L’évaluation</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/037722178290131X>Roubens, M. (1982). Preference relations on actions and criteria in multicriteria decision making. European Journal of Operational Research, 10(1), 51-55.</a></td>
     </tr>
     <tr>
       <td>PIV</td>
       <td>Position Index Value</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0360835218301360?casa_token=RCRl_SnesMYAAAAA:p39U0yEyVuX0r7vLcjz-Q8FkLadZc7xT9QNqiv-jD0alDyglHzMFFomUlt7w1v3PjO5dbYswig>Mufazzal, S., & Muzakkir, S. M. (2018). A new multi-criterion decision making (MCDM) method based on proximity indexed value for minimizing rank reversals. Computers & Industrial Engineering, 119, 427-438.</a></td>
     </tr>
     <tr>
       <td>PROMETHEE</td>
       <td>Preference Ranking Organization Method for Enrichment Evaluation</td>
+      <td><a href=https://link.springer.com/chapter/10.1007/978-1-4939-3094-4_6>Brans, J. P., & De Smet, Y. (2016). PROMETHEE methods. Multiple criteria decision analysis: state of the art surveys, 187-219.</a></td>
     </tr>
     <tr>
       <td>PSI</td>
