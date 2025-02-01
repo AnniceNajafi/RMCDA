@@ -120,26 +120,32 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>MACBETH</td>
       <td>Measuring Attractiveness by a Categorical Based Evaluation Technique</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0957417414007568?casa_token=0e_2p15LstQAAAAA:Piq5a90Bopn646GsqlGLmwBncig9NPtrC37S2WH7ThyDjvXlX4Zapv_1-NmHWDj2qRhDXZzmhw>Pamučar, D., & Ćirović, G. (2015). The selection of transport and handling resources in logistics centers using Multi-Attributive Border Approximation area Comparison (MABAC). Expert systems with applications, 42(6), 3016-3028.</a></td>
     </tr>
     <tr>
       <td>MAIRCA</td>
       <td>Multi-Attribute Ideal Real Comparative Analysis</td>
+      <td><a href=https://www.tandfonline.com/doi/abs/10.1080/02626667.2022.2027949>Hadian, S., Shahiri Tabarestani, E., & Pham, Q. B. (2022). Multi attributive ideal-real comparative analysis (MAIRCA) method for evaluating flood susceptibility in a temperate Mediterranean climate. Hydrological Sciences Journal, 67(3), 401-418.</a></td>
     </tr>
     <tr>
       <td>MARA</td>
       <td>Multi-Attribute Ranking Approach</td>
+      <td><a href=https://www.mdpi.com/2079-8954/10/6/248>Gligorić, M., Gligorić, Z., Lutovac, S., Negovanović, M., & Langović, Z. (2022). Novel hybrid MPSI–MARA decision-making model for support system selection in an underground mine. Systems, 10(6), 248.</a></td>
     </tr>
     <tr>
       <td>MARCOS</td>
       <td>Measurement of Alternatives and Ranking based on Compromise Solution</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0360835219307004?casa_token=NvTwbBwCA6oAAAAA:BABhztb4Fu5dIR4eh8LSyf25PUL9xWwpK7Co-5IP9r-u2htCX-GA7GnHOzrcf9NIJ7CZ3RwNKA>Stević, Ž., Pamučar, D., Puška, A., & Chatterjee, P. (2020). Sustainable supplier selection in healthcare industries using a new MCDM method: Measurement of alternatives and ranking according to COmpromise solution (MARCOS). Computers & industrial engineering, 140, 106231.</a></td>
     </tr>
     <tr>
       <td>MOORA</td>
       <td>Multi-Objective Optimization by Ratio Analysis</td>
+      <td><a href=https://bibliotekanauki.pl/articles/969961.pdf>Brauers, W. K., & Zavadskas, E. K. (2006). The MOORA method and its application to privatization in a transition economy. Control and cybernetics, 35(2), 445-469.</a></td>
     </tr>
     <tr>
       <td>MOOSRA</td>
       <td>Multi-objective Optimization on the Basis of Simple Ratio Analysis</td>
+      <td><a href=https://ijret.org/volumes/2014v03/i15/IJRET20140315105.pdf>Jagadish, R. A., & Ray, A. (2014). Green cutting fluid selection using MOOSRA method. International Journal of Research in Engineering and Technology, 3(3), 559-563.</a></td>
     </tr>
     <tr>
       <td>MULTIMOORA</td>
