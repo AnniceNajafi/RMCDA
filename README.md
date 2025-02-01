@@ -249,6 +249,7 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>TOPSIS</td>
       <td>Technique for Order of Preference by Similarity to Ideal Solution</td>
+      <td><a href=https://link.springer.com/chapter/10.1007/978-3-642-48318-9_3>Hwang, C. L., Yoon, K., Hwang, C. L., & Yoon, K. (1981). Methods for multiple attribute decision making. Multiple attribute decision making: methods and applications a state-of-the-art survey, 58-191.</a></td>
     </tr>
     <tr>
       <td>VIKOR</td>
@@ -257,6 +258,7 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>WASPAS</td>
       <td>Weighted Aggregated Sum Product Assessment</td>
+      <td><a href=https://www.eejournal.ktu.lt/index.php/elt/article/view/1810>Zavadskas, E. K., Turskis, Z., Antucheviciene, J., & Zakarevicius, A. (2012). Optimization of weighted aggregated sum product assessment. Elektronika ir elektrotechnika, 122(6), 3-6.</a></td>
     </tr>
     <tr>
       <td>WPM</td>
@@ -269,6 +271,7 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>WINGS</td>
       <td>Weighted Influence Nonlinear Gauge System</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0377221713001252?casa_token=JZHx7twlgNYAAAAA:J-A5NUMoejK2EwKjjNIhl0oLISU13hi3aC848ZufJJKSeUzrROdb3uoeMlJ7Y5ZLwi1i1g05yQ>Michnik, J. (2013). Weighted Influence Non-linear Gauge System (WINGS)–An analysis method for the systems of interrelated components. European Journal of Operational Research, 228(3), 536-544.</a></td>
     </tr>
     <tr>
       <td>WISP</td>
