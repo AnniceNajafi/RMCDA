@@ -230,6 +230,7 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>SMCDM</td>
       <td>Stratified Multi-Criteria Decision Making</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0950705118303502?casa_token=x3z2y4LFGbUAAAAA:wC5xtJerOtdjFB1mUoqpeLzeabHwprmzeOeeByURaz9lNJyG5p-IHBC3BI5j3HZKiHgvbTk8Ag>Asadabadi, M. R. (2018). The stratified multi-criteria decision-making method. Knowledge-Based Systems, 162, 115-123.</a></td>
     </tr>
     <tr>
       <td>SPOTIS</td>
