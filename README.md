@@ -30,6 +30,7 @@ This is an R package for applying MCDA methods on product data.
     <tr>
       <td>Fuzzy AHP</td>
       <td>Fuzzy Analytic Hierarchy Process</td>
+      <td><a href=https://www.taylorfrancis.com/chapters/edit/10.1201/9781315369884-3/comparison-methods-fahp-application-supplier-selection-nimet-yapici-pehlivan-turan-paksoy-ahmet-%C3%A7alik>Pehlivan, N. Y., Paksoy, T., & Çalik, A. (2017). Comparison of methods in FAHP with application in supplier selection. In Fuzzy analytic hierarchy process (pp. 45-76). Chapman and Hall/CRC.</a></td>
     </tr>
     <tr>
       <td>ANP</td>
@@ -196,6 +197,8 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>RIM</td>
       <td>Ranking Index Method</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0020025515009007?casa_token=iCVf0Q8UhcEAAAAA:th2JMdtOi4qMw2a8nf17e1CtfZHSQIXByHc9jRA_u1ineiVUNKR3s1tTshKosCyTMksRhXxJEQ>Cables, E., Lamata, M. T., & Verdegay, J. L. (2016). RIM-reference ideal method in multicriteria decision making. Information Sciences, 337, 1-10.
+</a></td>
     </tr>
     <tr>
       <td>ROV</td>
