@@ -231,14 +231,17 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
     <tr>
       <td>SPOTIS</td>
       <td>Stable Preference Ordering Towards Ideal Solution</td>
+      <td><a href=https://ieeexplore.ieee.org/abstract/document/9190347/>Dezert, J., Tchamova, A., Han, D., & Tacnet, J. M. (2020, July). The SPOTIS rank reversal free method for multi-criteria decision-making support. In 2020 IEEE 23rd International Conference on Information Fusion (FUSION) (pp. 1-8). IEEE.</a></td>
     </tr>
     <tr>
       <td>SRMP</td>
       <td>Simple Ranking Method using Reference Profiles</td>
+      <td><a href=https://idp.springer.com/authorize/casa?redirect_uri=https://link.springer.com/article/10.1007/s10288-021-00487-w&casa_token=En0A95YU-8wAAAAA:8PuI3V8HS41uwkTtw_Q7NeH7oQQ6_9SIYfmsIop9srGZax_O_bzaFdEQutQmgB1Tuz57ZQ231Dvk1ayp>Khannoussi, A., Olteanu, A. L., Labreuche, C., & Meyer, P. (2022). Simple ranking method using reference profiles: incremental elicitation of the preference parameters. 4OR, 1-32.</a></td>
     </tr>
     <tr>
       <td>TODIM</td>
       <td>Interactive and Multicriteria Decision Making</td>
+      <td><a href=https://www.sciencedirect.com/science/article/pii/S0377221707010740?casa_token=2Ydra4zgeUkAAAAA:6LEUit3fmjK6viRTi5S200bpGKq3Ftpcs8XgYeqZmqJkB58gWHTjeluxBVnlErSrK8SdF8PfnA>Gomes, L. F. A. M. (2009). An application of the TODIM method to the multicriteria rental evaluation of residential properties. European Journal of Operational Research, 193(1), 204-211.</a></td>
     </tr>
     <tr>
       <td>TOPSIS</td>
