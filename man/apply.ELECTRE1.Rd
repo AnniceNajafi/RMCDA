@@ -4,44 +4,27 @@
 \alias{apply.ELECTRE1}
 \title{Apply ELECTRE I method}
 \usage{
-apply.ELECTRE1(
-  alternatives,
-  weights,
-  concordance.threshold,
-  discordance.threshold
-)
+apply.ELECTRE1(mat, weights)
 }
 \arguments{
-\item{alternatives}{A matrix or data frame where rows represent alternatives and columns represent criteria.}
+\item{mat}{A matrix or data frame where rows represent alternatives and columns represent criteria.}
 
 \item{weights}{A numeric vector of weights for each criterion.}
-
-\item{concordance.threshold}{A numeric value (0 to 1) specifying the concordance threshold.}
-
-\item{discordance.threshold}{A numeric value (0 to 1) specifying the discordance threshold.}
 }
 \value{
-Ranking scores for each alternative.
+a list containing three matrices, the first one is the intersection of concordance and discordance
+matrices, the second one is the concordance matrix, and the third one is the discordance matrix.
 }
 \description{
 Apply ELECTRE I method
 }
 \examples{
-alternatives <- data.frame(
-  cost = c(500, 600, 450),
-  quality = c(8, 7, 9),
-  delivery = c(4, 3, 5),
-  support = c(9, 8, 7)
-)
-
-# Define criteria weights
-weights <- c(0.3, 0.4, 0.2, 0.1)
+mat <- matrix(c(25, 10, 30, 20, 30, 10, 15, 20, 30, 30, 30, 10), nrow=3)
+colnames(mat)<-c("c1", "c2", "c3", "c4")
+rownames(mat)<-c("a1", "a2", "a3")
+weights <- c(0.2, 0.15, 0.4, 0.25)
 
 # Apply ELECTRE I method
-results <- apply.ELECTRE1(
-  alternatives = alternatives,
-  weights = weights,
-  concordance.threshold = 0.6,
-  discordance.threshold = 0.7
-)
+results <- apply.ELECTRE1(mat, weights)
+
 }

@@ -19,7 +19,7 @@
 #' rownames(mat) <- c("AI 2024-T6", "AI 5052-O", "SS 301 FH",
 #' "SS 310-3AH", "Ti-6AI-4V", "Inconel 718", "70Cu-30Zn")
 #' beneficial.vector <- c(1, 2, 3, 6, 7)
-#' apply.idocriw(mat, beneficial.vector)
+#' apply.IDOCRIW(mat, beneficial.vector)
 #' @export apply.IDOCRIW
 apply.IDOCRIW <- function(mat, beneficial.vector) {
 
