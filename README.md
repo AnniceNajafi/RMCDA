@@ -1,6 +1,7 @@
 # RMCDA
 
 This R package has been developed to serve as a universal library in R for the application of multi-criteria decision making methods. 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14791287.svg)](https://doi.org/10.5281/zenodo.14791287)
 
 <h3>Installation Guide</h3>
 
