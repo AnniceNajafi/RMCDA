@@ -9,6 +9,13 @@
 #' @return a matrix containing the calculated utility scores
 #'
 #' @export apply.MAUT
+#' @examples
+#' mat <- matrix(c(75.5, 95, 770, 187, 179, 239, 237, 420, 91), nrow = 3, byrow = TRUE)
+#' weights <- c(0.3, 0.5, 0.2)
+#' beneficial.vector <- c(1, 3)
+#' utility.functions <- c("exp", "log", "quad")
+#' step.size <- 1
+#' result <- apply.MAUT(mat, weights, beneficial.vector, utility.functions, step.size)
 apply.MAUT <- function(mat, weights, beneficial.vector, utility.functions, step.size = 1){
 
   X <- as.matrix(mat)
