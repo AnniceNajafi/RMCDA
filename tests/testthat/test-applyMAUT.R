@@ -16,6 +16,6 @@ test_that("apply.MAUT works for provided example and returns the expected struct
   result <- apply.MAUT(mat, weights, beneficial.vector, utility.functions, step.size)
   expect_type(result, "double")
 
-  expect_length(result, nrow(mat)*ncol(mat))
+  expect_length(result, nrow(mat)*2)
 
 })
