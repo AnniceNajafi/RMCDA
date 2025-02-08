@@ -4,7 +4,7 @@ This R package has been developed to serve as a universal library in R for the a
 
 <br>
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14791287.svg)](https://doi.org/10.5281/zenodo.14791287)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14837902.svg)](https://doi.org/10.5281/zenodo.14837902)
 
 <h3>Installation Guide</h3>
 
