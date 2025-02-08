@@ -143,6 +143,11 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
       <td>Multi-Attribute Ranking Approach</td>
       <td><a href=https://www.mdpi.com/2079-8954/10/6/248>Gligorić, M., Gligorić, Z., Lutovac, S., Negovanović, M., & Langović, Z. (2022). Novel hybrid MPSI–MARA decision-making model for support system selection in an underground mine. Systems, 10(6), 248.</a></td>
     </tr>
+   <tr>
+      <td>MAUT</td>
+      <td>Multi-Attribute Utility Theory</td>
+      <td><a href=https://www.tandfonline.com/doi/abs/10.1080/02626667.2022.2027949>Keeney, R. L. (1993). Decisions with multiple objectives: Preferences and value tradeoffs. Cambridge university press.</a></td>
+    </tr>
     <tr>
       <td>MARCOS</td>
       <td>Measurement of Alternatives and Ranking based on Compromise Solution</td>
