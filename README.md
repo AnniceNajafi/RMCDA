@@ -56,6 +56,11 @@ This is an R package for applying MCDA methods on product data.
       <td>Best Worst Method</td>
       <td><a href=https://www.sciencedirect.com/science/article/pii/S0305048314001480?casa_token=nWrNdLNgxLsAAAAA:y-S2YVMdX8H0vL4oL9vyhUljkyPKzyeIO_De3Xds38PqhwxQZH1-P2l5wR-0I9vN2GEx2umPE7w>Rezaei, J. (2015). Best-worst multi-criteria decision-making method. Omega, 53, 49-57.</a></td>
     </tr>
+   <tr>
+      <td>CILOS</td>
+      <td>Crietion Impact LOSs</td>
+      <td><a href=https://www.worldscientific.com/doi/abs/10.1142/S0219622016500036>Zavadskas, E. K., & Podvezko, V. (2016). Integrated determination of objective criteria weights in MCDM. International Journal of Information Technology & Decision Making, 15(02), 267-283.</a></td>
+    </tr>
     <tr>
       <td>COCOSO</td>
       <td>Combined Compromise Solution</td>
