@@ -305,7 +305,7 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
 Web-based application to apply methods can be accessed through <a href="https://najafiannice.shinyapps.io/AHP_app/">this link</a>.
 
 <h3>Contact Information</h3>
-For any technical questions, please contact <a href=mailto:annicenajafi27@gmail.com>Annice Najafi</a>. 
+For any technical questions, please contact <a href=mailto:annicenajafi27@gmail.com>Annice Najafi</a>. I will try to answer your email a soon as I can - within a day. Please also open an issue on the repo. 
 
 <br>
 <br>
