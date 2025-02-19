@@ -1,11 +1,18 @@
 #' Plot decision tree
 #'
 #' @param A the comparison matrix
-#' @param comparing.competitors the list of matrices related to pairwise comparisons
-#' of competitors for each criteria
+#' @param comparing.competitors the list of matrices related to pairwise comparisons of competitors for each criteria
+#' @param results results of running AHP on data
+#' @param vertex_font font of text on vertex
+#' @param edge_font size of the arrows
+#' @param asp aspect ratio of the graph
+#' @param max_width maximum width
+#' @param vertex_size vertex size
+#'
 #' @return the decision tree plot
 #' @export plot.AHP.decision.tree
-plot.AHP.decision.tree <- function(A, comparing.competitors){
+plot.AHP.decision.tree <- function(A, comparing.competitors, results, vertex_font=1.2, edge_font = 1,
+                                   asp = 0.8, max_width = 5, vertex_size=50){
 
   nodes <- c("Choose alternative",rownames(comparing.competitors[[1]]), rownames(A))
 
@@ -32,20 +39,19 @@ plot.AHP.decision.tree <- function(A, comparing.competitors){
 
   E(g)$weight <- weights
 
-  # Normalize the weights for better visualization (optional)
-  max_width <- 5  # Maximum edge width
+
   edge_widths <- max_width * (weights / max(weights))
 
 
   p <- plot(g,
             layout = layout_as_tree(g, root = 1),  # Tree-like layout with root at the top
-            vertex.size = 50,  # Adjust node size
-            vertex.label.cex = input$vertex_font,  # Font size for labels
+            vertex.size = vertex_size,  # Adjust node size
+            vertex.label.cex = vertex_font,  # Font size for labels
             vertex.label.color = "black",  # Label color
             vertex.color="#9B7EBD",
-            edge.arrow.size = input$edge_font,  # Arrow size
-            edge.width = edge_widths*input$edge_font,  # Edge widths based on weights
-            asp = input$asp,
+            edge.arrow.size = edge_font,  # Arrow size
+            edge.width = edge_widths*edge_font,  # Edge widths based on weights
+            asp = asp,
             main = "AHP Decision Tree with Weighted Edges")
   return(p)
 }

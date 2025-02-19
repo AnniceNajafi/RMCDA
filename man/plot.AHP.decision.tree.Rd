@@ -4,13 +4,33 @@
 \alias{plot.AHP.decision.tree}
 \title{Plot decision tree}
 \usage{
-\method{plot}{AHP.decision.tree}(A, comparing.competitors)
+\method{plot}{AHP.decision.tree}(
+  A,
+  comparing.competitors,
+  results,
+  vertex_font = 1.2,
+  edge_font = 1,
+  asp = 0.8,
+  max_width = 5,
+  vertex_size = 50
+)
 }
 \arguments{
 \item{A}{the comparison matrix}
 
-\item{comparing.competitors}{the list of matrices related to pairwise comparisons
-of competitors for each criteria}
+\item{comparing.competitors}{the list of matrices related to pairwise comparisons of competitors for each criteria}
+
+\item{results}{results of running AHP on data}
+
+\item{vertex_font}{font of text on vertex}
+
+\item{edge_font}{size of the arrows}
+
+\item{asp}{aspect ratio of the graph}
+
+\item{max_width}{maximum width}
+
+\item{vertex_size}{vertex size}
 }
 \value{
 the decision tree plot
