@@ -1,9 +1,16 @@
 Package: RMCDA
 Title: Multi-Criteria Decision Analysis in R
 Version: 0.3
-Author: Annice Najafi
-Maintainer: [Annice Najafi] <annicenajafi27@gmail.com>
-Description: This package provides different methods of multi-criteria decision analysis.
+Authors@R:
+   c(
+     person(
+       given  = "Annice",
+       family = "Najafi",
+       email  = "annicenajafi27@gmail.com",
+       role   = c("aut", "cre")
+     )
+   )
+Description: Provides different methods of multi-criteria decision analysis.
 License: MIT
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
