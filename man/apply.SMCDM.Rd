@@ -20,7 +20,7 @@ criteria as row names and the corresponding scores as matrix values.}
 
 \item{likelihood.vector}{the vector containing the likelihood of being in each state.}
 
-\item{independent.event}{this parameter is set to TRUE by default which indicates only the
+\item{independent.events}{this parameter is set to TRUE by default which indicates only the
 probability of the occurence of each event is required (strati I and II). If set to FALSE
 then the user should provide the probabilities of occurrence of all states.}
 }

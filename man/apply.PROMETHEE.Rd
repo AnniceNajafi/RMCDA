@@ -11,6 +11,8 @@ apply.PROMETHEE(A, weights, type = "II")
 indicating the criteria.}
 
 \item{weights}{the weights of criteria.}
+
+\item{type}{can be either type 'I' or 'II'. It is set to 'II' by default}
 }
 \value{
 the results of PROMOTHEE

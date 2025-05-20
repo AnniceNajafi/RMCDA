@@ -21,7 +21,7 @@
 #' beneficial.vector <- c(3)
 #' weights <- c(0.1047, 0.2583, 0.6369)
 #' apply.WASPAS(mat, weights, beneficial.vector, 0.5)
-#' @import matrixStats
+#' @importFrom matrixStats rowProds
 #' @export apply.WASPAS
 apply.WASPAS <- function(mat, weights, beneficial.vector, lambda){
 
@@ -39,7 +39,7 @@ apply.WASPAS <- function(mat, weights, beneficial.vector, lambda){
   edited.mat <- as.data.frame(t(t(weighted.mat)^weights))
 
 
-  Q2 <- transform(edited.mat, prod=matrixStats::rowProds(as.matrix(edited.mat)))$prod
+  Q2 <- transform(edited.mat, prod=rowProds(as.matrix(edited.mat)))$prod
 
   Qi <- lambda*(Q1)+(1-lambda)*(Q2)
 

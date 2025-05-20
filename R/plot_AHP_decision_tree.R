@@ -10,8 +10,8 @@
 #' @param vertex_size vertex size
 #'
 #' @return the decision tree plot
-#' @export plot.AHP.decision.tree
-plot.AHP.decision.tree <- function(A, comparing.competitors, results, vertex_font=1.2, edge_font = 1,
+#' @export AHP.decision.tree.plot
+AHP.decision.tree.plot <- function(A, comparing.competitors, results, vertex_font=1.2, edge_font = 1,
                                    asp = 0.8, max_width = 5, vertex_size=50){
 
   nodes <- c("Choose alternative",rownames(comparing.competitors[[1]]), rownames(A))
@@ -56,30 +56,3 @@ plot.AHP.decision.tree <- function(A, comparing.competitors, results, vertex_fon
   return(p)
 }
 
-#' Plot spider plot
-#'
-#' @param data the result of MCDA scores
-#' @param colors the color scheme of choice
-#'
-#' @return the spider plot
-#' @export plot.spider
-plot.spider <- function(data, colors=palette("default")){
-
-  as.data.frame(data)->data
-  rownames(data)->criteria
-  data <- rbind(rep(1, ncol(data)), rep(0, ncol(data)), data)
-
-  radarchart(data,
-             axistype = 2,
-             pcol=colors,
-             cglcol="grey", cglty=1, axislabcol="grey", caxislabels=seq(0,20,5), cglwd=0.3,
-             plwd = 2,
-             plty = 1,
-             title = "Spider Chart")
-
-  legend(x = "topright",
-         legend = criteria,
-         col = colors,
-         pch = 15,
-         bty = "n")
-}

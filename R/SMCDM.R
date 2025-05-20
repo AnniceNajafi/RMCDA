@@ -5,7 +5,7 @@
 #' @param state.criteria.probs the matrix containing the states as column names and
 #' criteria as row names and the corresponding scores as matrix values.
 #' @param likelihood.vector the vector containing the likelihood of being in each state.
-#' @param independent.event this parameter is set to TRUE by default which indicates only the
+#' @param independent.events this parameter is set to TRUE by default which indicates only the
 #' probability of the occurence of each event is required (strati I and II). If set to FALSE
 #' then the user should provide the probabilities of occurrence of all states.
 #'

@@ -8,16 +8,18 @@ apply.WSM_WPM(mat, beneficial.vector, weights, method = "WSM")
 }
 \arguments{
 \item{mat}{is a matrix and contains the values for different properties
-of different alternatives}
+of different alternatives.}
 
 \item{beneficial.vector}{is a vector that contains the column number of beneficial
 properties.}
 
 \item{weights}{are the weights of each property in the decision making process}
+
+\item{method}{can either be 'WSM' or 'WPM', set to 'WSM' by default.}
 }
 \value{
 a vector containing the calculated preference score, run rank(-apply.WSM(mat, beneficial.vector, weights))
-to get the ranks
+to get the ranks.
 }
 \description{
 Apply Weighted Sum Model (WSM) or Weighted Product Model (WPM) on data

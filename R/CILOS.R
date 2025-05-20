@@ -19,7 +19,7 @@
 #' )
 #' beneficial.vector <- c(1, 2, 3, 6, 7)
 #' apply.CILOS(mat, beneficial.vector)
-#' @import pracma
+#' @importFrom pracma nullspace
 #' @export apply.CILOS
 apply.CILOS <- function(mat, beneficial.vector) {
 

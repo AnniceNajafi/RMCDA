@@ -44,9 +44,7 @@ apply.SMART <- function(dataset,
                         grades,
                         lower,
                         upper,
-                        beneficial.vector,
-                        graph   = TRUE,
-                        verbose = TRUE) {
+                        beneficial.vector) {
 
 
   X <- as.matrix(dataset)

@@ -14,7 +14,6 @@
 #' rownames(comparisons.mat)<-c("Price/cost", "Storage Space", "Camera", "Processor")
 #' colnames(comparisons.mat)<-c("Price/cost", "Storage Space", "Camera", "Processor")
 #' apply.DEMATEL(comparisons.mat)
-#' @import matlib
 #' @export apply.DEMATEL
 apply.DEMATEL <- function(comparisons.mat){
 

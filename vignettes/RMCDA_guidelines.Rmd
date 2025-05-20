@@ -1,6 +1,10 @@
 ---
 title: "RMCDA Guidelines"
 output: github_document
+vignette: >
+  %\VignetteIndexEntry{RMCDA guidelines}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}

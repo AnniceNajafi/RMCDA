@@ -9,13 +9,9 @@ apply.MOOSRA(mat, weights, beneficial.vector)
 \arguments{
 \item{mat}{A matrix of decision-making criteria values for different alternatives.}
 
-\item{weight_vector}{A vector of weights for the criteria.}
+\item{weights}{A vector of weights for the criteria.}
 
-\item{beneficial.vectorA}{vector of column indices for beneficial criteria.}
-
-\item{show_graph}{A logical indicating whether to display the ranking graph (default = TRUE).}
-
-\item{verbose}{A logical indicating whether to print detailed output (default = TRUE).}
+\item{beneficial.vector}{vector of column indices for beneficial criteria.}
 }
 \value{
 A matrix containing the alternatives and their calculated scores, sorted by rank.

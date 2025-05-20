@@ -4,15 +4,7 @@
 \alias{apply.SMART}
 \title{Apply the SMART Method}
 \usage{
-apply.SMART(
-  dataset,
-  grades,
-  lower,
-  upper,
-  beneficial.vector,
-  graph = TRUE,
-  verbose = TRUE
-)
+apply.SMART(dataset, grades, lower, upper, beneficial.vector)
 }
 \arguments{
 \item{dataset}{A numeric matrix or data frame of size (n x m), rows = alternatives, columns = criteria.}

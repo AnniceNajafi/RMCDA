@@ -3,7 +3,7 @@
 #' @param A the comparison matrix with the row names indicating the alternatives and colnames
 #' indicating the criteria.
 #' @param weights the weights of criteria.
-#'
+#' @param type can be either type 'I' or 'II'. It is set to 'II' by default
 #' @return the results of PROMOTHEE
 #'
 #'

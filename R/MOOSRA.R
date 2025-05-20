@@ -1,10 +1,8 @@
 #' Multi-objective Optimization on the Basis of Simple Ratio Analysis (MOOSRA)
 #'
 #' @param mat A matrix of decision-making criteria values for different alternatives.
-#' @param weight_vector A vector of weights for the criteria.
-#' @param beneficial.vectorA vector of column indices for beneficial criteria.
-#' @param show_graph A logical indicating whether to display the ranking graph (default = TRUE).
-#' @param verbose A logical indicating whether to print detailed output (default = TRUE).
+#' @param weights A vector of weights for the criteria.
+#' @param beneficial.vector vector of column indices for beneficial criteria.
 #'
 #' @return A matrix containing the alternatives and their calculated scores, sorted by rank.
 #' @examples
