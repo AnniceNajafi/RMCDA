@@ -19,6 +19,7 @@ competitor products
 Read csv file containing pairwise comparison matrices for applying AHP or ANP
 }
 \examples{
-data <- read.csv(system.file("extdata", "AHP_input_file.csv", package = "RMCDA"), header=FALSE)
+data <- read.csv(system.file("extdata", "AHP_input_file.csv",
+ package = "RMCDA"), header=FALSE)
 mat.lst <- read.csv.AHP.matrices(data)
 }

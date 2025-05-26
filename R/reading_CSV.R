@@ -8,7 +8,8 @@
 #' competitor products
 #' @export
 #' @examples
-#' data <- read.csv(system.file("extdata", "AHP_input_file.csv", package = "RMCDA"), header=FALSE)
+#' data <- read.csv(system.file("extdata", "AHP_input_file.csv",
+#'  package = "RMCDA"), header=FALSE)
 #' mat.lst <- read.csv.AHP.matrices(data)
 read.csv.AHP.matrices <- function(data){
 
@@ -100,7 +101,9 @@ read.csv.SMCDM.matrices <- function(data){
 #' @return the inputs to the SBWM method
 #' @export
 #' @examples
-#' data <- read.csv(system.file("extdata", "stratified_BWM_case_study_I_example.csv", package = "RMCDA"), header = FALSE)
+#' data <- read.csv(system.file("extdata",
+#' "stratified_BWM_case_study_I_example.csv",
+#'  package = "RMCDA"), header = FALSE)
 #' mat.lst <- read.csv.SBWM.matrices(data)
 read.csv.SBWM.matrices <- function(data){
 

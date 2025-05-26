@@ -10,12 +10,12 @@
 #'
 #'
 #' @examples
-#' criteria.lst <- c("C1", "C2", "C3")
-#' worst.criteria <- "C1"
-#' best.criteria <- "C3"
-#' best.criteria.preference <- c(8, 2, 1)
-#' worst.criteria.preference <- c(1, 5, 8)
-#' apply.BWM(criteria.lst, worst.criteria, best.criteria, best.criteria.preference, worst.criteria.preference)
+#' c <- c("C1", "C2", "C3")
+#' w <- "C1"
+#' b <- "C3"
+#' bcp <- c(8, 2, 1)
+#' wcp <- c(1, 5, 8)
+#' apply.BWM(c, w, b, bcp, wcp)
 #' @export apply.BWM
 apply.BWM <- function(criteria.lst, worst.criteria, best.criteria, best.criteria.preference, worst.criteria.preference){
 

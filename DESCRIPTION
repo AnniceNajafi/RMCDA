@@ -11,7 +11,7 @@ Authors@R:
      )
    )
 Description: Provides different methods of multi-criteria decision analysis.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
@@ -21,7 +21,6 @@ Imports:
     igraph,
     fmsb,
     lpSolve,
-    MASS,
     matlib,
     nloptr,
     matrixStats,

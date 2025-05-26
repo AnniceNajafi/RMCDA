@@ -18,6 +18,7 @@
 #' state.criteria.probs <- mat.lst[[2]]
 #' likelihood.vector <- mat.lst[[3]]
 #' apply.SMCDM(comparison.mat, state.criteria.probs, likelihood.vector)
+#' @importFrom utils combn
 #' @export apply.SMCDM
 apply.SMCDM <- function(comparison.mat, state.criteria.probs, likelihood.vector, independent.events = TRUE){
 

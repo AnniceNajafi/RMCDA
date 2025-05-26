@@ -19,6 +19,7 @@
 #' beneficial.vector <- c(1, 2, 3)
 #' apply.SECA(mat, beneficial.vector)
 #' @import nloptr
+#' @importFrom stats cor runif
 #' @export apply.SECA
 apply.SECA <- function(mat, beneficial.vector, beta = 3) {
 

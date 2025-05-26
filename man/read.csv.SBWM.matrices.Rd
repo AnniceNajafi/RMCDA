@@ -16,6 +16,8 @@ the inputs to the SBWM method
 Read csv file containing input to the stratified BWM method
 }
 \examples{
-data <- read.csv(system.file("extdata", "stratified_BWM_case_study_I_example.csv", package = "RMCDA"), header = FALSE)
+data <- read.csv(system.file("extdata",
+"stratified_BWM_case_study_I_example.csv",
+ package = "RMCDA"), header = FALSE)
 mat.lst <- read.csv.SBWM.matrices(data)
 }

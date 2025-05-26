@@ -20,6 +20,7 @@
 #' "SS 310-3AH", "Ti-6AI-4V", "Inconel 718", "70Cu-30Zn")
 #' beneficial.vector <- c(1, 2, 3, 6, 7)
 #' apply.IDOCRIW(mat, beneficial.vector)
+#' @importFrom stats optim
 #' @export apply.IDOCRIW
 apply.IDOCRIW <- function(mat, beneficial.vector) {
 

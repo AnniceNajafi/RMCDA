@@ -4,8 +4,11 @@
 #' @param colors the color scheme of choice
 #'
 #' @return the spider plot
-#' @export spider.plot
-spider.plot <- function(data, colors=palette("default")){
+#' @importFrom grDevices palette
+#' @importFrom fmsb radarchart
+#' @importFrom graphics legend
+#' @export plot.spider
+plot.spider <- function(data, colors=palette("default")){
 
   as.data.frame(data)->data
   rownames(data)->criteria

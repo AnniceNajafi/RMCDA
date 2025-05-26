@@ -8,7 +8,11 @@
 #' condition 1, and condition 2.
 #'
 #' @examples
-#' A <- matrix(c(250, 200, 300, 275, 225, 16, 16, 32, 32, 16, 12, 8, 16, 8, 16, 5, 3, 4, 4, 2), nrow=5, ncol=4)
+#' A <- matrix(c(250, 200, 300, 275,
+#'  225, 16, 16, 32,
+#'   32, 16, 12, 8,
+#'    16, 8, 16, 5,
+#'     3, 4, 4, 2), nrow=5, ncol=4)
 #' colnames(A)<-c("Price", "Memory", "Camera", "Looks")
 #' rownames(A)<-paste0("Mobile ", seq(1, 5, 1))
 #' A[,"Price"] <- -A[,"Price"]

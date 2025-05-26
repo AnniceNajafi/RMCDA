@@ -10,8 +10,14 @@
 #' @param vertex_size vertex size
 #'
 #' @return the decision tree plot
-#' @export AHP.decision.tree.plot
-AHP.decision.tree.plot <- function(A, comparing.competitors, results, vertex_font=1.2, edge_font = 1,
+#' @importFrom igraph graph_from_edgelist E E<- layout_as_tree
+#' @importFrom grDevices palette
+#' @importFrom graphics legend
+#' @importFrom stats   cor optim runif sd
+#' @importFrom utils   combn
+#' @importFrom fmsb    radarchart
+#' @export plot.AHP.decision.tree
+plot.AHP.decision.tree <- function(A, comparing.competitors, results, vertex_font=1.2, edge_font = 1,
                                    asp = 0.8, max_width = 5, vertex_size=50){
 
   nodes <- c("Choose alternative",rownames(comparing.competitors[[1]]), rownames(A))
