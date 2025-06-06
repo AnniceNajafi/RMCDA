@@ -12,7 +12,7 @@ This R package has been developed to serve as a universal library in R for the a
 
 <h4>CRAN version:</h4>
 
-To install the CRAN version please simply run the following code (please check the reference manual for the CRAN version on <a href="https://CRAN.R-project.org/package=RMCDA">CRAN's website</a>:
+To install the CRAN version please simply run the following code (please check the reference manual for the CRAN version on <a href="https://CRAN.R-project.org/package=RMCDA">CRAN's website</a>):
 
 ```
 install.packages('RMCDA')
