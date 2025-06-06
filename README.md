@@ -6,9 +6,19 @@ This R package has been developed to serve as a universal library in R for the a
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14837902.svg)](https://doi.org/10.5281/zenodo.14837902)
 
+<h2>UPDATE (6/6/25): the RMCDA package is now available on <a href="https://cran.r-project.org/web/packages/RMCDA/index.html">CRAN</a>!</h2>
+
 <h3>Installation Guide</h3>
 
-To install R package run the following code:
+<h4>CRAN version:</h4>
+
+To install the CRAN version please simply run the following code (please check the reference manual for the CRAN version on <a href="https://cran.r-project.org/web/packages/RMCDA/index.html">CRAN's website</a>:
+
+```
+install.packages('RMCDA')
+```
+
+To install the R package from Github run the following code:
 
 ```
 devtools::install_github("AnniceNajafi/RMCDA")
