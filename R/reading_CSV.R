@@ -13,36 +13,170 @@
 #' mat.lst <- read.csv.AHP.matrices(data)
 read.csv.AHP.matrices <- function(data){
 
-  data.dim <- length(data)-1
+  df <- data
+  for (j in seq_len(ncol(df))) df[, j] <- as.character(df[, j])
 
-  mat.data <- as.matrix(data[1:(data.dim+1), 1:(data.dim+1)][-1, -1])
-  mat.data <- apply(mat.data, 2, as.numeric)
+  r <- 1
+  repeat {
+    if (r > nrow(df)) stop("Unexpected end while searching for criteria header.")
+    row.blank <- all(is.na(df[r, ]) | trimws(df[r, ]) == "")
+    row.comment <- grepl("^\\s*#", paste0(df[r, 1]), perl = TRUE)
+    if (!row.blank && !row.comment) break
+    r <- r + 1
+  }
 
-  data[1,-1]->colnames(mat.data)
-  colnames(mat.data)->rownames(mat.data)
+  header.row <- df[r, , drop = FALSE]
+  last.col <- suppressWarnings(max(which(!(is.na(header.row) | header.row == ""))))
+  if (!is.finite(last.col) || last.col < 2) stop("Malformed criteria header.")
+  col.names <- as.character(unlist(header.row[1, 2:last.col, drop = TRUE]))
+  if (any(trimws(col.names) == "")) stop("Empty column name in criteria header.")
 
-  mat.data->A
+  rr <- r + 1
+  rows.idx <- integer()
+  while (rr <= nrow(df) && !all(is.na(df[rr, ]) | trimws(df[rr, ]) == "")) { rows.idx <- c(rows.idx, rr); rr <- rr + 1 }
+  if (length(rows.idx) != length(col.names)) stop(sprintf("Criteria matrix must be square: found %d rows and %d columns.", length(rows.idx), length(col.names)))
 
-  comparing.competitors<-list() #extract and store a list of matrices, each related to
-  #the comparison of alternatives based on each criteria
+  row.names <- as.character(unlist(df[rows.idx, 1, drop = TRUE]))
+  if (any(trimws(row.names) == "")) stop("Empty row name in criteria matrix.")
+  if (any(duplicated(row.names))) stop("Duplicate row names in criteria matrix.")
 
-  for(i in 1:data.dim){
+  raw.vals <- as.matrix(df[rows.idx, 2:last.col, drop = FALSE])
+  x <- trimws(as.character(raw.vals))
+  x[x == ""] <- NA
+  is.frac <- grepl("/", x, fixed = TRUE)
+  out <- suppressWarnings(as.numeric(x))
+  if (any(is.frac, na.rm = TRUE)) {
+    idx <- which(is.frac & !is.na(x))
+    out[idx] <- sapply(idx, function(i){
+      p <- strsplit(x[i], "/", fixed = TRUE)[[1]]
+      if (length(p) != 2) return(NA_real_)
+      num <- suppressWarnings(as.numeric(trimws(p[1])))
+      den <- suppressWarnings(as.numeric(trimws(p[2])))
+      if (is.na(num) || is.na(den) || den == 0) return(NA_real_)
+      num/den
+    })
+  }
+  matrix(out, nrow = length(rows.idx), ncol = length(col.names)) -> A
+  colnames(A) <- col.names
+  rownames(A) <- row.names
+  if (nrow(A) != ncol(A)) stop(sprintf("Criteria matrix must be square: found %d×%d.", nrow(A), ncol(A)))
+  if (!identical(rownames(A), colnames(A))) stop("Criteria row/column names must match and be in the same order.")
+  if (any(duplicated(colnames(A)))) stop("Duplicate criteria names found.")
 
-    start.idx <- (i)*(data.dim+2)+2
-    end.idx <- start.idx + data.dim-1
+  length(row.names) -> data.dim
+  vector("list", data.dim) -> comparing.competitors
+  colnames(A) -> names(comparing.competitors)
 
-    tmp.mat <- as.matrix(data[(start.idx):end.idx, 2:(data.dim+1)])
+  rr + 1 -> next.start
 
-    tmp.mat <- apply(tmp.mat, 2, as.numeric)
+  r <- next.start
+  repeat {
+    if (r > nrow(df)) stop("Unexpected end while searching for alternatives header #1.")
+    row.blank <- all(is.na(df[r, ]) | trimws(df[r, ]) == "")
+    row.comment <- grepl("^\\s*#", paste0(df[r, 1]), perl = TRUE)
+    if (!row.blank && !row.comment) break
+    r <- r + 1
+  }
 
-    colnames(tmp.mat)<-data[(start.idx):end.idx, 1]
-    rownames(tmp.mat)<-colnames(tmp.mat)
+  header.row <- df[r, , drop = FALSE]
+  last.col <- suppressWarnings(max(which(!(is.na(header.row) | header.row == ""))))
+  if (!is.finite(last.col) || last.col < 2) stop("Malformed alternatives header #1.")
+  col.names <- as.character(unlist(header.row[1, 2:last.col, drop = TRUE]))
+  if (any(trimws(col.names) == "")) stop("Empty column name in alternatives header #1.")
 
-    comparing.competitors[[i]]<-tmp.mat
+  rr <- r + 1
+  rows.idx <- integer()
+  while (rr <= nrow(df) && !all(is.na(df[rr, ]) | trimws(df[rr, ]) == "")) { rows.idx <- c(rows.idx, rr); rr <- rr + 1 }
+  if (length(rows.idx) != length(col.names)) stop(sprintf("Alternatives matrix #1 must be square: found %d rows and %d columns.", length(rows.idx), length(col.names)))
+
+  row.names <- as.character(unlist(df[rows.idx, 1, drop = TRUE]))
+  if (any(trimws(row.names) == "")) stop("Empty row name in alternatives matrix #1.")
+  if (any(duplicated(row.names))) stop("Duplicate row names in alternatives matrix #1.")
+
+  raw.vals <- as.matrix(df[rows.idx, 2:last.col, drop = FALSE])
+  x <- trimws(as.character(raw.vals))
+  x[x == ""] <- NA
+  is.frac <- grepl("/", x, fixed = TRUE)
+  out <- suppressWarnings(as.numeric(x))
+  if (any(is.frac, na.rm = TRUE)) {
+    idx <- which(is.frac & !is.na(x))
+    out[idx] <- sapply(idx, function(i){
+      p <- strsplit(x[i], "/", fixed = TRUE)[[1]]
+      if (length(p) != 2) return(NA_real_)
+      num <- suppressWarnings(as.numeric(trimws(p[1])))
+      den <- suppressWarnings(as.numeric(trimws(p[2])))
+      if (is.na(num) || is.na(den) || den == 0) return(NA_real_)
+      num/den
+    })
+  }
+  matrix(out, nrow = length(rows.idx), ncol = length(col.names)) -> tmp.mat
+  colnames(tmp.mat) <- col.names
+  rownames(tmp.mat) <- row.names
+  if (nrow(tmp.mat) != ncol(tmp.mat)) stop(sprintf("Alternatives matrix #1 must be square; got %d×%d.", nrow(tmp.mat), ncol(tmp.mat)))
+  if (!identical(rownames(tmp.mat), colnames(tmp.mat))) stop("Alternatives matrix #1 row/column names must match and be in the same order.")
+  nrow(tmp.mat) -> m.alt
+  rownames(tmp.mat) -> alt.names
+  tmp.mat -> comparing.competitors[[1]]
+  rr + 1 -> next.start
+
+  if (data.dim > 1) {
+    for (k in 2:data.dim) {
+      r <- next.start
+      repeat {
+        if (r > nrow(df)) stop(sprintf("Unexpected end while searching for alternatives header #%d.", k))
+        row.blank <- all(is.na(df[r, ]) | trimws(df[r, ]) == "")
+        row.comment <- grepl("^\\s*#", paste0(df[r, 1]), perl = TRUE)
+        if (!row.blank && !row.comment) break
+        r <- r + 1
+      }
+
+      header.row <- df[r, , drop = FALSE]
+      last.col <- suppressWarnings(max(which(!(is.na(header.row) | header.row == ""))))
+      if (!is.finite(last.col) || last.col < 2) stop(sprintf("Malformed alternatives header #%d.", k))
+      col.names <- as.character(unlist(header.row[1, 2:last.col, drop = TRUE]))
+      if (any(trimws(col.names) == "")) stop(sprintf("Empty column name in alternatives header #%d.", k))
+
+      rr <- r + 1
+      rows.idx <- integer()
+      while (rr <= nrow(df) && !all(is.na(df[rr, ]) | trimws(df[rr, ]) == "")) { rows.idx <- c(rows.idx, rr); rr <- rr + 1 }
+      if (length(rows.idx) != length(col.names)) stop(sprintf("Alternatives matrix #%d must be square: found %d rows and %d columns.", k, length(rows.idx), length(col.names)))
+
+      row.names <- as.character(unlist(df[rows.idx, 1, drop = TRUE]))
+      if (any(trimws(row.names) == "")) stop(sprintf("Empty row name in alternatives matrix #%d.", k))
+      if (any(duplicated(row.names))) stop(sprintf("Duplicate row names in alternatives matrix #%d.", k))
+
+      raw.vals <- as.matrix(df[rows.idx, 2:last.col, drop = FALSE])
+      x <- trimws(as.character(raw.vals))
+      x[x == ""] <- NA
+      is.frac <- grepl("/", x, fixed = TRUE)
+      out <- suppressWarnings(as.numeric(x))
+      if (any(is.frac, na.rm = TRUE)) {
+        idx <- which(is.frac & !is.na(x))
+        out[idx] <- sapply(idx, function(i){
+          p <- strsplit(x[i], "/", fixed = TRUE)[[1]]
+          if (length(p) != 2) return(NA_real_)
+          num <- suppressWarnings(as.numeric(trimws(p[1])))
+          den <- suppressWarnings(as.numeric(trimws(p[2])))
+          if (is.na(num) || is.na(den) || den == 0) return(NA_real_)
+          num/den
+        })
+      }
+
+      matrix(out, nrow = length(rows.idx), ncol = length(col.names)) -> tmp.mat
+      colnames(tmp.mat) <- col.names
+      rownames(tmp.mat) <- row.names
+
+      if (!all(dim(tmp.mat) == c(m.alt, m.alt))) stop(sprintf("Alternatives matrix #%d must be %d×%d; got %d×%d.", k, m.alt, m.alt, nrow(tmp.mat), ncol(tmp.mat)))
+      if (!identical(rownames(tmp.mat), alt.names) || !identical(colnames(tmp.mat), alt.names)) {
+        if (setequal(rownames(tmp.mat), alt.names) && setequal(colnames(tmp.mat), alt.names)) tmp.mat[alt.names, alt.names, drop = FALSE] -> tmp.mat else stop(sprintf("Alternatives matrix #%d names do not match the first alternatives matrix.", k))
+      }
+
+      tmp.mat -> comparing.competitors[[k]]
+      rr + 1 -> next.start
+    }
   }
 
   return(list(A, comparing.competitors))
-
 }
 
 
