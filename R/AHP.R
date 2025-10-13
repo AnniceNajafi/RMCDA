@@ -100,27 +100,33 @@ apply.AHP <- function(A, comparing.competitors){
 #' apply.ANP(A, comparing.competitors, 2)
 #' @export apply.ANP
 apply.ANP <- function(A, comparing.competitors, power){
-
-  apply.AHP(A, comparing.competitors)->res.lst #apply AHP
-
-  res.lst[[1]][[2]]->A.weight
-
-  res.lst[[3]]->alternatives.weighted.mat
-
-  super.mat <- matrix(NA, nrow=2*dim(A)[1]+1, ncol=2*dim(A)[1]+1)
-
-  super.mat[2:(dim(A)[1]+1)]<-A.weight
-
-  super.mat[(dim(A)[1]+2):(dim(A)[1]*2+1), 2:(dim(A)[1]+1)]<-alternatives.weighted.mat
-
-  super.mat[(dim(A)[1]+2):(dim(A)[1]*2+1), (dim(A)[1]+2): (2*dim(A)[1]+1)]<-diag(dim(A)[1])
-
-  super.mat[is.na(super.mat)]<-0
-
-  super.mat^power->super.mat
-
+  
+  apply.AHP(A, comparing.competitors)->res.lst
+  as.numeric(res.lst[[1]][[2]])->A.weight
+  as.matrix(res.lst[[2]])->alternatives.weighted.mat
+  
+  colnames(A)->crit.names
+  if (is.null(crit.names)) paste0("C", seq_len(ncol(A)))->crit.names
+  colnames(alternatives.weighted.mat)->alt.names
+  if (is.null(alt.names)) paste0("A", seq_len(ncol(alternatives.weighted.mat)))->alt.names
+  
+  length(A.weight)->n
+  length(alt.names)->m
+  
+  matrix(0, nrow = 1 + n + m, ncol = 1 + n + m)->super.mat
+  rownames(super.mat) <- colnames(super.mat) <- c("Goal", crit.names, alt.names)
+  
+  super.mat[2:(n + 1), 1] <- A.weight
+  for (j in seq_len(n)) {
+    super.mat[(n + 2):(n + 1 + m), 1 + j] <- as.numeric(alternatives.weighted.mat[j, alt.names])
+  }
+  super.mat[(n + 2):(n + 1 + m), (n + 2):(n + 1 + m)] <- diag(m)
+  
+  if (power != 1L) super.mat^power->super.mat
+  
   return(super.mat)
 }
+
 
 
 #' Apply fuzzy AHP on criteria comparison matrix
