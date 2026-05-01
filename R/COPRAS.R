@@ -5,6 +5,9 @@
 #' @param weights are the weights of each property in the decision making process
 #' @param beneficial.vector is a vector that contains the column number of beneficial
 #' properties.
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized and the internal sum normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #'
 #' @return a vector containing the calculated quantitative utility
 #'
@@ -30,9 +33,9 @@
 #' beneficial.vector<-c(1,2,3)
 #' apply.COPRAS(mat, weights, beneficial.vector)
 #' @export apply.COPRAS
-apply.COPRAS <- function(mat, weights, beneficial.vector){
+apply.COPRAS <- function(mat, weights, beneficial.vector, normalized = FALSE){
 
-  normalized.mat <- t(t(mat)/colSums(mat))
+  normalized.mat <- if(normalized) mat else t(t(mat)/colSums(mat))
 
   normalized.mat <- t(weights*t(normalized.mat))
 

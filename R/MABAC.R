@@ -8,6 +8,9 @@
 #' @param weights A numeric vector of weights corresponding to criteria columns. Must sum to 1.
 #' @param types An integer vector of the same length as `weights`. Use 1 for a profit criterion
 #'  and -1 for a cost criterion.
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized and the internal min-max normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #'
 #' @return A numeric vector with the MABAC preference values for each alternative.
 #' A higher value indicates a more preferred alternative.
@@ -30,7 +33,7 @@
 #'
 #' apply.MABAC(mat, weights, types)
 #' @export apply.MABAC
-apply.MABAC <- function(mat, weights, types) {
+apply.MABAC <- function(mat, weights, types, normalized = FALSE) {
 
 
   if (!is.matrix(mat)) {
@@ -54,18 +57,25 @@ apply.MABAC <- function(mat, weights, types) {
   #--------------------------------------#
   #Normalize matrix (profit or cost)
 
-  normalized_mat <- matrix(NA, nrow = n, ncol = ncol(mat))
-  for (j in seq_len(ncol(mat))) {
-    col_j <- mat[, j]
-    min_val <- min(col_j)
-    max_val <- max(col_j)
+  if (normalized) {
 
-    if (types[j] == 1) {
-      #Profit criterion: higher is better
-      normalized_mat[, j] <- (col_j - min_val) / (max_val - min_val)
-    } else {
-      #Cost criterion: lower is better
-      normalized_mat[, j] <- (max_val - col_j) / (max_val - min_val)
+    normalized_mat <- mat
+
+  } else {
+
+    normalized_mat <- matrix(NA, nrow = n, ncol = ncol(mat))
+    for (j in seq_len(ncol(mat))) {
+      col_j <- mat[, j]
+      min_val <- min(col_j)
+      max_val <- max(col_j)
+
+      if (types[j] == 1) {
+        #Profit criterion: higher is better
+        normalized_mat[, j] <- (col_j - min_val) / (max_val - min_val)
+      } else {
+        #Cost criterion: lower is better
+        normalized_mat[, j] <- (max_val - col_j) / (max_val - min_val)
+      }
     }
   }
 

@@ -6,6 +6,9 @@
 #' @param beneficial.vector is a vector containing the column numbers of beneficial
 #' properties. Non-beneficial properties are assumed to be the remaining columns.
 #' @param epsilon is a parameter for the GRA method, default is 0.5
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized and the internal min-max normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #'
 #' @return a vector containing the calculated GRA scores
 #'
@@ -21,18 +24,24 @@
 #' beneficial.vector <- c(1, 2, 3)
 #' apply.GRA(mat, weights, beneficial.vector)
 #' @export apply.GRA
-apply.GRA <- function(mat, weights, beneficial.vector, epsilon = 0.5) {
+apply.GRA <- function(mat, weights, beneficial.vector, epsilon = 0.5, normalized = FALSE) {
 
+  if (normalized) {
 
-  normalized.mat <- matrix(0, nrow = nrow(mat), ncol = ncol(mat))
+    normalized.mat <- mat
 
-  for (j in seq_len(ncol(mat))) {
-    if (j %in% beneficial.vector) {
-      normalized.mat[, j] <- (mat[, j] - min(mat[, j])) /
-        (max(mat[, j]) - min(mat[, j]) + 1e-10)
-    } else {
-      normalized.mat[, j] <- (max(mat[, j]) - mat[, j]) /
-        (max(mat[, j]) - min(mat[, j]) + 1e-10)
+  } else {
+
+    normalized.mat <- matrix(0, nrow = nrow(mat), ncol = ncol(mat))
+
+    for (j in seq_len(ncol(mat))) {
+      if (j %in% beneficial.vector) {
+        normalized.mat[, j] <- (mat[, j] - min(mat[, j])) /
+          (max(mat[, j]) - min(mat[, j]) + 1e-10)
+      } else {
+        normalized.mat[, j] <- (max(mat[, j]) - mat[, j]) /
+          (max(mat[, j]) - min(mat[, j]) + 1e-10)
+      }
     }
   }
 

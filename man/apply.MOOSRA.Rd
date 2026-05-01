@@ -4,7 +4,7 @@
 \alias{apply.MOOSRA}
 \title{Multi-objective Optimization on the Basis of Simple Ratio Analysis (MOOSRA)}
 \usage{
-apply.MOOSRA(mat, weights, beneficial.vector)
+apply.MOOSRA(mat, weights, beneficial.vector, normalized = FALSE)
 }
 \arguments{
 \item{mat}{A matrix of decision-making criteria values for different alternatives.}
@@ -12,6 +12,10 @@ apply.MOOSRA(mat, weights, beneficial.vector)
 \item{weights}{A vector of weights for the criteria.}
 
 \item{beneficial.vector}{vector of column indices for beneficial criteria.}
+
+\item{normalized}{logical; if \code{TRUE}, \code{mat} is treated as already
+normalized and the internal vector normalization step is skipped.
+Defaults to \code{FALSE}.}
 }
 \value{
 A matrix containing the alternatives and their calculated scores, sorted by rank.

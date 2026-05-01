@@ -3,6 +3,9 @@
 #' @param mat A matrix of decision-making criteria values for different alternatives.
 #' @param weights A vector of weights for the criteria.
 #' @param beneficial.vector vector of column indices for beneficial criteria.
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized and the internal vector normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #'
 #' @return A matrix containing the alternatives and their calculated scores, sorted by rank.
 #' @examples
@@ -17,9 +20,9 @@
 #' beneficial.vector<- c(1, 2, 3, 6, 7)
 #' apply.MOOSRA(mat, weights, beneficial.vector)
 #' @export apply.MOOSRA
-apply.MOOSRA <- function(mat, weights, beneficial.vector) {
+apply.MOOSRA <- function(mat, weights, beneficial.vector, normalized = FALSE) {
 
-  normalized_data <- sweep(mat, 2, apply(mat, 2, function(x) sqrt(sum(x^2))), "/")
+  normalized_data <- if (normalized) mat else sweep(mat, 2, apply(mat, 2, function(x) sqrt(sum(x^2))), "/")
   weighted_data <- sweep(normalized_data, 2, weights, "*")
 
   benefit_indices <- beneficial.vector

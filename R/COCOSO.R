@@ -5,6 +5,9 @@
 #' @param weights are the weights of each property in the decision making process
 #' @param beneficial.vector is a vector that contains the column number of beneficial
 #' properties.
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized and the internal min-max normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #' @return a vector containing the aggregated appraisal scores
 #'
 #'
@@ -28,30 +31,37 @@
 #'beneficial.vector<-c(1,2,3)
 #'apply.COCOSO(mat, weights, beneficial.vector)
 #' @export apply.COCOSO
-apply.COCOSO <- function(mat, weights, beneficial.vector){
+apply.COCOSO <- function(mat, weights, beneficial.vector, normalized = FALSE){
 
-  min.vector <- apply(mat, 2, min)
-  max.vector <- apply(mat, 2, max)
+  if(normalized){
+
+    normalized.mat <- mat
+
+  }else{
+
+    min.vector <- apply(mat, 2, min)
+    max.vector <- apply(mat, 2, max)
 
 
-  t(t(mat - min.vector)/(max.vector-min.vector))
+    t(t(mat - min.vector)/(max.vector-min.vector))
 
-  normalized.mat <- matrix(NA, nrow=nrow(mat), ncol=ncol(mat))
+    normalized.mat <- matrix(NA, nrow=nrow(mat), ncol=ncol(mat))
 
-  for(i in 1:nrow(mat)){
+    for(i in 1:nrow(mat)){
 
-    for(j in 1:ncol(mat)){
+      for(j in 1:ncol(mat)){
 
-      if(j %in% beneficial.vector){
+        if(j %in% beneficial.vector){
 
-        normalized.mat[i,j] <- (mat[i,j]-min.vector[j])/(max.vector[j]-min.vector[j])
+          normalized.mat[i,j] <- (mat[i,j]-min.vector[j])/(max.vector[j]-min.vector[j])
 
-      }else{
+        }else{
 
-        normalized.mat[i,j] <- (max.vector[j]-mat[i,j])/(max.vector[j]-min.vector[j])
+          normalized.mat[i,j] <- (max.vector[j]-mat[i,j])/(max.vector[j]-min.vector[j])
+
+        }
 
       }
-
     }
   }
 

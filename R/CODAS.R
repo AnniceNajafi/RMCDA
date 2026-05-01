@@ -6,6 +6,9 @@
 #' @param beneficial.vector is a vector that contains the column number of beneficial
 #' properties.
 #' @param psi threshold parameter
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized and the internal max/min normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #'
 #' @return a vector containing the calculated quantitative utility
 #'
@@ -31,36 +34,42 @@
 #'psi <- 0.02
 #'apply.CODAS(mat, weights, beneficial.vector, psi)
 #' @export apply.CODAS
-apply.CODAS <- function(mat, weights, beneficial.vector, psi){
+apply.CODAS <- function(mat, weights, beneficial.vector, psi, normalized = FALSE){
 
-  max.min.vector <- c()
+  if(normalized){
 
-  for(col in 1:ncol(mat)){
-    if(col %in% beneficial.vector){
-      max.min.vector <- c(max.min.vector, max(mat[,col]))
-    }else{
-      max.min.vector <- c(max.min.vector, min(mat[,col]))
+    normalized.mat <- mat
+
+  }else{
+
+    max.min.vector <- c()
+
+    for(col in 1:ncol(mat)){
+      if(col %in% beneficial.vector){
+        max.min.vector <- c(max.min.vector, max(mat[,col]))
+      }else{
+        max.min.vector <- c(max.min.vector, min(mat[,col]))
+      }
     }
+
+
+    normalized.mat.beneficial <- t(t(mat[,beneficial.vector])/max.min.vector[beneficial.vector])
+
+    normalized.mat.non.beneficial <- t(max.min.vector[-beneficial.vector]/t(mat[,-beneficial.vector]))
+
+
+
+    normalized.mat <- matrix(NA, nrow=nrow(mat), ncol=ncol(mat))
+
+    rownames(normalized.mat) <- rownames(mat)
+
+    colnames(normalized.mat) <- colnames(mat)
+
+
+    normalized.mat[,beneficial.vector] <- normalized.mat.beneficial
+
+    normalized.mat[,-beneficial.vector] <- normalized.mat.non.beneficial
   }
-
-
-  normalized.mat.beneficial <- t(t(mat[,beneficial.vector])/max.min.vector[beneficial.vector])
-
-  normalized.mat.non.beneficial <- t(max.min.vector[-beneficial.vector]/t(mat[,-beneficial.vector]))
-
-
-
-  normalized.mat <- matrix(NA, nrow=nrow(mat), ncol=ncol(mat))
-
-  rownames(normalized.mat) <- rownames(mat)
-
-  colnames(normalized.mat) <- colnames(mat)
-
-
-  normalized.mat[,beneficial.vector] <- normalized.mat.beneficial
-
-  normalized.mat[,-beneficial.vector] <- normalized.mat.non.beneficial
-
 
 
   weighted.normalized.mat <- t(weights*t(normalized.mat))

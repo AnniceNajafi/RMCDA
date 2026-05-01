@@ -4,13 +4,17 @@
 \alias{apply.TOPSIS}
 \title{Apply TOPSIS on matrix A with weight of criteria stored in vector w}
 \usage{
-apply.TOPSIS(A, w)
+apply.TOPSIS(A, w, normalized = FALSE)
 }
 \arguments{
 \item{A}{the matrix A with row names corresponding to alternatives and column
 names corresponding to criteria}
 
 \item{w}{the weight vector corresponding to the weight of each criteria}
+
+\item{normalized}{logical; if \code{TRUE}, \code{A} is treated as already
+normalized and the internal vector normalization step is skipped.
+Defaults to \code{FALSE}.}
 }
 \value{
 performance scores obtained through TOPSIS

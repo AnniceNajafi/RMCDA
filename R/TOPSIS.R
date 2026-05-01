@@ -3,6 +3,9 @@
 #' @param A the matrix A with row names corresponding to alternatives and column
 #' names corresponding to criteria
 #' @param w the weight vector corresponding to the weight of each criteria
+#' @param normalized logical; if \code{TRUE}, \code{A} is treated as already
+#'  normalized and the internal vector normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #'
 #' @return performance scores obtained through TOPSIS
 #'
@@ -18,14 +21,14 @@
 #' A[,"Price"] <- -A[,"Price"]
 #' apply.TOPSIS(A, c(1/4, 1/4, 1/4, 1/4))
 #' @export apply.TOPSIS
-apply.TOPSIS <- function(A, w){
+apply.TOPSIS <- function(A, w, normalized = FALSE){
 
   if(length(w)!=ncol(A)){
 
     stop("The dimensions of the weight vector and matrix do not match. Unable to proceed.")
   }
 
-  normalized.A <- t(t(A)/sqrt(colSums(A^2)))
+  normalized.A <- if(normalized) A else t(t(A)/sqrt(colSums(A^2)))
   normalized.A <- normalized.A*w
 
   S.pos <- sqrt(rowSums((t(t(normalized.A) - apply(normalized.A, 2, max)))^2))

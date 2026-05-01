@@ -4,7 +4,7 @@
 \alias{apply.CODAS}
 \title{Apply Combinative Distance-based Assessment (CODAS)}
 \usage{
-apply.CODAS(mat, weights, beneficial.vector, psi)
+apply.CODAS(mat, weights, beneficial.vector, psi, normalized = FALSE)
 }
 \arguments{
 \item{mat}{is a matrix and contains the values for different properties
@@ -16,6 +16,10 @@ of different alternatives}
 properties.}
 
 \item{psi}{threshold parameter}
+
+\item{normalized}{logical; if \code{TRUE}, \code{mat} is treated as already
+normalized and the internal max/min normalization step is skipped.
+Defaults to \code{FALSE}.}
 }
 \value{
 a vector containing the calculated quantitative utility

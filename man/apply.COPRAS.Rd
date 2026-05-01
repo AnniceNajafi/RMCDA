@@ -4,7 +4,7 @@
 \alias{apply.COPRAS}
 \title{Apply COmplex PRoportional ASsessment (COPRAS) method}
 \usage{
-apply.COPRAS(mat, weights, beneficial.vector)
+apply.COPRAS(mat, weights, beneficial.vector, normalized = FALSE)
 }
 \arguments{
 \item{mat}{is a matrix and contains the values for different properties
@@ -14,6 +14,10 @@ of different alternatives}
 
 \item{beneficial.vector}{is a vector that contains the column number of beneficial
 properties.}
+
+\item{normalized}{logical; if \code{TRUE}, \code{mat} is treated as already
+normalized and the internal sum normalization step is skipped.
+Defaults to \code{FALSE}.}
 }
 \value{
 a vector containing the calculated quantitative utility

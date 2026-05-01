@@ -5,6 +5,9 @@
 #' @param weights are the weights of each property in the decision making process
 #' @param beneficial.vector is a vector that contains the column number of beneficial
 #' properties.
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized and the internal vector normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #'
 #' @return a vector containing the calculated quantitative utility
 #'
@@ -22,9 +25,10 @@
 #' beneficial.vector <- c(1, 3, 4, 5)
 #' apply.MOORA(mat, weights, beneficial.vector)
 #' @export apply.MOORA
-apply.MOORA <- function(mat, weights, beneficial.vector){
+apply.MOORA <- function(mat, weights, beneficial.vector, normalized = FALSE){
 
-  weighted.normalized.mat <- t(weights * (t(mat)/(sqrt(colSums(mat^2)))))
+  normalized.mat <- if(normalized) mat else t(t(mat)/sqrt(colSums(mat^2)))
+  weighted.normalized.mat <- t(weights * t(normalized.mat))
 
 
   if(length(beneficial.vector)>1){

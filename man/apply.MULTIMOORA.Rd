@@ -4,12 +4,16 @@
 \alias{apply.MULTIMOORA}
 \title{Apply MULTIMOORA method}
 \usage{
-apply.MULTIMOORA(mat, beneficial.vector)
+apply.MULTIMOORA(mat, beneficial.vector, normalized = FALSE)
 }
 \arguments{
 \item{mat}{A matrix of decision-making criteria values.}
 
 \item{beneficial.vector}{A vector containing the column indices of beneficial criteria (1-based indexing).}
+
+\item{normalized}{logical; if \code{TRUE}, \code{mat} is treated as already
+normalized and the internal vector normalization step is skipped.
+Defaults to \code{FALSE}.}
 }
 \value{
 A list of matrices containing rankings for MOORA, MOORA RP, and MULTIMOORA methods.

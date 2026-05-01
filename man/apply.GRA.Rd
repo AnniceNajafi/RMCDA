@@ -4,7 +4,7 @@
 \alias{apply.GRA}
 \title{Apply Grey Relational Analysis (GRA) method}
 \usage{
-apply.GRA(mat, weights, beneficial.vector, epsilon = 0.5)
+apply.GRA(mat, weights, beneficial.vector, epsilon = 0.5, normalized = FALSE)
 }
 \arguments{
 \item{mat}{is a matrix containing the values for different properties
@@ -16,6 +16,10 @@ of different alternatives}
 properties. Non-beneficial properties are assumed to be the remaining columns.}
 
 \item{epsilon}{is a parameter for the GRA method, default is 0.5}
+
+\item{normalized}{logical; if \code{TRUE}, \code{mat} is treated as already
+normalized and the internal min-max normalization step is skipped.
+Defaults to \code{FALSE}.}
 }
 \value{
 a vector containing the calculated GRA scores

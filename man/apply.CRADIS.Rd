@@ -4,7 +4,7 @@
 \alias{apply.CRADIS}
 \title{Function to apply CRiteria Aggregation for Decision Information Synthesis (CRADIS)}
 \usage{
-apply.CRADIS(mat, weights, beneficial.vector)
+apply.CRADIS(mat, weights, beneficial.vector, normalized = FALSE)
 }
 \arguments{
 \item{mat}{is a matrix containing the values for different properties of different alternatives}
@@ -12,6 +12,10 @@ apply.CRADIS(mat, weights, beneficial.vector)
 \item{weights}{are the weights of each property in the decision-making process}
 
 \item{beneficial.vector}{is a vector that contains the column numbers of beneficial criteria}
+
+\item{normalized}{logical; if \code{TRUE}, \code{mat} is treated as already
+normalized and the internal min-max normalization step is skipped.
+Defaults to \code{FALSE}.}
 }
 \value{
 a vector containing the preference values for each alternative

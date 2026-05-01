@@ -2,6 +2,9 @@
 #'
 #' @param mat A matrix of decision-making criteria values.
 #' @param beneficial.vector A vector containing the column indices of beneficial criteria (1-based indexing).
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized and the internal vector normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #' @return A list of matrices containing rankings for MOORA, MOORA RP, and MULTIMOORA methods.
 #' @examples
 #' mat <- matrix(c(75.5, 95, 770, 187, 179, 239, 237,
@@ -11,9 +14,9 @@
 #' beneficial.vector <- c(1, 3) # Columns 1 and 3 are beneficial
 #' apply.MULTIMOORA(mat, beneficial.vector)
 #' @export apply.MULTIMOORA
-apply.MULTIMOORA <- function(mat, beneficial.vector) {
+apply.MULTIMOORA <- function(mat, beneficial.vector, normalized = FALSE) {
 
-  normalized_data <- sweep(mat, 2, sqrt(colSums(mat^2)), "/")
+  normalized_data <- if (normalized) mat else sweep(mat, 2, sqrt(colSums(mat^2)), "/")
 
 
   all_criteria <- seq_len(ncol(mat))

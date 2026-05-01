@@ -4,7 +4,7 @@
 \alias{apply.MABAC}
 \title{Apply Multi-Attributive Border Approximation Area Comparison (MABAC)}
 \usage{
-apply.MABAC(mat, weights, types)
+apply.MABAC(mat, weights, types, normalized = FALSE)
 }
 \arguments{
 \item{mat}{A numeric matrix. Rows are alternatives; columns are criteria.}
@@ -13,6 +13,10 @@ apply.MABAC(mat, weights, types)
 
 \item{types}{An integer vector of the same length as \code{weights}. Use 1 for a profit criterion
 and -1 for a cost criterion.}
+
+\item{normalized}{logical; if \code{TRUE}, \code{mat} is treated as already
+normalized and the internal min-max normalization step is skipped.
+Defaults to \code{FALSE}.}
 }
 \value{
 A numeric vector with the MABAC preference values for each alternative.

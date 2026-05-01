@@ -3,6 +3,9 @@
 #' @param mat is a matrix containing the values for different properties of different alternatives
 #' @param weights are the weights of each property in the decision-making process
 #' @param beneficial.vector is a vector that contains the column numbers of beneficial criteria
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized and the internal min-max normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #' @return a vector containing the preference values for each alternative
 #'
 #'
@@ -23,7 +26,7 @@
 #' beneficial.vector <- c(1, 2, 3)
 #' apply.CRADIS(mat, weights, beneficial.vector)
 #' @export apply.CRADIS
-apply.CRADIS <- function(mat, weights, beneficial.vector) {
+apply.CRADIS <- function(mat, weights, beneficial.vector, normalized = FALSE) {
 
   if (length(weights) != ncol(mat)) {
     stop("Unable to proceed. Number of weights must match the number of criteria (columns) in the matrix.")
@@ -33,16 +36,23 @@ apply.CRADIS <- function(mat, weights, beneficial.vector) {
     stop("Unable to proceed. beneficial.vector must contain column numbers within the range of the matrix.")
   }
 
-  normalized.mat <- matrix(NA, nrow = nrow(mat), ncol = ncol(mat))
-  min.vector <- apply(mat, 2, min)
-  max.vector <- apply(mat, 2, max)
+  if (normalized) {
 
-  for (i in 1:nrow(mat)) {
-    for (j in 1:ncol(mat)) {
-      if (j %in% beneficial.vector) {
-        normalized.mat[i, j] <- (mat[i, j] - min.vector[j]) / (max.vector[j] - min.vector[j])
-      } else {
-        normalized.mat[i, j] <- (max.vector[j] - mat[i, j]) / (max.vector[j] - min.vector[j])
+    normalized.mat <- mat
+
+  } else {
+
+    normalized.mat <- matrix(NA, nrow = nrow(mat), ncol = ncol(mat))
+    min.vector <- apply(mat, 2, min)
+    max.vector <- apply(mat, 2, max)
+
+    for (i in 1:nrow(mat)) {
+      for (j in 1:ncol(mat)) {
+        if (j %in% beneficial.vector) {
+          normalized.mat[i, j] <- (mat[i, j] - min.vector[j]) / (max.vector[j] - min.vector[j])
+        } else {
+          normalized.mat[i, j] <- (max.vector[j] - mat[i, j]) / (max.vector[j] - min.vector[j])
+        }
       }
     }
   }

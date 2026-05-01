@@ -8,6 +8,9 @@
 #' @param weights A numeric vector of weights corresponding to criteria columns. Must sum to 1.
 #' @param types An integer vector of the same length as `weights`. Use 1 for a profit criterion
 #'  and -1 for a cost criterion.
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized and the internal min-max normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #'
 #' @return A numeric vector with the MAIRCA preference values for each alternative.
 #' Higher values indicate more preferred alternatives.
@@ -25,7 +28,7 @@
 #' types <- c(1, 1, 1, 1)
 #' apply.MAIRCA(mat, weights, types)
 #' @export apply.MAIRCA
-apply.MAIRCA <- function(mat, weights, types) {
+apply.MAIRCA <- function(mat, weights, types, normalized = FALSE) {
 
 
   if (!is.matrix(mat)) {
@@ -49,17 +52,24 @@ apply.MAIRCA <- function(mat, weights, types) {
   Tp <- (1 / n) * weights  # 1 / n for each criterion, scaled by weights
 
 
-  normalized_mat <- matrix(NA, nrow = n, ncol = ncol(mat))
-  for (j in seq_len(ncol(mat))) {
-    min_val <- min(mat[, j])
-    max_val <- max(mat[, j])
+  if (normalized) {
 
-    if (types[j] == 1) {
-      #Profit criterion: higher is better
-      normalized_mat[, j] <- (mat[, j] - min_val) / (max_val - min_val)
-    } else {
-      #Cost criterion: lower is better
-      normalized_mat[, j] <- (max_val - mat[, j]) / (max_val - min_val)
+    normalized_mat <- mat
+
+  } else {
+
+    normalized_mat <- matrix(NA, nrow = n, ncol = ncol(mat))
+    for (j in seq_len(ncol(mat))) {
+      min_val <- min(mat[, j])
+      max_val <- max(mat[, j])
+
+      if (types[j] == 1) {
+        #Profit criterion: higher is better
+        normalized_mat[, j] <- (mat[, j] - min_val) / (max_val - min_val)
+      } else {
+        #Cost criterion: lower is better
+        normalized_mat[, j] <- (max_val - mat[, j]) / (max_val - min_val)
+      }
     }
   }
 
