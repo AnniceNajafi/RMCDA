@@ -4,12 +4,17 @@
 \alias{apply.CILOS}
 \title{Apply CILOS Weighting Method}
 \usage{
-apply.CILOS(mat, beneficial.vector)
+apply.CILOS(mat, beneficial.vector, normalized = FALSE)
 }
 \arguments{
 \item{mat}{A numeric matrix representing decision criteria values.}
 
 \item{beneficial.vector}{A numeric vector indicating the column indices of beneficial criteria.}
+
+\item{normalized}{logical; if \code{TRUE}, \code{mat} is treated as already
+normalized (non-beneficial conversion via min/x followed by column-sum
+normalization) and the internal normalization step is skipped.
+Defaults to \code{FALSE}.}
 }
 \value{
 A numeric vector of calculated weights.

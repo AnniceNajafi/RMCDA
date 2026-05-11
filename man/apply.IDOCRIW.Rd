@@ -4,13 +4,18 @@
 \alias{apply.IDOCRIW}
 \title{Apply Integrated Determination of Objective Criteria Weights (IDOCRIW) method}
 \usage{
-apply.IDOCRIW(mat, beneficial.vector)
+apply.IDOCRIW(mat, beneficial.vector, normalized = FALSE)
 }
 \arguments{
 \item{mat}{is a matrix containing the values for different properties
 of different alternatives}
 
 \item{beneficial.vector}{is a vector containing the column numbers of beneficial criteria}
+
+\item{normalized}{logical; if \code{TRUE}, \code{mat} is treated as already
+normalized (non-beneficial conversion via min/x followed by column-sum
+normalization) and the internal normalization steps are skipped.
+Defaults to \code{FALSE}.}
 }
 \value{
 a vector containing the calculated weights for the criteria

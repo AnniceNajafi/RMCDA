@@ -6,6 +6,10 @@
 #' properties. Non-beneficial properties are assumed to be the remaining columns.
 #' @param beta A numeric value controlling the balance between criteria variability and
 #' similarity. Default is 3.
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized (beneficial columns via min/x and non-beneficial columns via
+#'  x/max) and the internal normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #'
 #' @return A numeric vector containing the calculated weights for each criterion.
 #'
@@ -21,14 +25,18 @@
 #' @import nloptr
 #' @importFrom stats cor runif
 #' @export apply.SECA
-apply.SECA <- function(mat, beneficial.vector, beta = 3) {
+apply.SECA <- function(mat, beneficial.vector, beta = 3, normalized = FALSE) {
 
-  X <- mat
-  for (j in seq_len(ncol(mat))) {
-    if (j %in% beneficial.vector) {
-      X[, j] <- min(X[, j]) / X[, j]
-    } else {
-      X[, j] <- X[, j] / max(X[, j])
+  if (normalized) {
+    X <- mat
+  } else {
+    X <- mat
+    for (j in seq_len(ncol(mat))) {
+      if (j %in% beneficial.vector) {
+        X[, j] <- min(X[, j]) / X[, j]
+      } else {
+        X[, j] <- X[, j] / max(X[, j])
+      }
     }
   }
 

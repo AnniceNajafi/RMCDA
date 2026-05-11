@@ -4,11 +4,15 @@
 \alias{apply.CRITIC}
 \title{Apply CRITIC on comparison matrix}
 \usage{
-apply.CRITIC(A)
+apply.CRITIC(A, normalized = FALSE)
 }
 \arguments{
 \item{A}{the matrix A with row names corresponding to alternatives and column
 names corresponding to criteria}
+
+\item{normalized}{logical; if \code{TRUE}, \code{A} is treated as already
+normalized (min-max normalization) and the internal normalization step is
+skipped. Defaults to \code{FALSE}.}
 }
 \value{
 the weight percentages related to matrix A obtained through the CRITIC method

@@ -2,6 +2,9 @@
 #'
 #' @param A the matrix A with row names corresponding to alternatives and column
 #' names corresponding to criteria
+#' @param normalized logical; if \code{TRUE}, \code{A} is treated as already
+#'  normalized (column-sum normalization) and the internal normalization step
+#'  is skipped. Defaults to \code{FALSE}.
 #' @return the entropy value corresponding to each criteria
 #'
 #' @examples
@@ -16,9 +19,9 @@
 #' A[,"Price"] <- -A[,"Price"]
 #' apply.entropy(A)
 #' @export apply.entropy
-apply.entropy <- function(A){
+apply.entropy <- function(A, normalized = FALSE){
 
-  normalized.A <- t(t(A)/colSums(A))
+  normalized.A <- if(normalized) A else t(t(A)/colSums(A))
 
   e <- 1-(-1/log(nrow(A))*colSums(normalized.A*log(normalized.A)))
 

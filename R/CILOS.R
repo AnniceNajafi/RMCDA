@@ -2,6 +2,10 @@
 #'
 #' @param mat A numeric matrix representing decision criteria values.
 #' @param beneficial.vector A numeric vector indicating the column indices of beneficial criteria.
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized (non-beneficial conversion via min/x followed by column-sum
+#'  normalization) and the internal normalization step is skipped.
+#'  Defaults to \code{FALSE}.
 #'
 #' @return A numeric vector of calculated weights.
 #'
@@ -21,7 +25,7 @@
 #' apply.CILOS(mat, beneficial.vector)
 #' @importFrom pracma nullspace
 #' @export apply.CILOS
-apply.CILOS <- function(mat, beneficial.vector) {
+apply.CILOS <- function(mat, beneficial.vector, normalized = FALSE) {
 
   normalize.criteria <- function(mat, beneficial.vector = NULL) {
     norm.mat <- mat
@@ -39,8 +43,12 @@ apply.CILOS <- function(mat, beneficial.vector) {
     return(t(t(mat) / colSums(mat)))
   }
 
-  nmat <- normalize.criteria(mat, beneficial.vector)
-  nmat <- sum.normalize(nmat)
+  if (normalized) {
+    nmat <- mat
+  } else {
+    nmat <- normalize.criteria(mat, beneficial.vector)
+    nmat <- sum.normalize(nmat)
+  }
 
   selected.max <- nmat[apply(nmat, 2, which.max), ]
   diag.max <- diag(selected.max)

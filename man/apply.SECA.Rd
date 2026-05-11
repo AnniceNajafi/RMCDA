@@ -4,7 +4,7 @@
 \alias{apply.SECA}
 \title{Apply Simultaneous Evaluation of Criteria and Alternatives (SECA) method}
 \usage{
-apply.SECA(mat, beneficial.vector, beta = 3)
+apply.SECA(mat, beneficial.vector, beta = 3, normalized = FALSE)
 }
 \arguments{
 \item{mat}{A numeric matrix containing the values for different properties
@@ -15,6 +15,11 @@ properties. Non-beneficial properties are assumed to be the remaining columns.}
 
 \item{beta}{A numeric value controlling the balance between criteria variability and
 similarity. Default is 3.}
+
+\item{normalized}{logical; if \code{TRUE}, \code{mat} is treated as already
+normalized (beneficial columns via min/x and non-beneficial columns via
+x/max) and the internal normalization step is skipped.
+Defaults to \code{FALSE}.}
 }
 \value{
 A numeric vector containing the calculated weights for each criterion.

@@ -3,6 +3,10 @@
 #' @param mat is a matrix containing the values for different properties
 #' of different alternatives
 #' @param beneficial.vector is a vector containing the column numbers of beneficial criteria
+#' @param normalized logical; if \code{TRUE}, \code{mat} is treated as already
+#'  normalized (non-beneficial conversion via min/x followed by column-sum
+#'  normalization) and the internal normalization steps are skipped.
+#'  Defaults to \code{FALSE}.
 #'
 #' @return a vector containing the calculated weights for the criteria
 #'
@@ -22,10 +26,10 @@
 #' apply.IDOCRIW(mat, beneficial.vector)
 #' @importFrom stats optim
 #' @export apply.IDOCRIW
-apply.IDOCRIW <- function(mat, beneficial.vector) {
+apply.IDOCRIW <- function(mat, beneficial.vector, normalized = FALSE) {
 
 
-  normalized_matrix <- sweep(mat, 2, colSums(mat), "/")
+  normalized_matrix <- if (normalized) mat else sweep(mat, 2, colSums(mat), "/")
 
 
   entropy_values <- rep(0, ncol(normalized_matrix))
@@ -38,13 +42,17 @@ apply.IDOCRIW <- function(mat, beneficial.vector) {
   initial_weights <- diversity_index / sum(diversity_index)
 
 
-  adjusted_matrix <- mat
-  non_beneficial_indices <- setdiff(seq_len(ncol(mat)), beneficial.vector)
-  for (col_idx in non_beneficial_indices) {
-    adjusted_matrix[, col_idx] <- min(mat[, col_idx]) / adjusted_matrix[, col_idx]
-  }
+  if (normalized) {
+    adjusted_matrix <- mat
+  } else {
+    adjusted_matrix <- mat
+    non_beneficial_indices <- setdiff(seq_len(ncol(mat)), beneficial.vector)
+    for (col_idx in non_beneficial_indices) {
+      adjusted_matrix[, col_idx] <- min(mat[, col_idx]) / adjusted_matrix[, col_idx]
+    }
 
-  adjusted_matrix <- sweep(adjusted_matrix, 2, colSums(adjusted_matrix), "/")
+    adjusted_matrix <- sweep(adjusted_matrix, 2, colSums(adjusted_matrix), "/")
+  }
   max_values <- apply(adjusted_matrix, 2, max)
   priority_matrix <- diag(max_values)
 

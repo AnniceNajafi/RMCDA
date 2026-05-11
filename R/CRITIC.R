@@ -2,6 +2,9 @@
 #'
 #' @param A the matrix A with row names corresponding to alternatives and column
 #' names corresponding to criteria
+#' @param normalized logical; if \code{TRUE}, \code{A} is treated as already
+#'  normalized (min-max normalization) and the internal normalization step is
+#'  skipped. Defaults to \code{FALSE}.
 #' @return the weight percentages related to matrix A obtained through the CRITIC method
 #'
 #' @examples
@@ -16,10 +19,10 @@
 #' apply.CRITIC(A)
 #' @importFrom stats sd cor
 #' @export apply.CRITIC
-apply.CRITIC <- function(A){
+apply.CRITIC <- function(A, normalized = FALSE){
 
 
-  normalized.A <- apply(A, 2, function(x) (x - min(x))/(max(x)-min(x)))
+  normalized.A <- if(normalized) A else apply(A, 2, function(x) (x - min(x))/(max(x)-min(x)))
 
   sigma.A <- apply(normalized.A, 2, sd)
 

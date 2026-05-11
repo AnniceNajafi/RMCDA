@@ -4,11 +4,15 @@
 \alias{apply.entropy}
 \title{Find entropy of each criteria}
 \usage{
-apply.entropy(A)
+apply.entropy(A, normalized = FALSE)
 }
 \arguments{
 \item{A}{the matrix A with row names corresponding to alternatives and column
 names corresponding to criteria}
+
+\item{normalized}{logical; if \code{TRUE}, \code{A} is treated as already
+normalized (column-sum normalization) and the internal normalization step
+is skipped. Defaults to \code{FALSE}.}
 }
 \value{
 the entropy value corresponding to each criteria
