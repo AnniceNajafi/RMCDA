@@ -63,7 +63,7 @@ apply.MACBETH <- function(mat,
   }
 
 
-  X <- X * weights
+  X <- t(t(X) * weights)
 
 
   V <- rowSums(X)

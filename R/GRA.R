@@ -52,7 +52,7 @@ apply.GRA <- function(mat, weights, beneficial.vector, epsilon = 0.5, normalized
   gra.coefficient <- epsilon / (deviation.sequence + epsilon)
 
 
-  gra.scores <- rowSums(gra.coefficient * weights) / nrow(mat)
+  gra.scores <- rowSums(t(t(gra.coefficient) * weights)) / nrow(mat)
 
   return(gra.scores)
 }

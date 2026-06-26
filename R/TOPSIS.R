@@ -29,7 +29,7 @@ apply.TOPSIS <- function(A, w, normalized = FALSE){
   }
 
   normalized.A <- if(normalized) A else t(t(A)/sqrt(colSums(A^2)))
-  normalized.A <- normalized.A*w
+  normalized.A <- t(t(normalized.A)*w)
 
   S.pos <- sqrt(rowSums((t(t(normalized.A) - apply(normalized.A, 2, max)))^2))
   S.neg <- sqrt(rowSums((t(t(normalized.A) - apply(normalized.A, 2, min)))^2))

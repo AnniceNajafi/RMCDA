@@ -34,7 +34,7 @@ apply.ROV <- function(mat, weights, beneficial.vector) {
   }
 
   #Calculate ROV scores
-  u <- rowSums(X * weights)
+  u <- rowSums(t(t(X) * weights))
 
 
   return(u)

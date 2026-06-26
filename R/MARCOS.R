@@ -28,8 +28,8 @@ apply.MARCOS <- function(mat, weights, beneficial.vector) {
   n <- nrow(mat)
   m <- ncol(mat)
 
-  ideal <- apply(mat, 2, function(x) ifelse(seq_along(x) %in% beneficial.vector, max(x), min(x)))
-  anti_ideal <- apply(mat, 2, function(x) ifelse(seq_along(x) %in% beneficial.vector, min(x), max(x)))
+  ideal <- sapply(seq_len(ncol(mat)), function(j) if (j %in% beneficial.vector) max(mat[, j]) else min(mat[, j]))
+  anti_ideal <- sapply(seq_len(ncol(mat)), function(j) if (j %in% beneficial.vector) min(mat[, j]) else max(mat[, j]))
 
   extended_mat <- rbind(mat, ideal, anti_ideal)
 

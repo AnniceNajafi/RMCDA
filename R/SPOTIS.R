@@ -51,9 +51,9 @@ apply.SPOTIS <- function(matrix, weights, types, bounds) {
   isp <- bounds[cbind(1:ncol(matrix), (types + 1) / 2 + 1)]
 
   #Normalized distances matrix
-  norm_distances <- abs((matrix - isp) / (bounds[, 1] - bounds[, 2]))
+  norm_distances <- abs(t((t(matrix) - isp) / (bounds[, 1] - bounds[, 2])))
 
-  preference_scores <- rowSums(norm_distances * weights)
+  preference_scores <- rowSums(t(t(norm_distances) * weights))
 
   return(preference_scores)
 }
