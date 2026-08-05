@@ -164,6 +164,11 @@ Roy, B. (1968). Classement et choix en présence de points de vue multiples. Rev
       <td><a href=https://www.sciencedirect.com/science/article/pii/S0360835219307004?casa_token=NvTwbBwCA6oAAAAA:BABhztb4Fu5dIR4eh8LSyf25PUL9xWwpK7Co-5IP9r-u2htCX-GA7GnHOzrcf9NIJ7CZ3RwNKA>Stević, Ž., Pamučar, D., Puška, A., & Chatterjee, P. (2020). Sustainable supplier selection in healthcare industries using a new MCDM method: Measurement of alternatives and ranking according to COmpromise solution (MARCOS). Computers & industrial engineering, 140, 106231.</a></td>
     </tr>
     <tr>
+      <td>MEREC</td>
+      <td>MEthod based on the Removal Effects of Criteria</td>
+      <td><a href=https://www.mdpi.com/2073-8994/13/4/525>Keshavarz-Ghorabaee, M., Amiri, M., Zavadskas, E. K., Turskis, Z., & Antucheviciene, J. (2021). Determination of objective weights using a new method based on the removal effects of criteria (MEREC). Symmetry, 13(4), 525.</a></td>
+    </tr>
+    <tr>
       <td>MOORA</td>
       <td>Multi-Objective Optimization by Ratio Analysis</td>
       <td><a href=https://bibliotekanauki.pl/articles/969961.pdf>Brauers, W. K., & Zavadskas, E. K. (2006). The MOORA method and its application to privatization in a transition economy. Control and cybernetics, 35(2), 445-469.</a></td>
