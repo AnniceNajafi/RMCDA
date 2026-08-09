@@ -1,3 +1,5 @@
+
+
 # RMCDA
 
 This R package has been developed to serve as a universal library in R for the application of multi-criteria decision making methods. 
@@ -68,7 +70,7 @@ This is an R package for applying MCDA methods on product data.
     </tr>
    <tr>
       <td>CILOS</td>
-      <td>Crietion Impact LOSs</td>
+      <td>Criterion Impact LOSs</td>
       <td><a href=https://www.worldscientific.com/doi/abs/10.1142/S0219622016500036>Zavadskas, E. K., & Podvezko, V. (2016). Integrated determination of objective criteria weights in MCDM. International Journal of Information Technology & Decision Making, 15(02), 267-283.</a></td>
     </tr>
     <tr>
