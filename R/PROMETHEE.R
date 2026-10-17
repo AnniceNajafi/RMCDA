@@ -19,8 +19,11 @@ apply.PROMETHEE <- function(A, weights, type="II"){
   colMaxs <- apply(A, 2, function(x) max(x, na.rm = TRUE))
   colMins <- apply(A, 2, function(x) min(x, na.rm = TRUE))
 
+  ranges <- colMaxs - colMins
+  ranges[ranges == 0] <- 1
+  
   processed.A <- t(apply(A, 1, function(row) {
-    (row - colMins) / (colMaxs - colMins)
+    (row - colMins) / ranges
   }))
 
 
@@ -53,7 +56,7 @@ apply.PROMETHEE <- function(A, weights, type="II"){
 
 
   row.names <- unique(unlist(lapply(names(pairwise.vector), function(x) strsplit(x, "-")[[1]])))
-  row.names <- gsub("D\\(|\\)", "", row.names)
+  row.names <- unique(gsub("D\\(|\\)", "", row.names))
 
 
   n <- length(row.names)
@@ -73,7 +76,7 @@ apply.PROMETHEE <- function(A, weights, type="II"){
 
   diag(preference.matrix) <- "-"
 
-  preference.matrix <- preference.matrix[1:nrow(A), 1:ncol(A)]
+  #preference.matrix <- preference.matrix[1:nrow(A), 1:ncol(A)]
 
   preference.matrix[preference.matrix == "-"] <- NA
 
