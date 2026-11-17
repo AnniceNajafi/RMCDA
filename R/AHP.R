@@ -8,18 +8,39 @@
 #' @import dplyr
 find.weight <- function(A){
 
+  if(!is.matrix(A) || nrow(A) == 0 || nrow(A) != ncol(A)){
+    stop("The pairwise comparison matrix must be a nonempty square matrix.")
+  }
+
+  n <- ncol(A)
+
+  # =Saaty's (1980) random consistency index (RI) for n = 1, ..., 15
+  reference.RI <- c(0, 0, 0.58, 0.90, 1.12, 1.24, 1.32, 1.41, 1.45, 1.49,
+                    1.51, 1.48, 1.56, 1.57, 1.59)
+
+  if(n > length(reference.RI)){
+    stop(sprintf(paste0("The consistency check supports pairwise comparison matrices ",
+                        "with at most %d criteria/alternatives (got %d)."),
+                 length(reference.RI), n))
+  }
+
   norm.A <- t(t(A) / colSums(A)) #normalize matrix
 
   W <- rowMeans(norm.A) #find weights
 
-  CI <- (1/ncol(A)*sum((A %*% W)/W)-ncol(A))/(ncol(A)-1)
+  if(n <= 2){
 
-  reference.RI <- data.frame(n=seq(2, 10, 1), RI=c(0, .58, .9, 1.12, 1.24, 1.32, 1.41, 1.45, 1.51))
+    CR <- 0 #reciprocal matrices of order 1 or 2 are always consistent (RI = 0)
 
-  RI <- (reference.RI %>% filter(n==ncol(A)))$RI
+  }else{
 
+    CI <- (1/n*sum((A %*% W)/W)-n)/(n-1)
 
-  if(CI/RI<.1){
+    CR <- CI/reference.RI[n]
+
+  }
+
+  if(CR<.1){
 
     print("No serious inconsistencies detected.")
 
@@ -29,7 +50,7 @@ find.weight <- function(A){
 
   }
 
-  return(list(CI/RI, W))
+  return(list(CR, W))
 
 }
 
@@ -73,7 +94,7 @@ apply.AHP <- function(A, comparing.competitors){
 
   rownames(criteria.alternatives.mat)<- colnames(A)
 
-  weighted.scores.mat <- t(t(criteria.alternatives.mat)*criteria.weight[[2]])
+  weighted.scores.mat <- as.matrix(criteria.alternatives.mat)*criteria.weight[[2]]
 
   alternative.score <- colSums(criteria.alternatives.mat*criteria.weight[[2]])
 
@@ -122,7 +143,7 @@ apply.ANP <- function(A, comparing.competitors, power){
   }
   super.mat[(n + 2):(n + 1 + m), (n + 2):(n + 1 + m)] <- diag(m)
   
-  if (power != 1L) super.mat^power->super.mat
+  if (power != 1L) Reduce(`%*%`, rep(list(super.mat), power))->super.mat
   
   return(super.mat)
 }
@@ -181,7 +202,9 @@ apply.FAHP <- function(A){
     }
   })
 
-  r1 <- apply(mat.1, 1, prod)^(1/4);r2 <- apply(mat.2, 1, prod)^(1/4);r3 <- apply(mat.3, 1, prod)^(1/4)
+  n <- nrow(A)
+
+  r1 <- apply(mat.1, 1, prod)^(1/n);r2 <- apply(mat.2, 1, prod)^(1/n);r3 <- apply(mat.3, 1, prod)^(1/n)
 
   A_curly <- colSums(t(rbind(r1, r2, r3)))
 
@@ -197,6 +220,8 @@ apply.FAHP <- function(A){
   }
   rownames(fuzzy.weights.df)<-colnames(A)
 
-  return(rowMeans(fuzzy.weights.df))
+  crisp.weights <- rowMeans(fuzzy.weights.df)
+
+  return(crisp.weights/sum(crisp.weights))
 
 }
